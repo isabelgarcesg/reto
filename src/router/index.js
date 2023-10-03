@@ -1,9 +1,10 @@
 //Paulina estuvo acá
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import CrearView from '../components/CrearView.vue'
+import CrearUsuario from '../components/CrearUsuario.vue'
 import ListarView from '../components/ListarView.vue'
 import EditarView from '../components/EditarView.vue'
+import operationsView from '../components/operationsView.vue'
 
 const routes = [
   {
@@ -14,7 +15,7 @@ const routes = [
   {
     path: '/crear',
     name: 'crear',
-    component: CrearView
+    component: CrearUsuario
   },
   {
     path: '/listar',
@@ -25,6 +26,11 @@ const routes = [
     path: '/editar/:id',
     name: 'editar',
     component: EditarView
+  },
+   {
+    path: '/operations',
+    name: 'operations',
+    component: operationsView
   },
   {
     path: '/about',
