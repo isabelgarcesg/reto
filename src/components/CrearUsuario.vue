@@ -43,13 +43,23 @@
                       <small id="helpId" class="form-text text-muted">Ingrese el position wtf?</small>
                     </div>   
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                       <label for="userType">Tipo de usuario</label>
                       <input type="int"
                         class="form-control" name="userType"  v-model="usuario.userType" id="userType" aria-describedby="helpId" placeholder="">
                       <small id="helpId" class="form-text text-muted">Ingrese el perfil del usuario</small>
-                    </div>  
+                    </div>   -->
 
+                    <div class="form-group">
+                      <label for="userType">Tipo de usuario</label>
+                      <select class="form-control" name="userType" v-model="usuario.userType" id="userType" aria-describedby="helpId">
+                        <option value="Administrador">Administrador</option>
+                        <option value="Auditor">Auditor</option>
+                        <option value="Normal">Normal</option>
+                      </select>
+                      <small id="helpId" class="form-text text-muted">Seleccione el perfil del usuario</small>
+                    </div>
+                    
                     <!-- Puede que este se elimine y se deje como un ID de la entidas fijo si solo tenemos que hacer un hospital, depende. -->
                     <div class="form-group">
                       <label for="entityID">ID del prestador de servicios</label>
@@ -93,10 +103,15 @@ export default {
             let passwordUser=this.usuario.password
             let documentUser=this.usuario.doc
             let positionUser=this.usuario.position
-            let userType=1
+            let UserType = 3; // Declarar UserType fuera de los bloques if
+            if (this.usuario.userType === "Administrador") {
+              UserType = 1;
+            } else if (this.usuario.userType === "Auditor") {
+              UserType = 2;
+            }
             let userEntityId=this.usuario.entityID
             let key="11e2e476-717b-4898-ac02-693abdecdc9b"
-            fetch('https://redb.qsystems.co/QS3100/QServlet?operation='+operation+'&tna='+tna+'&nameUser='+nameUser+'&phoneUser='+phoneUser+'&passwordUser='+passwordUser+'&documentUser='+documentUser+'&positionUser='+positionUser+'&userType='+userType+'&userEntityId='+userEntityId+'&key='+key)
+            fetch('https://redb.qsystems.co/QS3100/QServlet?operation='+operation+'&tna='+tna+'&nameUser='+nameUser+'&phoneUser='+phoneUser+'&passwordUser='+passwordUser+'&documentUser='+documentUser+'&positionUser='+positionUser+'&userType='+UserType+'&userEntityId='+userEntityId+'&key='+key)
             .then(respuesta=>respuesta.json())
             .then((datosRespuesta=>{
                 console.log(datosRespuesta);
