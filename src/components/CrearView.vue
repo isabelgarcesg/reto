@@ -3,7 +3,7 @@
         
         <div class="card">
             <div class="card-header">
-                <b>Página para crear un paciente</b>
+                <b>Página para crear un usuario</b>
             </div>
             <div class="card-body">
                 <form v-on:submit.prevent="agregarRegistro">
