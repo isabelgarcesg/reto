@@ -46,9 +46,9 @@
 
 <script>
     export default {
-        created:function(){
-            this.createEntity();
-        },
+        // created:function(){
+        //     this.createEntity();
+        // },
         data(){
             return{
                 entidad:{}
