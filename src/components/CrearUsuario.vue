@@ -93,14 +93,9 @@ export default {
         }
     },
     methods:{
-        readUser(){
-                fetch('https://redb.qsystems.co/QS3100/QServlet?operation=queryUserByEntity&tna=2&userEntityId=29&key=29ee694f-0e5b-43e4-8fa4-3ba865f7d8dd')
-                .then(respuesta=>respuesta.json())
-                .then((datosRespuesta)=>{
-                console.log(datosRespuesta)
-                })
-                .catch(console.log)
-                },
+        // SI QUIERE VERIFICAR QUE SE CREO EL USUARIO PONGA EL SIGUIENTE LINK EN EL NAVEGADOR:
+        // https://redb.qsystems.co/QS3100/QServlet?operation=queryUserByEntity&tna=6&key=11e2e476-717b-4898-ac02-693abdecdc9b&userEntityId=29
+        
         agregarUsuario(){
             console.log(this.usuario)
             // let datosEnviar={id:null , doc:this.usuario.doc , name:this.usuario.name , lastname:this.usuario.lastname}

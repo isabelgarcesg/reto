@@ -48,7 +48,6 @@
     export default {
         created:function(){
             this.createEntity();
-            this.readEntity();
         },
         data(){
             return{
@@ -56,14 +55,9 @@
             }
         },
         methods: {
-            readEntity(){
-                    fetch('https://redb.qsystems.co/QS3100/QServlet?operation=queryEntityByTenancy&tna=2&key=29ee694f-0e5b-43e4-8fa4-3ba865f7d8dd')
-                    .then(respuesta=>respuesta.json())
-                    .then((datosRespuesta)=>{
-                        console.log(datosRespuesta)
-                    })
-                    .catch(console.log)
-                },
+            
+            // SI QUIERE VERIFICAR QUE SE CREO LA ENTIDAD PONGA EL SIGUIENTE LINK EN EL NAVEGADOR:
+            // https://redb.qsystems.co/QS3100/QServlet?operation=queryEntityByTenancy&tna=6&key=11e2e476-717b-4898-ac02-693abdecdc9b
             createEntity(){
                     let operation="SaveEntity"
                     let tna=6
