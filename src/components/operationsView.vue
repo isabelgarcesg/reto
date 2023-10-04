@@ -16,7 +16,7 @@
                 })
                 .catch(console.log)
                 },
-                createEntity(){
+            createEntity(){
                 let operation="SaveEntity"
                 let tna=6
                 let key="11e2e476-717b-4898-ac02-693abdecdc9b"

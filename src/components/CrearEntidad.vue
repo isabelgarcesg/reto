@@ -6,7 +6,7 @@
                 <b>Creación de entidad</b>
             </div>
             <div class="card-body">
-                <form v-on:submit.prevent="agregarEntidad">
+                <form v-on:submit.prevent="createEntity">
 
                     <div class="form-group">
                       <label for="name">Nombre de la entidad</label>
@@ -48,7 +48,7 @@
     export default {
         created:function(){
             this.createEntity();
-            //this.readEntity();
+            this.readEntity();
         },
         data(){
             return{
@@ -56,15 +56,15 @@
             }
         },
         methods: {
-            // readEntity(){
-            //         fetch('https://redb.qsystems.co/QS3100/QServlet?operation=queryEntityByTenancy&tna=2&key=29ee694f-0e5b-43e4-8fa4-3ba865f7d8dd')
-            //         .then(respuesta=>respuesta.json())
-            //         .then((datosRespuesta)=>{
-            //             console.log(datosRespuesta)
-            //         })
-            //         .catch(console.log)
-            //     },
-                createEntity(){
+            readEntity(){
+                    fetch('https://redb.qsystems.co/QS3100/QServlet?operation=queryEntityByTenancy&tna=2&key=29ee694f-0e5b-43e4-8fa4-3ba865f7d8dd')
+                    .then(respuesta=>respuesta.json())
+                    .then((datosRespuesta)=>{
+                        console.log(datosRespuesta)
+                    })
+                    .catch(console.log)
+                },
+            createEntity(){
                     let operation="SaveEntity"
                     let tna=6
                     let key="11e2e476-717b-4898-ac02-693abdecdc9b"
@@ -75,7 +75,7 @@
                     .then(respuesta=>respuesta.json())
                     .then((datosRespuesta=>{
                         console.log(datosRespuesta);
-                    }))
+                }))
             }
         }
     }
