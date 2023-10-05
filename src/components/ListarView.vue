@@ -9,17 +9,17 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>DOCUMENTO</th>
                             <th>NOMBRE COMPLETO</th>
+                            <th>TELÉFONO</th>
+                            <th>DIRECCIÓN</th>
                             <th>ACCIONES</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="paciente in pacientes" :key="paciente.id">
-                            <td scope="row">{{paciente.id}}</td>
-                            <td>{{paciente.doc}}</td>
-                            <td>{{paciente.name}} {{paciente.lastname}}</td>
+                            <td scope="row">{{paciente.nameEntity}}</td>
+                            <td>{{paciente.phoneEntity}}</td>
+                            <td>{{paciente.adressEntity}}</td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="">
                                     <router-link :to="{name:'editar', params:{id:paciente.id}}" class="btn btn-info">Editar</router-link>
@@ -48,12 +48,16 @@ export default {
         }
     },
     created:function(){
-        this.consultarPacientes();
+        this.consultarEntidad();
     },
     methods:{
         //http://localhost/api/
-        consultarPacientes(){
-            fetch('http://localhost/api/')
+        
+        consultarEntidad(){
+            // let operation="queryUserByTenancy"
+            // let tna=6
+            // let key="11e2e476-717b-4898-ac02-693abdecdc9b"
+            fetch('https://redb.qsystems.co/QS3100/QServlet?operation=queryUserByTenancy&tna:=6&key:=11e2e476-717b-4898-ac02-693abdecdc9b')
             .then(respuesta=>respuesta.json())
             .then((datosRespuesta)=>{
                 console.log(datosRespuesta)
