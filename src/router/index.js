@@ -8,11 +8,11 @@ import operationsView from '../components/operationsView.vue'
 import CrearEntidad from '../components/CrearEntidad.vue'
 
 const routes = [
-  {
+{
     path: '/',
     name: 'home',
-    component: HomeView
-  },
+  component: HomeView
+},
   {
     path: '/crear',
     name: 'crear',

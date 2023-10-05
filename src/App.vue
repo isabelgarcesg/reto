@@ -1,5 +1,5 @@
 <template>
-<div class="container">
+<!-- <div class="container">
   <nav class="navbar navbar-expand navbar-light bg-light">
       <div class="nav navbar-nav">
           
@@ -11,29 +11,59 @@
   </nav>
 </div>
 <br>
-  <router-view/>
+  <router-view/> -->
+  <div class="app">
+    <SideBar />
+
+    <router-view/>
+  </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script setup>
+import SideBar from './components/SideBar.vue';
+</script>
+
+<style lang="scss">
+:root{
+  --primary: #4ade80;
+  --grey: #64748b;
+  --dark: #1e293b;
+  --dark-alt: #334155;
+  --light: #f1f5f9;
+  --sidebar-width: 300px;
+}
+* {
+  margin: 0;
+  padding: 0;
+box-sizing: border-box;
+font-family: 'Lato', sans-serif;
 }
 
-nav {
-  padding: 30px;
+body{
+  background: var(--light);
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
+button {
+  cursor: pointer;
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+
 }
 
-nav a.router-link-exact-active {
-  color: #42b983;
+.app{
+  display: flex;
+
+  main{
+    flex: 1 1 0;
+    padding: 2rem;
+    @media (max-width:768px){
+      padding: 6rem;
+    }
+
+  } 
 }
+
 </style>
 <!-- ESTILO -->
