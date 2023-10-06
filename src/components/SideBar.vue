@@ -20,16 +20,16 @@
                 <span class="material-icons">document</span>
                 <span class="text">About</span>
             </router-link> -->
+            <router-link class="botton" to="/CrearEntidad">
+                <span class="material-icons">apartment</span>
+                <span class="text">Entidad</span>
+            </router-link> 
 
             <router-link class="botton" to="/crear">
                 <span class="material-icons">person</span>
                 <span class="text">Usuarios</span>
             </router-link>
 
-            <router-link class="botton" to="/CrearEntidad">
-                <span class="material-icons">apartment</span>
-                <span class="text">Entidad</span>
-            </router-link> 
         
         </div>
     </aside> 
