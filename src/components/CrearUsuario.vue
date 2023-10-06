@@ -6,20 +6,6 @@
       </div>
       <div class="card-body">
         <form v-on:submit.prevent="agregarUsuario">
-          <div class="form-group">
-            <label for="doc">Documento de identidad</label>
-            <input
-              type="text"
-              class="form-control"
-              name="doc"
-              v-model="usuario.doc"
-              id="doc"
-              aria-describedby="helpId"
-              placeholder="ID"
-            >
-            <small id="helpId" class="form-text text-muted">Ingrese el documento del usuario</small>
-          </div>
-
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
@@ -33,9 +19,28 @@
                   aria-describedby="helpId"
                   placeholder="Nombre"
                 >
-                <small id="helpId" class="form-text text-muted">Ingrese el nombre del usuario</small>
+                <small id="helpId" class="form-text text-muted"></small>
               </div>
             </div>
+
+            <div> <br></div>
+            
+            <div class="col-md-6">
+            <div class="form-group">
+            <label for="doc">Documento de identidad</label>
+            <input
+              type="text"
+              class="form-control"
+              name="doc"
+              v-model="usuario.doc"
+              id="doc"
+              aria-describedby="helpId"
+              placeholder="ID"
+            >
+            <small id="helpId" class="form-text text-muted"></small>
+          </div>
+        </div>
+
             <div class="col-md-6">
               <div class="form-group">
                 <label for="phone">Celular</label>
@@ -48,42 +53,12 @@
                   aria-describedby="helpId"
                   placeholder="Número de celular"
                 >
-                <small id="helpId" class="form-text text-muted">Ingrese el celular del usuario</small>
+                <small id="helpId" class="form-text text-muted"></small>
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="password">Contraseña</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  name="password"
-                  v-model="usuario.password"
-                  id="password"
-                  aria-describedby="helpId"
-                  placeholder="******"
-                >
-                <small id="helpId" class="form-text text-muted">Ingrese la contraseña</small>
-              </div>
-            </div>
-          </div>
+            </div>  
 
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="position">Position</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="position"
-                  v-model="usuario.position"
-                  id="position"
-                  aria-describedby="helpId"
-                  placeholder="Position"
-                >
-                <small id="helpId" class="form-text text-muted">Ingrese el position wtf?</small>
-              </div>
-            </div>
+    <div><br></div>
+
             <div class="col-md-6">
               <div class="form-group">
                 <label for="userType">Tipo de usuario</label>
@@ -95,10 +70,10 @@
                 <small id="helpId" class="form-text text-muted">Seleccione el perfil del usuario</small>
               </div>
             </div>
-          </div>
 
-          <div class="form-group">
-            <label for="entityID">ID del prestador de servicios</label>
+            <div class="col-md-6">
+            <div class="form-group">
+            <label for="entityID">Prestador de servicios</label>
             <input
               type="int"
               class="form-control"
@@ -106,16 +81,62 @@
               v-model="usuario.entityID"
               id="entityID"
               aria-describedby="helpId"
-              placeholder="Ingrese el ID de la entidad/hospital"
+              placeholder="Seleccione la entidad a la que pertenece"
             >
-            <small id="helpId" class="form-text text-muted">Ingrese el ID de la entidad/hospital</small>
+            <small id="helpId" class="form-text text-muted"></small>
+          </div>
+        </div>
+
+        <div><br></div>
+
+            
+          
+            <!--CARGO = POSITION-->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="position">Cargo</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="position"
+                  v-model="usuario.position"
+                  id="position"
+                  aria-describedby="helpId"
+                  placeholder="Cargo"
+                >
+                <small id="helpId" class="form-text text-muted"></small>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  name="password"
+                  v-model="usuario.password"
+                  id="password"
+                  aria-describedby="helpId"
+                  
+                >
+                <small id="helpId" class="form-text text-muted"></small>
+              </div>
+            </div>
+
           </div>
 
+          
+            
+            <div><br></div>
+          
+
+          
           <!-- BOTONES -->
-          <div class="btn-group" role="group" aria-label="">
-            <button type="submit" class="btn btn-success">Enviar</button>
-            <button type="reset" class="btn btn-warning">Borrar</button>
-          </div>
+          
+            <button type="submit" class="btn btn-primary">Enviar</button>
+            <button type="reset" class="btn btn-danger"  style="margin-left: 10px;">Borrar</button>
+          
         </form>
       </div>
 
