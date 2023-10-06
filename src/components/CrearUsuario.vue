@@ -140,9 +140,9 @@
         </form>
       </div>
 
-      <div class="card-footer text-muted">
+      <!-- <div class="card-footer text-muted">
         Copyright: LifeTech Solutions 2023
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -186,3 +186,16 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+
+div{
+    
+
+    .card{
+        background-color: var(--light-blue);
+    }
+
+}
+
+</style>
