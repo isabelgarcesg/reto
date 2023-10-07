@@ -1,8 +1,11 @@
 <template>
+  <div>
+    <router-link :to="{name:'CrearEntidad'}" class="btn btn-info">Nuevo</router-link>
+  </div>
     <div class="container">
       <div class="card">
         <div class="card-header">
-          Lista de todos los entidads en la base de datos
+          Lista de todos los entidades en la base de datos
         </div>
         <div class="card-body">
           <table class="table">
@@ -75,11 +78,6 @@
               // El array "arrayEntity" no está vacío o no existe
               console.log(this.Entidades,   "El array arrayEntity no está vacío o no existe.");
             }
-  
-            // if(typeof datosRespuesta["arrayEntity"]){ //si ese arreglo está vacio, entonces lo llena con los DatosRespuesta
-  
-            //     this.Entidades=datosRespuesta;
-            // }
           })
           .catch(console.log);
       },
@@ -97,7 +95,9 @@
   
           })
           .catch(console.log)
-      }
+      },
+
+      
     },
   };
   </script>
