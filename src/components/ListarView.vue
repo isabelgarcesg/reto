@@ -83,18 +83,21 @@ export default {
         })
         .catch(console.log);
     },
-    // borrarentidad(id){
-    //     console.log(id)
-    //     //http://localhost/api/?borrar=
-    //     fetch('http://localhost/api/?borrar='+id)
-    //     .then(respuesta=>respuesta.json())
-    //     .then((datosRespuesta)=>{
-    //         console.log(datosRespuesta)
-    //         window.location.href="listar"
+    borrarentidad(id){
+        console.log(id)
+        let operation="DeleteEntity"
+        let tna=6
+        let key="11e2e476-717b-4898-ac02-693abdecdc9b"
+        //https://redb.qsystems.co/QS3100/QServlet?operation=DeleteEntity&tna=6&idEntity=29&key=11e2e476-717b-4898-ac02-693abdecdc9b
+        fetch('https://redb.qsystems.co/QS3100/QServlet?operation='+operation+'&tna='+tna+'&idEntity='+id+'&key='+key)
+        .then(respuesta=>respuesta.json())
+        .then((datosRespuesta)=>{
+            console.log(datosRespuesta)
+            window.location.href="listar"
 
-    //     })
-    //     .catch(console.log)
-    // }
+        })
+        .catch(console.log)
+    }
   },
 };
 </script>
