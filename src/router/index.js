@@ -2,7 +2,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import CrearUsuario from '../components/CrearUsuario.vue'
-import ListarView from '../components/ListarView.vue'
+import ListarEntidad from '../components/ListarEntidad.vue'
 import EditarView from '../components/EditarView.vue'
 import operationsView from '../components/operationsView.vue'
 import CrearEntidad from '../components/CrearEntidad.vue'
@@ -19,9 +19,9 @@ const routes = [
     component: CrearUsuario
   },
   {
-    path: '/listar',
-    name: 'lista',
-    component: ListarView
+    path: '/ListarEntidad',
+    name: 'ListarEntidad',
+    component: ListarEntidad
   },
   {
     path: '/editar/:id',

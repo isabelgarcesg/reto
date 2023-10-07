@@ -20,7 +20,7 @@
                 <span class="material-icons">document</span>
                 <span class="text">About</span>
             </router-link> -->
-            <router-link class="botton" to="/CrearEntidad">
+            <router-link class="botton" to="/ListarEntidad">
                 <span class="material-icons">apartment</span>
                 <span class="text">Entidad</span>
             </router-link> 
