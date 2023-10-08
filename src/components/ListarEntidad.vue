@@ -1,8 +1,14 @@
 <template>
   <div>
-    <router-link :to="{name:'CrearEntidad'}" class="btn btn-info">Nuevo</router-link>
-  </div>
-    <div class="container">
+    <nav class="navbar navbar-expand navbar-light bg-light">
+      <div class="nav navbar-nav">
+        <router-link :to="{ name: 'CrearEntidad' }" class="btn btn-info" style="margin-left: 30px;">Nuevo</router-link>
+      </div>
+    </nav>
+
+    <!-- Agregar margen superior al card para separarlo de la barra de navegación -->
+    <div class="container mt-3">
+      <div class="d-flex justify-content-center">
       <div class="card">
         <div class="card-header">
           Lista de todos los entidades en la base de datos
@@ -14,7 +20,7 @@
                 <th>Nombre</th>
                 <th>Teléfono</th>
                 <th>Dirección</th>
-                <th>Acciones</th>
+                <th>      Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -23,17 +29,19 @@
                               <td>{{entidad.phone}}</td>
                               <td>{{entidad.adress}}</td>
                               <td>
-                                  <div class="btn-group" role="group" aria-label="">
-                                      <router-link :to="{name:'editar', params:{id:entidad.id}}" class="btn btn-info">Editar</router-link>
-                                      <button type="button" v-on:click="borrarentidad(entidad.id)" class="btn btn-danger">Borrar</button>
-                                  </div>
+                                  
+                                      <router-link :to="{name:'editar', params:{id:entidad.id}}" class="btn btn-outline-info" >Editar</router-link>
+                                      <button type="button" v-on:click="borrarentidad(entidad.id)" class="btn btn-outline-danger" style="margin-left: 10px;">Borrar</button>
+                                  
                               </td>
                           </tr>
             </tbody>
           </table>
         </div>
-        <div class="card-footer text-muted">Copyright: Bioing Company 2023</div>
+
       </div>
+    </div>
+    </div>
     </div>
   </template>
   
