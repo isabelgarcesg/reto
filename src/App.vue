@@ -6,7 +6,8 @@
           <router-link to="/crear" class="navbar-brand">Crear usuario</router-link> 
           <router-link to="/listar" class="navbar-brand">Listar</router-link>     
           <router-link to="/operations" class="navbar-brand">Operations</router-link>     
-          <router-link to="/CrearEntidad" class="navbar-brand">Crear entidad</router-link>   
+          <router-link to="/CrearEntidad" class="navbar-brand">Crear entidad</router-link> 
+          <router-link to="/ListarUsuario" class="navbar-brand">Listar usuario</router-link>    
       </div>
   </nav>
 </div>
