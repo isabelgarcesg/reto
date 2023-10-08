@@ -10,7 +10,7 @@
         <div class="mt-4 d-flex justify-content-center align-items-center">
           <form v-on:submit.prevent="agregarUsuario">
             <div class="row">
-              <div class="col-md-12">
+              <div class="col-md-6">
                 <div class="form-group">
                   <label for="name">Nombre completo</label>
                   <input type="text" class="form-control" name="name" v-model="usuario.name" id="name"
@@ -19,7 +19,6 @@
                 </div>
               </div>
 
-              <div><br /></div>
 
               <div class="col-md-6">
                 <div class="form-group">
@@ -30,6 +29,8 @@
                 </div>
               </div>
 
+              <div> <br> </div>
+
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="phone">Celular</label>
@@ -39,7 +40,6 @@
                 </div>
               </div>
 
-              <div><br /></div>
 
 
               <div class="col-md-6">
@@ -56,6 +56,7 @@
               </div>
 
 
+              <div> <br> </div>
               <!-- <div class="col-md-6">
                 <div class="form-group">
                   <label for="entityID">Entidad prestadora de servicios</label>
@@ -65,7 +66,6 @@
                 </div>
               </div> -->
 
-              <div><br /></div>
 
               <!--CARGO = POSITION-->
               <div class="col-md-6">

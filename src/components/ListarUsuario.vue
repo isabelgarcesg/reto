@@ -3,6 +3,7 @@
     <nav class="navbar navbar-expand navbar-light bg-light">
       <div class="nav navbar-nav">
         <router-link :to="{ name: 'crear' }" class="btn btn-info" style="margin-left: 30px;">Nuevo</router-link>
+        <router-link :to="{ name: 'ListarUsTenan' }" class="btn btn-info" style="margin-left: 30px;">Tenancy</router-link>
       </div>
     </nav>
   
