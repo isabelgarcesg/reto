@@ -11,7 +11,7 @@
       <div class="d-flex justify-content-center">
       <div class="card">
         <div class="card-header">
-          Lista de todos los entidades en la base de datos
+          Entidades existentes
         </div>
         <div class="card-body">
           <table class="table">
