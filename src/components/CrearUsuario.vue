@@ -61,13 +61,13 @@
                     </div>
                     
                     <!-- Puede que este se elimine y se deje como un ID de la entidas fijo si solo tenemos que hacer un hospital, depende. -->
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                       <label for="entityID">ID del prestador de servicios</label>
                       <input type="int"
                         class="form-control" name="entityID"  v-model="usuario.entityID" id="entityID" aria-describedby="helpId" placeholder="">
                       <small id="helpId" class="form-text text-muted">Ingrese el ID de la entidad/hospital</small>
                     </div>  
-                    
+                     -->
                     <!-- BOTONES -->
                     <div class="btn-group" role="group" aria-label="">
                         <button type="submit" class="btn btn-success">Enviar</button>
@@ -112,9 +112,9 @@ export default {
             } else if (this.usuario.userType === "Auditor") {
               UserType = 2;
             }
-            let userEntityId=this.usuario.entityID
+            // let userEntityId=this.usuario.entityID
             let key="11e2e476-717b-4898-ac02-693abdecdc9b"
-            fetch('https://redb.qsystems.co/QS3100/QServlet?operation='+operation+'&tna='+tna+'&nameUser='+nameUser+'&phoneUser='+phoneUser+'&passwordUser='+passwordUser+'&documentUser='+documentUser+'&positionUser='+positionUser+'&userType='+UserType+'&userEntityId='+userEntityId+'&key='+key)
+            fetch('https://redb.qsystems.co/QS3100/QServlet?operation='+operation+'&tna='+tna+'&nameUser='+nameUser+'&phoneUser='+phoneUser+'&passwordUser='+passwordUser+'&documentUser='+documentUser+'&positionUser='+positionUser+'&userType='+UserType+'&userEntityId='+82+'&key='+key)
             .then(respuesta=>respuesta.json())
             .then((datosRespuesta=>{
                 console.log(datosRespuesta);

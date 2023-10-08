@@ -57,9 +57,6 @@ export default {
         "https://redb.qsystems.co/QS3100/QServlet?operation=queryEntityByTenancy&tna=6&key=11e2e476-717b-4898-ac02-693abdecdc9b"
       )
         .then((respuesta) => respuesta.json())
-        // .then((datosRespuesta)=>{
-        //     console.log(datosRespuesta)
-        // })
         .then((datosRespuesta) => {
         //   console.log(datosRespuesta["arrayEntity"][0].name, "hola1");
           this.Entidades = []; //Inicializa el arreglo para entidades
@@ -67,19 +64,12 @@ export default {
             datosRespuesta.arrayEntity &&
             datosRespuesta.arrayEntity.length === 0
           ) {
-            // El array "arrayEntity" está vacío
+
             console.log("El array arrayEntity está vacío.");
           } else {
             this.Entidades=datosRespuesta["arrayEntity"]   
-
-            // El array "arrayEntity" no está vacío o no existe
             console.log(this.Entidades,   "El array arrayEntity no está vacío o no existe.");
           }
-
-          // if(typeof datosRespuesta["arrayEntity"]){ //si ese arreglo está vacio, entonces lo llena con los DatosRespuesta
-
-          //     this.Entidades=datosRespuesta;
-          // }
         })
         .catch(console.log);
     },
