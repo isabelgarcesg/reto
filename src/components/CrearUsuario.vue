@@ -56,14 +56,14 @@
               </div>
 
 
-              <div class="col-md-6">
+              <!-- <div class="col-md-6">
                 <div class="form-group">
                   <label for="entityID">Entidad prestadora de servicios</label>
                   <input type="int" class="form-control" name="entityID" v-model="usuario.entityID" id="entityID"
                     aria-describedby="helpId" placeholder="Seleccione la entidad a la que pertenece" />
                   <small id="helpId" class="form-text text-muted"></small>
                 </div>
-              </div>
+              </div> -->
 
               <div><br /></div>
 
@@ -134,7 +134,7 @@ export default {
       } else if (this.usuario.userType === "Auditor") {
         UserType = 2;
       }
-      let userEntityId = this.usuario.entityID;
+      // let userEntityId = this.usuario.entityID;
       let key = "11e2e476-717b-4898-ac02-693abdecdc9b";
       fetch(
         "https://redb.qsystems.co/QS3100/QServlet?operation=" +
@@ -154,13 +154,14 @@ export default {
         "&userType=" +
         UserType +
         "&userEntityId=" +
-        userEntityId +
+        82+
         "&key=" +
         key
       )
         .then((respuesta) => respuesta.json())
         .then((datosRespuesta) => {
           console.log(datosRespuesta);
+          window.location.href='ListarUsuario'//Redirecciona a la URL de listar
         });
     },
   },

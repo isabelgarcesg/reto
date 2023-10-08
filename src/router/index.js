@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import CrearUsuario from '../components/CrearUsuario.vue'
 import ListarEntidad from '../components/ListarEntidad.vue'
+import ListarUsuario from '../components/ListarUsuario.vue'
 import EditarView from '../components/EditarView.vue'
 import operationsView from '../components/operationsView.vue'
 import CrearEntidad from '../components/CrearEntidad.vue'
@@ -22,6 +23,11 @@ const routes = [
     path: '/ListarEntidad',
     name: 'ListarEntidad',
     component: ListarEntidad
+  },
+  {
+    path: '/ListarUsuario',
+    name: 'ListarUsuario',
+    component: ListarUsuario
   },
   {
     path: '/editar/:id',

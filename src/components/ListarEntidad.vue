@@ -20,7 +20,7 @@
                 <th>Nombre</th>
                 <th>Teléfono</th>
                 <th>Dirección</th>
-                <th>      Acciones</th>
+                <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -28,11 +28,9 @@
                               <td scope="row">{{entidad.name}}</td>
                               <td>{{entidad.phone}}</td>
                               <td>{{entidad.adress}}</td>
-                              <td>
-                                  
+                              <td>                                 
                                       <router-link :to="{name:'editar', params:{id:entidad.id}}" class="btn btn-outline-info" >Editar</router-link>
                                       <button type="button" v-on:click="borrarentidad(entidad.id)" class="btn btn-outline-danger" style="margin-left: 10px;">Borrar</button>
-                                  
                               </td>
                           </tr>
             </tbody>
