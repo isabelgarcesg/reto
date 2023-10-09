@@ -67,7 +67,7 @@ aside{
         margin-bottom: 1rem;
         img{
 
-            width: 2rem;
+            width: 3rem;
         }
     }
 
