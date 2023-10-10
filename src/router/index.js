@@ -22,7 +22,7 @@ const routes = [
     component: CrearUsuario
   },
   {
-    path: '/EditarUsuario',
+    path: '/EditarUsuario/:id',
     name: 'EditarUsuario',
     component: EditarUsuario
   },
