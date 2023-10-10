@@ -30,17 +30,15 @@
                       <small id="helpId" class="form-text text-muted">Ingrese la dirección de la entidad</small>
                     </div>
                     
-                    <div class="btn-group" role="group" aria-label="">
-                        <button type="submit" class="btn btn-success">Modificar</button>
-                        <button type="reset" class="btn btn-warning">Cancelar</button>
-                    </div>
+
+                        <button type="submit" class="btn btn-primary">Modificar</button>
+                        <button type="reset" class="btn btn-danger" style="margin-left: 10px;">Cancelar</button>
+
 
 
                 </form>
             </div>
-            <div class="card-footer text-muted">
-                Copyright: LifeTech Solutions 2023
-            </div>
+
         </div>
     </div>
 </template>

@@ -6,48 +6,50 @@
         <router-link :to="{ name: 'ListarUsTenan' }" class="btn btn-info" style="margin-left: 30px;">Tenancy</router-link>
       </div>
     </nav>
-  
-  <div class="container">
-    <div class="card">
-      <div class="card-header">
-        Usuarios del Hospital Constantino
-      </div>
-      <div class="card-body">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Documento</th>
-              <th>Teléfono</th>
-              <th>Cargo</th>
-              <th>Tipo</th>
-              <th>Entidad</th>
-              <th>Acciones</th>
 
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="usuario in usuarios" :key="usuario.id">
-              <td scope="row">{{ usuario.name }}</td>
-              <td>{{ usuario.document }}</td>
-              <td>{{ usuario.phone }}</td>
-              <td>{{ usuario.position }}</td>
-              <td>{{ usuario.userType }}</td>
-              <td>Hospital Constantino</td>
-              <td>
-                
-                  <router-link :to="{ name: 'EditarUsuario', params: { id: usuario.id } }" class="btn btn-outline-info">Editar</router-link>
-                  <button type="button" v-on:click="borrarusuario(usuario.id)" class="btn btn-outline-danger" style="margin-left: 10px;">Borrar</button>
-                
-              </td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="container">
+      <div class="card">
+        <div class="card-header">
+          Usuarios del Hospital Constantino
+        </div>
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Documento</th>
+                <th>Teléfono</th>
+                <th>Cargo</th>
+                <th>Tipo</th>
+                <th>Entidad</th>
+                <th>Acciones</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="usuario in usuarios" :key="usuario.id">
+                <td scope="row">{{ usuario.name }}</td>
+                <td>{{ usuario.document }}</td>
+                <td>{{ usuario.phone }}</td>
+                <td>{{ usuario.position }}</td>
+                <td>{{ usuario.userType }}</td>
+                <td>Hospital Constantino</td>
+                <td>
+
+                  <router-link :to="{ name: 'EditarUsuario', params: { id: usuario.id } }"
+                    class="btn btn-outline-info">Editar</router-link>
+                  <button type="button" v-on:click="borrarusuario(usuario.id)" class="btn btn-outline-danger"
+                    style="margin-left: 10px;">Borrar</button>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- <div class="card-footer text-muted">Copyright: Bioing Company 2023</div> -->
       </div>
-      <!-- <div class="card-footer text-muted">Copyright: Bioing Company 2023</div> -->
     </div>
   </div>
-</div>
 </template>
   
 <script>
@@ -72,29 +74,42 @@ export default {
           this.usuarios = []; //Inicializa el arreglo para usuarios
           if (datosRespuesta.arrayUser && datosRespuesta.arrayUser.length === 0) {
             console.log("El array arrayEntity está vacío.");
-          } 
-          else {this.usuarios = datosRespuesta["arrayUser"]
+          }
+          else {
+            this.usuarios = datosRespuesta["arrayUser"]
             console.log(this.usuarios, "El array USER NO está vacío ");
+            for (var i = 0; i < this.usuarios.length; i++) {
+              if (this.usuarios[i].userType==1){
+                this.usuarios[i].userType = "Administrador"
+              }
+              if (this.usuarios[i].userType==2){
+                this.usuarios[i].userType = "Auditor"
+              }
+              if (this.usuarios[i].userType==3){
+                this.usuarios[i].userType = "Normal"
+              }
+              
+            }
           }
         })
         .catch(console.log)
     },
 
-  borrarusuario(id){
+    borrarusuario(id) {
       console.log(id)
-      let operation="DeleteUser"
-      let tna=6
-      let key="11e2e476-717b-4898-ac02-693abdecdc9b"
+      let operation = "DeleteUser"
+      let tna = 6
+      let key = "11e2e476-717b-4898-ac02-693abdecdc9b"
       //https://redb.qsystems.co/QS3100/QServlet?operation=DeleteUser&tna=6&userId=CAMBIO&key=11e2e476-717b-4898-ac02-693abdecdc9b
-      fetch('https://redb.qsystems.co/QS3100/QServlet?operation='+operation+'&tna='+tna+'&userId='+id+'&key='+key)
-      .then(respuesta=>respuesta.json())
-      .then((datosRespuesta)=>{
+      fetch('https://redb.qsystems.co/QS3100/QServlet?operation=' + operation + '&tna=' + tna + '&userId=' + id + '&key=' + key)
+        .then(respuesta => respuesta.json())
+        .then((datosRespuesta) => {
           console.log(datosRespuesta)
-          window.location.href="ListarUsuario"
+          window.location.href = "ListarUsuario"
 
-      })
-      .catch(console.log)
-  }
-},
-  };
+        })
+        .catch(console.log)
+    }
+  },
+};
 </script>
