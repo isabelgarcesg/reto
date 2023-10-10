@@ -110,7 +110,7 @@ export default {
         this.edicionUsuarios();
     },
     methods: {
-        
+
         obtenerInformacionID() {
             fetch('https://redb.qsystems.co/QS3100/QServlet?operation=queryUserByEntity&tna=6&userEntityId=82&key=11e2e476-717b-4898-ac02-693abdecdc9b' + this.$route.params.id)
                 .then(respuesta => respuesta.json()) //es como un return y también hago una función arrow para volver la respuesta un json
@@ -122,9 +122,9 @@ export default {
                 .catch(console.log) //es como try except
 
         },
-        edicionUsuarios(){
-            let operation= "UpdateUser"
-            let tna= 6
+        edicionUsuarios() {
+            let operation = "UpdateUser"
+            let tna = 6
             // let userId=this.usuario.id
             // let nameUser=this.usuario.name
             // let phoneUser=this.usuario.phone
@@ -133,28 +133,29 @@ export default {
             // let positionUser=this.usuario.position
             let UserType = 3; // Declarar UserType fuera de los bloques if
             if (this.usuario.userType === "Administrador") {
-              UserType = 1;
+                UserType = 1;
             } else if (this.usuario.userType === "Auditor") {
-              UserType = 2;
+                UserType = 2;
             }
             //let userEntityId=82
-            let key="11e2e476-717b-4898-ac02-693abdecdc9b"
-            let datosEnviar = {userId:this.$route.params.id, nameUser:this.usuario.name,
-            phoneUser:this.usuario.phone,
-            passwordUser:this.usuario.password,
-            documentUser:this.usuario.doc,
-            positionUser:this.usuario.position,
-            userEntityId:82
-          }
-            fetch('https://redb.qsystems.co/QS3100/QServlet?operation='+operation+'&tna='+tna+'&key='+key+'&UserType='+UserType,{
-              method:"POST",
-              body:JSON.stringify(datosEnviar)
+            let key = "11e2e476-717b-4898-ac02-693abdecdc9b"
+            let datosEnviar = {
+                userId: this.$route.params.id, nameUser: this.usuario.name,
+                phoneUser: this.usuario.phone,
+                passwordUser: this.usuario.password,
+                documentUser: this.usuario.doc,
+                positionUser: this.usuario.position,
+                userEntityId: 82
+            }
+            fetch('https://redb.qsystems.co/QS3100/QServlet?operation=' + operation + '&tna=' + tna + '&key=' + key + '&UserType=' + UserType, {
+                method: "POST",
+                body: JSON.stringify(datosEnviar)
             })
-            .then(respuesta=>respuesta.json())
-            .then((datosRespuesta)=>{
-                console.log(datosRespuesta)
-                //window.location.href='../ListarUsuario'
-            })
+                .then(respuesta => respuesta.json())
+                .then((datosRespuesta) => {
+                    console.log(datosRespuesta)
+                    //window.location.href='../ListarUsuario'
+                })
 
         },
     }
