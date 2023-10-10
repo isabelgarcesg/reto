@@ -174,3 +174,13 @@ export default {
 
 }
 </script>
+
+<style lang="scss" scoped>
+input{
+    border-radius:10px;
+}
+
+select{
+    border-radius:10px;
+}
+</style>

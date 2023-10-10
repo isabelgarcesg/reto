@@ -178,4 +178,8 @@ div {
 input{
     border-radius:10px;
 }
+
+select{
+    border-radius:10px;
+}
 </style>

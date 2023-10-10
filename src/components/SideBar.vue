@@ -67,7 +67,8 @@ aside{
         margin-bottom: 1rem;
         img{
 
-            width: 3rem;
+            width: 40px;
+
         }
     }
 
@@ -157,6 +158,13 @@ h3, .botton .text {
         h3, .botton .text {
             opacity: 1;
             
+        }
+
+        .logo{
+            img{
+                width: 4rem;
+                transition: 0.2s ease-out;
+            }
         }
         
     }
