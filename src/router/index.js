@@ -5,7 +5,6 @@ import CrearUsuario from '../components/CrearUsuario.vue'
 import ListarEntidad from '../components/ListarEntidad.vue'
 import ListarUsuario from '../components/ListarUsuario.vue'
 import ListarUsTenan from '../components/ListarUsTenan.vue'
-import EditarView from '../components/EditarView.vue'
 import operationsView from '../components/operationsView.vue'
 import CrearEntidad from '../components/CrearEntidad.vue'
 
@@ -34,11 +33,6 @@ const routes = [
     path: '/ListarUsTenan',
     name: 'ListarUsTenan',
     component: ListarUsTenan
-  },
-  {
-    path: '/editar/:id',
-    name: 'editar',
-    component: EditarView
   },
   {
     path: '/operations',
