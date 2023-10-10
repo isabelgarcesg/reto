@@ -5,7 +5,8 @@ import CrearUsuario from '../components/CrearUsuario.vue'
 import ListarEntidad from '../components/ListarEntidad.vue'
 import ListarUsuario from '../components/ListarUsuario.vue'
 import ListarUsTenan from '../components/ListarUsTenan.vue'
-import EditarView from '../components/EditarView.vue'
+import EditarEntidad from '../components/EditarEntidad.vue'
+import EditarUsuario from '../components/EditarUsuario.vue'
 import operationsView from '../components/operationsView.vue'
 import CrearEntidad from '../components/CrearEntidad.vue'
 
@@ -19,6 +20,11 @@ const routes = [
     path: '/crear',
     name: 'crear',
     component: CrearUsuario
+  },
+  {
+    path: '/EditarUsuario',
+    name: 'EditarUsuario',
+    component: EditarUsuario
   },
   {
     path: '/ListarEntidad',
@@ -36,9 +42,9 @@ const routes = [
     component: ListarUsTenan
   },
   {
-    path: '/editar/:id',
-    name: 'editar',
-    component: EditarView
+    path: '/EditarEntidad/:id',
+    name: 'EditarEntidad',
+    component: EditarEntidad
   },
   {
     path: '/operations',
