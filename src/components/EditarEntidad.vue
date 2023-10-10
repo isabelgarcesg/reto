@@ -68,7 +68,7 @@ export default {
             .then(respuesta=>respuesta.json())
             .then((datosRespuesta)=>{
                 console.log(datosRespuesta)
-                //window.location.href='ListarEntidad'
+                //window.location.href='../ListarEntidad'
             })
             //window.location.href='../ListarEntidad'
         },
