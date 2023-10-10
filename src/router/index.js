@@ -27,6 +27,11 @@ const routes = [
     component: EditarUsuario
   },
   {
+    path: '/EditarEntidad/:id',
+    name: 'EditarEntidad',
+    component: EditarEntidad
+  },
+  {
     path: '/ListarEntidad',
     name: 'ListarEntidad',
     component: ListarEntidad
@@ -41,12 +46,7 @@ const routes = [
     name: 'ListarUsTenan',
     component: ListarUsTenan
   },
-  {
-    path: '/editar/:id',
-    name: 'editar',
-    component: EditarView
-  },
-  {
+{
     path: '/operations',
     name: 'operations',
     component: operationsView

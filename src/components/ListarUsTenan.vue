@@ -36,7 +36,7 @@
             
                 <td>
                   
-                    <router-link :to="{ name: 'editar', params: { id: usuario.id } }" class="btn btn-outline-info">Editar</router-link>
+                    <router-link :to="{ name: 'ListarUsuario', params: { id: usuario.id } }" class="btn btn-outline-info">Editar</router-link>
                     <button type="button" v-on:click="borrarusuario(usuario.id)" class="btn btn-outline-danger" style="margin-left: 10px;">Borrar</button>
                   
                 </td>
