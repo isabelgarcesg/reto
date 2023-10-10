@@ -46,7 +46,7 @@
                 <label for="userType" class="form-label">Tipo de usuario</label>
                 <select class="form-select" id="userType" v-model="usuario.userType" required>
                   <option selected disabled value=""></option>
-                  <option value="Administrador">Administrador</option>
+                  <option va  lue="Administrador">Administrador</option>
                   <option value="Auditor">Auditor</option>
                   <option value="Normal">Normal</option>
                 </select>
@@ -173,5 +173,9 @@ div {
   .card {
     background-color: var(--light-blue);
   }
+}
+
+input{
+    border-radius:10px;
 }
 </style>

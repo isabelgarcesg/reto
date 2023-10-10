@@ -76,6 +76,7 @@
   
 
 <script>
+
     export default {
         // created:function(){
         //     this.createEntity();
@@ -105,7 +106,10 @@
     }
 </script>
 
+
 <style lang="scss" scoped>
+
+//import '@/public/style.css';
 
 div{
     
