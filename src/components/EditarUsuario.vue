@@ -147,10 +147,23 @@ export default {
                 positionUser: this.usuario.position,
                 userEntityId: 82
             }
-            fetch('https://redb.qsystems.co/QS3100/QServlet?operation=' + operation + '&tna=' + tna + '&key=' + key + '&UserType=' + UserType, {
-                method: "POST",
-                body: JSON.stringify(datosEnviar)
-            })
+            console.log(this.$route.params.id)
+            console.log(this.usuario.name)
+            console.log(this.usuario.phone)
+            console.log(JSON.stringify(datosEnviar));
+            fetch('https://redb.qsystems.co/QS3100/QServlet?operation=' + 
+            operation + 
+            '&tna=' + tna+ 
+            '&userId='+ datosEnviar.userId +
+            '&nameUser='+datosEnviar.nameUser+
+            '&phoneUser='+datosEnviar.phoneUser+
+            '&passwordUser='+datosEnviar.passwordUser+
+            '&documentUser='+datosEnviar.documentUser+
+            '&positionUser='+datosEnviar.positionUser+
+            '&userType='+UserType+
+            '&userEntityId='+datosEnviar.userEntityId+
+            '&key='+ key
+            )
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
                     console.log(datosRespuesta)
