@@ -125,6 +125,7 @@ export default {
             let operation = "UpdateUser"
             let tna = 6
             let userId = this.$route.params.id
+            console.log(userId)
             let nameUser = this.usuario.name
             let phoneUser = this.usuario.phone
             let passwordUser = this.usuario.password
