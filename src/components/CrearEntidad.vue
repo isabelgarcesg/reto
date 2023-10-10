@@ -19,6 +19,7 @@
                       id="name"
                       aria-describedby="helpId"
                       placeholder="Nombre"
+                      required
                     >
                     <small id="helpId" class="form-text text-muted"></small>
                   </div>
@@ -37,6 +38,7 @@
                       id="phone"
                       aria-describedby="helpId"
                       placeholder="Teléfono"
+                      required
                     >
                     <small id="helpId" class="form-text text-muted"></small>
                   </div>
@@ -52,6 +54,7 @@
                       id="adress"
                       aria-describedby="helpId"
                       placeholder="Dirección"
+                      required
                     >
                     <small id="helpId" class="form-text text-muted"></small>
                   </div>

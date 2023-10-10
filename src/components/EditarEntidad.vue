@@ -12,21 +12,21 @@
                     <div class="form-group">
                       <label for="name">Nombre de la entidad</label>
                       <input type="text"
-                        class="form-control" name="name" v-model="entidad.name"  id="name" aria-describedby="helpId" placeholder="Nombre">
+                        class="form-control" name="name" v-model="entidad.name"  id="name" aria-describedby="helpId" placeholder="Nombre" required>
                       <small id="helpId" class="form-text text-muted">Ingrese el nombre de la entidad</small>
                     </div>
 
                     <div class="form-group">
                       <label for="phone">Teléfono</label>
                       <input type="text"
-                        class="form-control" name="phone"  v-model="entidad.phone" id="phone" aria-describedby="helpId" placeholder="Teléfono">
+                        class="form-control" name="phone"  v-model="entidad.phone" id="phone" aria-describedby="helpId" placeholder="Teléfono" required>
                       <small id="helpId" class="form-text text-muted">Ingrese el teléfono de la entidad</small>
                     </div>
 
                     <div class="form-group">
                       <label for="adress">Dirección</label>
                       <input type="text"
-                        class="form-control" name="adress" v-model="entidad.adress" id="adress" aria-describedby="helpId" placeholder="Dirección">
+                        class="form-control" name="adress" v-model="entidad.adress" id="adress" aria-describedby="helpId" placeholder="Dirección" required>
                       <small id="helpId" class="form-text text-muted">Ingrese la dirección de la entidad</small>
                     </div>
                     
