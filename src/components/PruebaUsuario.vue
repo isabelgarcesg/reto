@@ -15,7 +15,7 @@
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
-<li v-for="entidad in Entidades" :key="entidad.id"><router-link :to="{ name: 'ListarUsuario', params: { id: entidad.id }}" class="btn btn-info">{{entidad.name}}</router-link></li>
+<li v-for="entidad in Entidades" :key="entidad.id"><router-link :to="{ name: 'ListarUsuario', params: { id: entidad.id }}" class="dropdown-item">{{entidad.name}}</router-link></li>
   </ul>
 </div>
 </template>

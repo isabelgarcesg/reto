@@ -2,7 +2,7 @@
   <div>
     <nav class="navbar navbar-expand navbar-light bg-light">
       <div class="nav navbar-nav">
-        <router-link :to="{ name: 'crear' }" class="btn btn-info" style="margin-left: 30px;">Nuevo</router-link>
+        <router-link :to="{ name: 'crear', params: { id: $route.params.id }  }" class="btn btn-info" style="margin-left: 30px;">Nuevo</router-link>
         <!-- <router-link :to="{ name: 'ListarUsTenan' }" class="btn btn-info" style="margin-left: 30px;">Tenancy</router-link> -->
       </div>
     </nav>
@@ -10,7 +10,7 @@
     <div class="container">
       <div class="card">
         <div class="card-header">
-          Usuarios del Hospital Constantino
+        Lista de usuarios
         </div>
         <div class="card-body">
           <table class="table">
@@ -36,7 +36,7 @@
                 <td>{{ usuario.entityName }}</td>
                 <td>
 
-                  <router-link :to="{ name: 'EditarUsuario', params: { id: usuario.id } }"
+                  <router-link :to="{ name: 'EditarUsuario', params: { id: usuario.id,  entity:$route.params.id } }"
                     class="btn btn-outline-info">Editar</router-link>
                   <button type="button" v-on:click="borrarusuario(usuario.id)" class="btn btn-outline-danger"
                     style="margin-left: 10px;">Borrar</button>

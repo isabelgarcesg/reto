@@ -23,12 +23,12 @@ const routes = [
 component: PruebaUsuario
 },
   {
-    path: '/crear',
+    path: '/crear/:id',
     name: 'crear',
     component: CrearUsuario
   },
   {
-    path: '/EditarUsuario/:id',
+    path: '/EditarUsuario/:id/:entity',
     name: 'EditarUsuario',
     component: EditarUsuario
   },

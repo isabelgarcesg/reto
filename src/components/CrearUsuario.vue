@@ -128,6 +128,8 @@ export default {
       let passwordUser = this.usuario.password;
       let documentUser = this.usuario.doc;
       let positionUser = this.usuario.position;
+      let newPara = this.$route.params.id
+      console.log(newPara, "PARAMETRO ENTIDAD")
       let UserType = 3; // Declarar UserType fuera de los bloques if
       if (this.usuario.userType === "Administrador") {
         UserType = 1;
@@ -154,7 +156,7 @@ export default {
         "&userType=" +
         UserType +
         "&userEntityId=" +
-        82 +
+       newPara +
         "&key=" +
         key
       )

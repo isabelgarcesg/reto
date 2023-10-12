@@ -143,7 +143,7 @@ export default {
                 passwordUser: this.usuario.password,
                 documentUser: this.usuario.doc,
                 positionUser: this.usuario.position,
-                userEntityId: 82
+                userEntityId: this.$route.params.entity
             }
             console.log(this.$route.params.id)
             console.log(this.usuario.name)
