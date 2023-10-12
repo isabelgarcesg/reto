@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+
       <div class="card bg-white">
         <div class="card-header mt-3 mb-3">
           <b>Creación de usuario</b>
@@ -10,6 +11,13 @@
           <div class="mt-4 d-flex justify-content-center align-items-center">
                 <form v-on:submit.prevent="edicionUsuarios">
 
+
+                    <div class="form-group">
+                        <label for="name">Nombre de la usuario</label>
+                        <input type="text" class="form-control" name="name" v-model="usuario.name" id="name"
+                            aria-describedby="helpId" placeholder="Nombre">
+                        <small id="helpId" class="form-text text-muted">Ingrese el nombre de la usuario</small>
+                    </div>
 
                     <div class="row">
               <div class="col-md-6">
@@ -94,7 +102,6 @@
   </div>
 </template>
 
-
 <script>
 export default {
     data() {
@@ -103,38 +110,12 @@ export default {
         }
     },
     created: function () {
-        //    //this.obtenerInformacionID();
-        this.edicionUsuarios();
+        this.edicionusuarios();
     },
     methods: {
-
-        obtenerInformacionID() {
-            fetch('https://redb.qsystems.co/QS3100/QServlet?operation=queryUserByEntity&tna=6&userEntityId=82&key=11e2e476-717b-4898-ac02-693abdecdc9b' + this.$route.params.id)
-                .then(respuesta => respuesta.json()) //es como un return y también hago una función arrow para volver la respuesta un json
-                .then((datosRespuesta) => {
-                    console.log(datosRespuesta)
-                    this.paciente = datosRespuesta[0];
-
-                })
-                .catch(console.log) //es como try except
-
-        },
-        edicionUsuarios() {
+        edicionusuarios() {
             let operation = "UpdateUser"
             let tna = 6
-            // let userId=this.usuario.id
-            // let nameUser=this.usuario.name
-            // let phoneUser=this.usuario.phone
-            // let passwordUser=this.usuario.password
-            // let documentUser=this.usuario.doc
-            // let positionUser=this.usuario.position
-            let UserType = 3; // Declarar UserType fuera de los bloques if
-            if (this.usuario.userType === "Administrador") {
-                UserType = 1;
-            } else if (this.usuario.userType === "Auditor") {
-                UserType = 2;
-            }
-            //let userEntityId=82
             let key = "11e2e476-717b-4898-ac02-693abdecdc9b"
             let datosEnviar = {
                 userId: this.$route.params.id, nameUser: this.usuario.name,
@@ -166,11 +147,10 @@ export default {
                     console.log(datosRespuesta)
                     //window.location.href='../ListarUsuario'
                     // HOLA 
-                })
 
+                })
+            //window.location.href='../Listarusuario'
         },
     }
-
-
 }
 </script>
