@@ -2,15 +2,15 @@
   <div>
     <nav class="navbar navbar-expand navbar-light bg-light">
       <div class="nav navbar-nav">
-        <router-link :to="{ name: 'crear' }" class="btn btn-info" style="margin-left: 30px;">Nuevo</router-link>
-        <router-link :to="{ name: 'ListarUsTenan' }" class="btn btn-info" style="margin-left: 30px;">Tenancy</router-link>
+        <router-link :to="{ name: 'crear', params: { id: $route.params.id }  }" class="btn btn-info" style="margin-left: 30px;">Nuevo</router-link>
+        <!-- <router-link :to="{ name: 'ListarUsTenan' }" class="btn btn-info" style="margin-left: 30px;">Tenancy</router-link> -->
       </div>
     </nav>
 
     <div class="container">
       <div class="card">
         <div class="card-header">
-          Usuarios del Hospital Constantino
+        Lista de usuarios
         </div>
         <div class="card-body">
           <table class="table">
@@ -33,10 +33,10 @@
                 <td>{{ usuario.phone }}</td>
                 <td>{{ usuario.position }}</td>
                 <td>{{ usuario.userType }}</td>
-                <td>Hospital Constantino</td>
+                <td>{{ usuario.entityName }}</td>
                 <td>
 
-                  <router-link :to="{ name: 'EditarUsuario', params: { id: usuario.id } }"
+                  <router-link :to="{ name: 'EditarUsuario', params: { id: usuario.id,  entity:$route.params.id } }"
                     class="btn btn-outline-info">Editar</router-link>
                   <button type="button" v-on:click="borrarusuario(usuario.id)" class="btn btn-outline-danger"
                     style="margin-left: 10px;">Borrar</button>
@@ -64,7 +64,9 @@ export default {
   },
   methods: {
     consultarusuario() {
-      fetch("https://redb.qsystems.co/QS3100/QServlet?operation=queryUserByEntity&tna=6&userEntityId=82&key=11e2e476-717b-4898-ac02-693abdecdc9b")
+      let userEntityId= this.$route.params.id
+
+      fetch("https://redb.qsystems.co/QS3100/QServlet?operation=queryUserByEntity&tna=6&userEntityId=" + userEntityId +"&key=11e2e476-717b-4898-ac02-693abdecdc9b")
         .then((respuesta) => respuesta.json())
         // .then((datosRespuesta) => {
         //   console.log(datosRespuesta)

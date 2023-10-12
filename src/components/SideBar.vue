@@ -25,7 +25,7 @@
                 <span class="text">Entidad</span>
             </router-link> 
 
-            <router-link class="botton" to="/ListarUsuario">
+            <router-link class="botton" to="/PruebaUsuario">
                 <span class="material-icons">person</span>
                 <span class="text">Usuarios</span>
             </router-link>
@@ -67,7 +67,8 @@ aside{
         margin-bottom: 1rem;
         img{
 
-            width: 3rem;
+            width: 40px;
+
         }
     }
 
@@ -157,6 +158,13 @@ h3, .botton .text {
         h3, .botton .text {
             opacity: 1;
             
+        }
+
+        .logo{
+            img{
+                width: 4rem;
+                transition: 0.2s ease-out;
+            }
         }
         
     }

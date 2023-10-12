@@ -14,7 +14,7 @@
                 <div class="form-group">
                   <label for="name">Nombre completo</label>
                   <input type="text" class="form-control" name="name" v-model="usuario.name" id="name"
-                    aria-describedby="helpId" placeholder="Nombre" />
+                    aria-describedby="helpId" placeholder="Nombre" required />
                   <small id="helpId" class="form-text text-muted"></small>
                 </div>
               </div>
@@ -24,7 +24,7 @@
                 <div class="form-group">
                   <label for="doc">Documento de identidad</label>
                   <input type="text" class="form-control" name="doc" v-model="usuario.doc" id="doc"
-                    aria-describedby="helpId" placeholder="ID" />
+                    aria-describedby="helpId" placeholder="ID" required />
                   <small id="helpId" class="form-text text-muted"></small>
                 </div>
               </div>
@@ -35,7 +35,7 @@
                 <div class="form-group">
                   <label for="phone">Celular</label>
                   <input type="text" class="form-control" name="phone" v-model="usuario.phone" id="phone"
-                    aria-describedby="helpId" placeholder="Número de celular" />
+                    aria-describedby="helpId" placeholder="Número de celular" required />
                   <small id="helpId" class="form-text text-muted"></small>
                 </div>
               </div>
@@ -72,7 +72,7 @@
                 <div class="form-group">
                   <label for="position">Cargo</label>
                   <input type="text" class="form-control" name="position" v-model="usuario.position" id="position"
-                    aria-describedby="helpId" placeholder="Cargo" />
+                    aria-describedby="helpId" placeholder="Cargo" required />
                   <small id="helpId" class="form-text text-muted"></small>
                 </div>
               </div>
@@ -81,7 +81,7 @@
                 <div class="form-group">
                   <label for="password">Contraseña</label>
                   <input type="password" class="form-control" name="password" v-model="usuario.password" id="password"
-                    aria-describedby="helpId" />
+                    aria-describedby="helpId" required />
                   <small id="helpId" class="form-text text-muted"></small>
                 </div>
               </div>
@@ -128,6 +128,8 @@ export default {
       let passwordUser = this.usuario.password;
       let documentUser = this.usuario.doc;
       let positionUser = this.usuario.position;
+      let newPara = this.$route.params.id
+      console.log(newPara, "PARAMETRO ENTIDAD")
       let UserType = 3; // Declarar UserType fuera de los bloques if
       if (this.usuario.userType === "Administrador") {
         UserType = 1;
@@ -154,14 +156,14 @@ export default {
         "&userType=" +
         UserType +
         "&userEntityId=" +
-        82+
+       newPara +
         "&key=" +
         key
       )
         .then((respuesta) => respuesta.json())
         .then((datosRespuesta) => {
           console.log(datosRespuesta);
-          window.location.href='ListarUsuario'//Redirecciona a la URL de listar
+          window.location.href = 'ListarUsuario'//Redirecciona a la URL de listar
         });
     },
   },
@@ -173,5 +175,13 @@ div {
   .card {
     background-color: var(--light-blue);
   }
+}
+
+input {
+  border-radius: 10px;
+}
+
+select {
+  border-radius: 10px;
 }
 </style>

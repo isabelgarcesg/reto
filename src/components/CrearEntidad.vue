@@ -19,6 +19,7 @@
                       id="name"
                       aria-describedby="helpId"
                       placeholder="Nombre"
+                      required
                     >
                     <small id="helpId" class="form-text text-muted"></small>
                   </div>
@@ -37,6 +38,7 @@
                       id="phone"
                       aria-describedby="helpId"
                       placeholder="Teléfono"
+                      required
                     >
                     <small id="helpId" class="form-text text-muted"></small>
                   </div>
@@ -52,6 +54,7 @@
                       id="adress"
                       aria-describedby="helpId"
                       placeholder="Dirección"
+                      required
                     >
                     <small id="helpId" class="form-text text-muted"></small>
                   </div>
@@ -76,6 +79,7 @@
   
 
 <script>
+
     export default {
         // created:function(){
         //     this.createEntity();
@@ -99,13 +103,17 @@
                     .then(respuesta=>respuesta.json())
                     .then((datosRespuesta=>{
                         console.log(datosRespuesta);
+                        
                 }))
             }
         }
     }
 </script>
 
+
 <style lang="scss" scoped>
+
+//import '@/public/style.css';
 
 div{
     
@@ -114,6 +122,13 @@ div{
         background-color: var(--light-blue);
     }
 
+}
+input{
+    border-radius:10px;
+}
+
+select{
+    border-radius:10px;
 }
 
 </style>
