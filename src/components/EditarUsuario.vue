@@ -137,7 +137,8 @@ export default {
             //let userEntityId=82
             let key = "11e2e476-717b-4898-ac02-693abdecdc9b"
             let datosEnviar = {
-                userId: this.$route.params.id, nameUser: this.usuario.name,
+                userId: this.$route.params.id, 
+                nameUser: this.usuario.name,
                 phoneUser: this.usuario.phone,
                 passwordUser: this.usuario.password,
                 documentUser: this.usuario.doc,

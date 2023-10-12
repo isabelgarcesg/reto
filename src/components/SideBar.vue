@@ -25,7 +25,7 @@
                 <span class="text">Entidad</span>
             </router-link> 
 
-            <router-link class="botton" to="/ListarUsuario">
+            <router-link class="botton" to="/PruebaUsuario">
                 <span class="material-icons">person</span>
                 <span class="text">Usuarios</span>
             </router-link>
