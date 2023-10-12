@@ -165,7 +165,8 @@ export default {
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
                     console.log(datosRespuesta)
-                    //window.location.href='../ListarUsuario'
+                    //console.log('../ListarUsuario/')
+                    //window.location.href='../ListarUsuario/'+ this.$route.params.entity
                     // HOLA 
                 })
 
