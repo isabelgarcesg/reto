@@ -64,11 +64,11 @@ export default {
             let adressEntity=this.entidad.adress
             fetch('https://redb.qsystems.co/QS3100/QServlet?operation='+operation+'&tna='+tna+'&nameEntity='+nameEntity+'&phoneEntity='+phoneEntity+'&adressEntity='+adressEntity+'&idEntity='+idEntity+'&key='+key)
             .then(respuesta=>respuesta.json())
-            .then((datosRespuesta)=>{
+            .then((datosRespuesta=>{
                 console.log(datosRespuesta)
                 
-                //window.location.href='../ListarEntidad'
-            })
+              window.location.href='../ListarEntidad'
+            }))
             //window.location.href='../ListarEntidad'
         },
     }

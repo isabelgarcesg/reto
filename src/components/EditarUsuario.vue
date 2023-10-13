@@ -163,12 +163,12 @@ export default {
             '&key='+ key
             )
                 .then(respuesta => respuesta.json())
-                .then((datosRespuesta) => {
+                .then((datosRespuesta => {
                     console.log(datosRespuesta)
-                    //console.log('../ListarUsuario/')
-                    //window.location.href='../ListarUsuario/'+ this.$route.params.entity
+                    //console.log('../ListarEntidad')
+                    window.location.href='../ListarEntidad'
                     // HOLA 
-                })
+                }))
 
         },
     }
