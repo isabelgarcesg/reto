@@ -65,7 +65,8 @@
                 </div>
               <div>
                 <button type="submit" class="btn btn-primary">Enviar</button>
-                <button type="reset" class="btn btn-danger" style="margin-left: 10px;">Borrar</button>
+                <router-link :to="{ name: 'ListarEntidad'}" class="btn btn-danger" style="margin-left: 30px;">Cancelar</router-link> <!--Cambiar por un router link que solo se devuelva-->
+
               </div>
             </form>
           </div>
@@ -90,8 +91,6 @@
             }
         },
         methods: {   
-            //  SI QUIERE VERIFICAR QUE SE CREO LA ENTIDAD PONGA EL SIGUIENTE LINK EN EL NAVEGADOR:
-            // https://redb.qsystems.co/QS3100/QServlet?operation=queryEntityByTenancy&tna=6&key=11e2e476-717b-4898-ac02-693abdecdc9b
             createEntity(){
                     let operation="SaveEntity"
                     let tna=6
@@ -99,10 +98,16 @@
                     let nameEntity=this.entidad.name
                     let phoneEntity=this.entidad.phone
                     let adressEntity=this.entidad.adress
-                    fetch('https://redb.qsystems.co/QS3100/QServlet?operation='+operation+'&tna='+tna+'&key='+key+'&nameEntity='+nameEntity+'&phoneEntity='+phoneEntity+'&adressEntity='+adressEntity)
+                    fetch('https://redb.qsystems.co/QS3100/QServlet?operation='+operation+
+                    '&tna='+tna+
+                    '&key='+key+
+                    '&nameEntity='+nameEntity+
+                    '&phoneEntity='+phoneEntity+
+                    '&adressEntity='+adressEntity)
                     .then(respuesta=>respuesta.json())
                     .then((datosRespuesta=>{
                         console.log(datosRespuesta);
+                        window.location.href='ListarEntidad'
                         
                 }))
             }
@@ -117,12 +122,11 @@
 
 div{
     
-
     .card{
         background-color: var(--light-blue);
     }
-
 }
+
 input{
     border-radius:10px;
 }

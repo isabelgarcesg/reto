@@ -107,7 +107,7 @@ export default {
         .then(respuesta => respuesta.json())
         .then((datosRespuesta) => {
           console.log(datosRespuesta)
-          window.location.href = "./ListarUsuario"
+          window.location.href = "../ListarUsuario/" +this.$route.params.id //hay que poner lo mismo del id acá
 
         })
         .catch(console.log)

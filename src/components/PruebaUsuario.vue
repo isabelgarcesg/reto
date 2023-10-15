@@ -68,4 +68,12 @@ export default {
 
 
 }
-</script>
+</script >
+
+<style lang="scss" scoped>
+    .dropdown{
+        display: flex;
+        align-items: center;
+
+}
+</style>
