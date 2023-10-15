@@ -92,8 +92,8 @@
             <!-- BOTONES -->
 
             <button type="submit" class="btn btn-primary">Enviar</button>
-            <button type="reset" class="btn btn-danger" style="margin-left: 10px">
-              Borrar
+            <button type="button" v-on:click="volver" class="btn btn-danger" style="margin-left: 10px">
+              Cancelar
             </button>
           </form>
         </div>
@@ -163,9 +163,16 @@ export default {
         .then((respuesta) => respuesta.json())
         .then((datosRespuesta) => {
           console.log(datosRespuesta);
-          window.location.href = 'ListarUsuario'//Redirecciona a la URL de listar
+          window.location.href = '../ListarUsuario/'+this.$route.params.id//Redirecciona a la URL de listar
         });
     },
+    volver() {
+      
+          window.location.href = "../ListarUsuario/" +this.$route.params.id //hay que poner lo mismo del id acá
+
+        }
+
+    
   },
 };
 </script>

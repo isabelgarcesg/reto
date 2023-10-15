@@ -80,9 +80,9 @@
 
             <div><br /></div>
                     <!-- BOTONES -->
-                   
+
                         <button type="submit" class="btn btn-primary">Editar</button>
-                        <button type="reset" class="btn btn-danger" style="margin-left: 10px;">Cancelar</button>
+                        <button type="reset" class="btn btn-danger" style="margin-left: 10px;">Cancelar</button> <!--Cambiar por un router link-->
                     </form>
         </div>
       </div>
@@ -143,7 +143,8 @@ export default {
                 passwordUser: this.usuario.password,
                 documentUser: this.usuario.doc,
                 positionUser: this.usuario.position,
-                userEntityId: this.$route.params.entity
+                userEntityId: this.$route.params.entity,
+                nickname: "pablito"
             }
             console.log(this.$route.params.id)
             console.log(this.usuario.name)
@@ -154,6 +155,7 @@ export default {
             '&tna=' + tna+ 
             '&userId='+ datosEnviar.userId +
             '&nameUser='+datosEnviar.nameUser+
+            '&nickname='+ datosEnviar.nickname+
             '&phoneUser='+datosEnviar.phoneUser+
             '&passwordUser='+datosEnviar.passwordUser+
             '&documentUser='+datosEnviar.documentUser+
@@ -163,12 +165,12 @@ export default {
             '&key='+ key
             )
                 .then(respuesta => respuesta.json())
-                .then((datosRespuesta => {
+                .then((datosRespuesta)=> {
                     console.log(datosRespuesta)
                     //console.log('../ListarEntidad')
-                    window.location.href='../ListarEntidad'
+                    //window.location.href='../ListarEntidad'
                     // HOLA 
-                }))
+                })
 
         },
     }

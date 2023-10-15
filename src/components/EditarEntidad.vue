@@ -32,7 +32,7 @@
                     
 
                         <button type="submit" class="btn btn-primary">Modificar</button>
-                        <button type="reset" class="btn btn-danger" style="margin-left: 10px;">Cancelar</button>
+                        <router-link :to="{ name: 'ListarEntidad'}" class="btn btn-danger" style="margin-left: 30px;">Cancelar</router-link> <!--Cambiar por un router link que solo se devuelva-->
 
 
 
@@ -67,7 +67,7 @@ export default {
             .then((datosRespuesta=>{
                 console.log(datosRespuesta)
                 
-              window.location.href='../ListarEntidad'
+              //window.location.href='../ListarEntidad'
             }))
             //window.location.href='../ListarEntidad'
         },

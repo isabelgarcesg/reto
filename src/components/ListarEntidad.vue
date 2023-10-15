@@ -97,7 +97,7 @@
           .then(respuesta=>respuesta.json())
           .then((datosRespuesta)=>{
               console.log(datosRespuesta)
-              window.location.href="listar"
+              window.location.href="ListarEntidad"
   
           })
           .catch(console.log)

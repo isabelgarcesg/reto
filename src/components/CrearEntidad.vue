@@ -65,7 +65,8 @@
                 </div>
               <div>
                 <button type="submit" class="btn btn-primary">Enviar</button>
-                <button type="reset" class="btn btn-danger" style="margin-left: 10px;">Borrar</button>
+                <router-link :to="{ name: 'ListarEntidad'}" class="btn btn-danger" style="margin-left: 30px;">Cancelar</router-link> <!--Cambiar por un router link que solo se devuelva-->
+
               </div>
             </form>
           </div>
@@ -103,6 +104,7 @@
                     .then(respuesta=>respuesta.json())
                     .then((datosRespuesta=>{
                         console.log(datosRespuesta);
+                        window.location.href='ListarEntidad'
                         
                 }))
             }
@@ -111,18 +113,17 @@
 </script>
 
 
-<style lang="scss" scoped>
+<!-- <style lang="scss" scoped>
 
 //import '@/public/style.css';
 
 div{
     
-
     .card{
         background-color: var(--light-blue);
     }
-
 }
+
 input{
     border-radius:10px;
 }
@@ -131,7 +132,7 @@ select{
     border-radius:10px;
 }
 
-</style>
+</style> -->
 
 
 
