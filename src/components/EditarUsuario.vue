@@ -108,17 +108,17 @@ export default {
     },
     methods: {
 
-        obtenerInformacionID() {
-            fetch('https://redb.qsystems.co/QS3100/QServlet?operation=queryUserByEntity&tna=6&userEntityId=82&key=11e2e476-717b-4898-ac02-693abdecdc9b' + this.$route.params.id)
-                .then(respuesta => respuesta.json()) //es como un return y también hago una función arrow para volver la respuesta un json
-                .then((datosRespuesta) => {
-                    console.log(datosRespuesta)
-                    this.paciente = datosRespuesta[0];
+        // obtenerInformacionID() {
+        //     fetch('https://redb.qsystems.co/QS3100/QServlet?operation=queryUserByEntity&tna=6&userEntityId=82&key=11e2e476-717b-4898-ac02-693abdecdc9b' + this.$route.params.id)
+        //         .then(respuesta => respuesta.json()) //es como un return y también hago una función arrow para volver la respuesta un json
+        //         .then((datosRespuesta) => {
+        //             console.log(datosRespuesta)
+        //             this.paciente = datosRespuesta[0];
 
-                })
-                .catch(console.log) //es como try except
+        //         })
+        //         .catch(console.log) //es como try except
 
-        },
+        // },
         edicionUsuarios() {
             let operation = "UpdateUser"
             let tna = 6
