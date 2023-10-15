@@ -91,8 +91,6 @@
             }
         },
         methods: {   
-            //  SI QUIERE VERIFICAR QUE SE CREO LA ENTIDAD PONGA EL SIGUIENTE LINK EN EL NAVEGADOR:
-            // https://redb.qsystems.co/QS3100/QServlet?operation=queryEntityByTenancy&tna=6&key=11e2e476-717b-4898-ac02-693abdecdc9b
             createEntity(){
                     let operation="SaveEntity"
                     let tna=6
@@ -100,7 +98,12 @@
                     let nameEntity=this.entidad.name
                     let phoneEntity=this.entidad.phone
                     let adressEntity=this.entidad.adress
-                    fetch('https://redb.qsystems.co/QS3100/QServlet?operation='+operation+'&tna='+tna+'&key='+key+'&nameEntity='+nameEntity+'&phoneEntity='+phoneEntity+'&adressEntity='+adressEntity)
+                    fetch('https://redb.qsystems.co/QS3100/QServlet?operation='+operation+
+                    '&tna='+tna+
+                    '&key='+key+
+                    '&nameEntity='+nameEntity+
+                    '&phoneEntity='+phoneEntity+
+                    '&adressEntity='+adressEntity)
                     .then(respuesta=>respuesta.json())
                     .then((datosRespuesta=>{
                         console.log(datosRespuesta);
@@ -113,7 +116,7 @@
 </script>
 
 
-<!-- <style lang="scss" scoped>
+<style lang="scss" scoped>
 
 //import '@/public/style.css';
 
@@ -132,7 +135,7 @@ select{
     border-radius:10px;
 }
 
-</style> -->
+</style>
 
 
 
