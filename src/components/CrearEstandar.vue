@@ -5,7 +5,7 @@
           <b>Creación de estándar</b>
         </div>
         <div class="card-body">
-          <form v-on:submit.prevent="createService">
+          <form v-on:submit.prevent="createStandard">
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
@@ -68,15 +68,15 @@
           }
       },
       methods: {   
-        createService(){
+        createStandard(){
             // CON ESTE LINK PUEDEN VER TODOS LOS ESTANDAR POR TENANCY
-            //https://redb.qsystems.co/QS3100/QServlet?operation=queryStandardByService&tna=6&key=11e2e476-717b-4898-ac02-693abdecdc9b
+            //https://redb.qsystems.co/QS3100/QServlet?operation=queryStandardByTenancy&tna=6&key=11e2e476-717b-4898-ac02-693abdecdc9b
                   let operation="SaveStandard"
                   let tna=6
                   let key="11e2e476-717b-4898-ac02-693abdecdc9b"
                   let nameStandard=this.estandar.nameStandard
                   let descriptionStandard=this.estandar.descriptionStandard
-                  let serviceIdStandard=82               // CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE
+                  let serviceIdStandard=13               // CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE, id de servicio
                   fetch('https://redb.qsystems.co/QS3100/QServlet?operation='+operation+
                   '&tna='+tna+
                   '&key='+key+
