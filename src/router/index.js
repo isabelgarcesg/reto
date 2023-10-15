@@ -11,6 +11,7 @@ import EditarUsuario from '../components/EditarUsuario.vue'
 import operationsView from '../components/operationsView.vue'
 import CrearEntidad from '../components/CrearEntidad.vue'
 import CrearServicio from '../components/CrearServicio.vue'
+import CrearEstandar from '../components/CrearEstandar.vue'
 
 const routes = [
 {
@@ -67,6 +68,11 @@ component: PruebaUsuario
     path: '/CrearServicio',
     name: 'CrearServicio',
     component: CrearServicio
+  },
+  {
+    path: '/CrearEstandar',
+    name: 'CrearEstandar',
+    component: CrearEstandar
   },
   {
     path: '/about',

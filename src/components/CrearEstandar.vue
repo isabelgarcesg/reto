@@ -2,22 +2,22 @@
     <div class="container">
       <div class="card" style="width: 40rem;">
         <div class="card-header">
-          <b>Creación de servicio</b>
+          <b>Creación de estándar</b>
         </div>
         <div class="card-body">
           <form v-on:submit.prevent="createService">
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
-                  <label for="name">Nombre del servicio</label>
+                  <label for="name">Nombre del estándar</label>
                   <input
                     type="text"
                     class="form-control radio"
-                    name="nameService"
-                    v-model="servicio.nameService"
-                    id="nameService"
+                    name="nameStandard"
+                    v-model="estandar.nameStandard"
+                    id="nameStandard"
                     aria-describedby="helpId"
-                    placeholder="Servicio"
+                    placeholder="Estándar"
                     required
                   >
                   <small id="helpId" class="form-text text-muted"></small>
@@ -28,13 +28,13 @@
               </div>
               <div class="col-md-12">
                 <div class="form-group">
-                  <label for="descriptionService">Descripción del servicio</label>
+                  <label for="descriptionStandard">Descripción del estándar</label>
                   <textarea
                     type="text"
                     class="form-control radio"
-                    name="descriptionService"
-                    v-model="servicio.descriptionService"
-                    id="descriptionService"
+                    name="descriptionStandard"
+                    v-model="estandar.descriptionStandard"
+                    id="descriptionStandard"
                     aria-describedby="helpId"
                     placeholder="Descripción"
                     required
@@ -47,7 +47,7 @@
             <div>
               <button type="submit" class="btn btn-primary">Enviar</button>
               <!-- CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE -->
-              <!-- <router-link :to="{ name: 'Listarservicio'}" class="btn btn-danger" style="margin-left: 30px;">Cancelar</router-link> Cambiar por un router link que solo se devuelva -->              
+              <!-- <router-link :to="{ name: 'Listarestandar'}" class="btn btn-danger" style="margin-left: 30px;">Cancelar</router-link> Cambiar por un router link que solo se devuelva -->              
             </div>
           </form>
         </div>
@@ -64,29 +64,29 @@
   export default {
       data(){
           return{
-              servicio:{}
+              estandar:{}
           }
       },
       methods: {   
         createService(){
-            // CON ESTE LINK PUEDEN VER TODOS LOS SERVICIOS POR TENANCY
-            //https://redb.qsystems.co/QS3100/QServlet?operation=queryServiceByTenancy&tna=6&key=11e2e476-717b-4898-ac02-693abdecdc9b
-                  let operation="SaveService"
+            // CON ESTE LINK PUEDEN VER TODOS LOS ESTANDAR POR TENANCY
+            //https://redb.qsystems.co/QS3100/QServlet?operation=queryStandardByService&tna=6&key=11e2e476-717b-4898-ac02-693abdecdc9b
+                  let operation="SaveStandard"
                   let tna=6
                   let key="11e2e476-717b-4898-ac02-693abdecdc9b"
-                  let nameService=this.servicio.nameService
-                  let descriptionService=this.servicio.descriptionService
-                  let entityIdService=82               // CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE
+                  let nameStandard=this.estandar.nameStandard
+                  let descriptionStandard=this.estandar.descriptionStandard
+                  let serviceIdStandard=82               // CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE
                   fetch('https://redb.qsystems.co/QS3100/QServlet?operation='+operation+
                   '&tna='+tna+
                   '&key='+key+
-                  '&nameService='+nameService+
-                  '&descriptionService='+descriptionService+
-                  '&entityIdService='+entityIdService)
+                  '&nameStandard='+nameStandard+
+                  '&descriptionStandard='+descriptionStandard+
+                  '&serviceIdStandard='+serviceIdStandard)
                   .then(respuesta=>respuesta.json())
                   .then((datosRespuesta=>{
                       console.log(datosRespuesta);
-                    //   window.location.href='Listarservicio'   // CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE
+                    //   window.location.href='Listarestandar'   // CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE
                       
               }))
           }
