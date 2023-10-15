@@ -2,7 +2,7 @@
     <div class="container">
       <div class="card bg-white">
         <div class="card-header mt-3 mb-3">
-          <b>Creación de usuario</b>
+          <b>Edición de usuario</b>
         </div>
       </div>
       <div class="card">
