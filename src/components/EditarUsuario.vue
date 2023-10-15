@@ -13,10 +13,10 @@
 
 
                     <div class="form-group">
-                        <label for="name">Nombre de la usuario</label>
+                        <label for="name">Nombre del usuario</label>
                         <input type="text" class="form-control" name="name" v-model="usuario.name" id="name"
                             aria-describedby="helpId" placeholder="Nombre">
-                        <small id="helpId" class="form-text text-muted">Ingrese el nombre de la usuario</small>
+                        <small id="helpId" class="form-text text-muted">Ingrese el nombre del usuario</small>
                     </div>
 
                     <div class="row">
@@ -117,6 +117,12 @@ export default {
             let operation = "UpdateUser"
             let tna = 6
             let key = "11e2e476-717b-4898-ac02-693abdecdc9b"
+            let UserType = 3;
+            if (this.usuario.userType === "Administrador") {
+              UserType = 1;
+            } else if (this.usuario.userType === "Auditor") {
+              UserType = 2;
+            }
             let datosEnviar = {
                 userId: this.$route.params.id, 
                 nameUser: this.usuario.name,
@@ -124,8 +130,12 @@ export default {
                 passwordUser: this.usuario.password,
                 documentUser: this.usuario.doc,
                 positionUser: this.usuario.position,
-                userEntityId: this.$route.params.entity
+                userEntityId: this.$route.params.entity,
+                //UserType:this.UserType
+                
             }
+             // Declarar UserType fuera de los bloques if
+            
             console.log(this.$route.params.id)
             console.log(this.usuario.name)
             console.log(this.usuario.phone)
@@ -139,7 +149,7 @@ export default {
             '&passwordUser='+datosEnviar.passwordUser+
             '&documentUser='+datosEnviar.documentUser+
             '&positionUser='+datosEnviar.positionUser+
-            '&userType='+UserType+
+            '&userType='+UserType+//datosEnviar.UserType+
             '&userEntityId='+datosEnviar.userEntityId+
             '&key='+ key
             )

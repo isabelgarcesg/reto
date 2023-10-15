@@ -163,7 +163,7 @@ export default {
         .then((respuesta) => respuesta.json())
         .then((datosRespuesta) => {
           console.log(datosRespuesta);
-          window.location.href = 'ListarUsuario'//Redirecciona a la URL de listar
+          window.location.href = '/ListarUsuario'//Redirecciona a la URL de listar
         });
     },
   },

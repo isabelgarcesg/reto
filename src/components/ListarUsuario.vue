@@ -107,7 +107,7 @@ export default {
         .then(respuesta => respuesta.json())
         .then((datosRespuesta) => {
           console.log(datosRespuesta)
-          window.location.href = "ListarUsuario"
+          window.location.href = "./ListarUsuario"
 
         })
         .catch(console.log)
