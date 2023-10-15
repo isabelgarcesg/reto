@@ -181,7 +181,6 @@ export default {
             }
             console.log(this.$route.params.id)
             console.log(this.usuario.name)
-            console.log(datosEnviar.nickname)
             console.log(JSON.stringify(datosEnviar));
             fetch('https://redb.qsystems.co/QS3100/QServlet?operation=' + 
             operation + 
