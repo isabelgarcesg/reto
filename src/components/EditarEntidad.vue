@@ -55,9 +55,33 @@ export default {
       }
   },
   created:function(){
-      this.edicionEntidades();
+      //this.edicionEntidades();
+      this.leerEntidades();
   },  
+
   methods:{
+    leerEntidades() {
+      let operation="queryEntityById"
+          let tna=6
+          let idEntity=this.$route.params.id
+          let key="11e2e476-717b-4898-ac02-693abdecdc9b"
+          fetch('https://redb.qsystems.co/QS3100/QServlet?operation='+
+          operation+
+          '&tna='+
+          tna+
+          '&idEntity='+
+          idEntity+
+          '&key='
+          +key)
+          .then(respuesta=>respuesta.json())
+          .then((datosRespuesta)=>{
+            console.log(datosRespuesta['arrayEntity'][0])
+            this.entidad = datosRespuesta['arrayEntity'][0];
+          })
+          .catch(console.log)
+
+    },
+
       edicionEntidades(){
           let operation="UpdateEntity"
           let tna=6
@@ -68,12 +92,13 @@ export default {
           let adressEntity=this.entidad.adress
           fetch('https://redb.qsystems.co/QS3100/QServlet?operation='+operation+'&tna='+tna+'&nameEntity='+nameEntity+'&phoneEntity='+phoneEntity+'&adressEntity='+adressEntity+'&idEntity='+idEntity+'&key='+key)
           .then(respuesta=>respuesta.json())
-          .then((datosRespuesta)=>{
+          .then((datosRespuesta=>{
               console.log(datosRespuesta)
-              //window.location.href='../ListarEntidad'
-          })
+            
+            //window.location.href='../ListarEntidad'
+          }))
           //window.location.href='../ListarEntidad'
-      },
+      }
   }
 }
 </script>

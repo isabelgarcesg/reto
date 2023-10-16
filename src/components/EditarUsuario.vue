@@ -1,25 +1,15 @@
 <template>
-    <div class="container">
-
-      <div class="card bg-white">
-        <div class="card-header mt-3 mb-3">
-          <b>Edición de usuario</b>
-        </div>
+  <div class="container">
+    <div class="card bg-white">
+      <div class="card-header mt-3 mb-3">
+        <b>Creación de usuario</b>
       </div>
-      <div class="card">
-        <div class="card-body">
-          <div class="mt-4 d-flex justify-content-center align-items-center">
-                <form v-on:submit.prevent="edicionUsuarios">
-
-
-                    <div class="form-group">
-                        <label for="name">Nombre del usuario</label>
-                        <input type="text" class="form-control" name="name" v-model="usuario.name" id="name"
-                            aria-describedby="helpId" placeholder="Nombre">
-                        <small id="helpId" class="form-text text-muted">Ingrese el nombre del usuario</small>
-                    </div>
-
-                    <div class="row">
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <div class="mt-4 d-flex justify-content-center align-items-center">
+          <form v-on:submit.prevent="edicionUsuarios">
+            <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="name">Nombre completo</label>
@@ -65,29 +55,20 @@
                 </div>
               </div>
 
-              <!-- <div> <br> </div>
 
-              <div class="col-md-6">
+              <!-- <div> <br> </div> -->
+              <!-- <div class="col-md-6">
                 <div class="form-group">
-                  <label for="position">Cargo</label>
-                  <input type="text" class="form-control" name="position" v-model="usuario.position" id="position"
-                    aria-describedby="helpId" placeholder="Cargo" required />
+                  <label for="entityID">Entidad prestadora de servicios</label>
+                  <input type="int" class="form-control" name="entityID" v-model="usuario.entityID" id="entityID"
+                    aria-describedby="helpId" placeholder="Seleccione la entidad a la que pertenece" />
                   <small id="helpId" class="form-text text-muted"></small>
                 </div>
-              </div>
+              </div> -->
 
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="password">Contraseña</label>
-                  <input type="password" class="form-control" name="password" v-model="usuario.password" id="password"
-                    aria-describedby="helpId" required />
-                  <small id="helpId" class="form-text text-muted"></small>
-                </div>
-              </div>
-            </div>
 
-            <div><br /></div> -->
-            <div class="flex">
+              <!--CARGO = POSITION-->
+              <div class="flex">
                 <div class="col-md-6 elemento">
                   <div class="form-group">
                     <label for="position">Cargo</label>
@@ -118,13 +99,17 @@
               </div>
             </div>
 
+
+
             <div><br /></div>
 
-                    <!-- BOTONES -->
+            <!-- BOTONES -->
 
-                        <button type="submit" class="btn btn-primary">Editar</button>
-                        <button type="reset" class="btn btn-danger" style="margin-left: 10px;">Cancelar</button> <!--Cambiar por un router link-->
-                    </form>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+            <button type="button" v-on:click="volver" class="btn btn-danger" style="margin-left: 10px">
+              Cancelar
+            </button>
+          </form>
         </div>
       </div>
 
@@ -143,23 +128,34 @@ export default {
         }
     },
     created: function () {
-        this.edicionusuarios();
+        //this.edicionusuarios();
+        this.leerUsuarios();
     },
     methods: {
+      leerUsuarios() {
+      let operation="queryUserById"
+          let tna=6
+          let userId=this.$route.params.id
+          let key="11e2e476-717b-4898-ac02-693abdecdc9b"
+          fetch('https://redb.qsystems.co/QS3100/QServlet?operation='+
+          operation+
+          '&tna='+
+          tna+
+          '&userId='+
+          userId+
+          '&key='
+          +key)
+          .then(respuesta=>respuesta.json())
+          .then((datosRespuesta)=>{
+            console.log(datosRespuesta['arrayUser'][0])
+            this.usuario = datosRespuesta['arrayUser'][0];
+          })
+          .catch(console.log)
 
-        // obtenerInformacionID() {
-        //     fetch('https://redb.qsystems.co/QS3100/QServlet?operation=queryUserByEntity&tna=6&userEntityId=82&key=11e2e476-717b-4898-ac02-693abdecdc9b' + this.$route.params.id)
-        //         .then(respuesta => respuesta.json()) //es como un return y también hago una función arrow para volver la respuesta un json
-        //         .then((datosRespuesta) => {
-        //             console.log(datosRespuesta)
-        //             this.paciente = datosRespuesta[0];
-
-        //         })
-        //         .catch(console.log) //es como try except
-
-        // },
+    },
+    
         edicionUsuarios() {
-            let operation = "UpdateUser"
+          let operation = "UpdateUser"
             let tna = 6
             let key = "11e2e476-717b-4898-ac02-693abdecdc9b"
             let UserType = 3;
@@ -178,8 +174,7 @@ export default {
                 userEntityId: this.$route.params.entity,
                 nickname: this.usuario.nickname,
             }
-             // Declarar UserType fuera de los bloques if
-            
+
             console.log(this.$route.params.id)
             console.log(this.usuario.name)
             console.log(JSON.stringify(datosEnviar));
@@ -206,7 +201,7 @@ export default {
 
                 })
             //window.location.href='../Listarusuario'
-        },
+        }
     }
 }
 </script>

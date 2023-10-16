@@ -5,7 +5,7 @@
           <b>Creación de estándar</b>
         </div>
         <div class="card-body">
-          <form v-on:submit.prevent="createStandard">
+          <form v-on:submit.prevent="editarStandar">
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
@@ -58,42 +58,41 @@
     </div>
 </template>
 
-
 <script>
-
-  export default {
+export default {
       data(){
           return{
               estandar:{}
           }
       },
-      methods: {   
-        createStandard(){
-            // CON ESTE LINK PUEDEN VER TODOS LOS ESTANDAR POR TENANCY
-            //https://redb.qsystems.co/QS3100/QServlet?operation=queryStandardByTenancy&tna=6&key=11e2e476-717b-4898-ac02-693abdecdc9b
-                  let operation="SaveStandard"
-                  let tna=6
-                  let key="11e2e476-717b-4898-ac02-693abdecdc9b"
-                  let nameStandard=this.estandar.nameStandard
-                  let descriptionStandard=this.estandar.descriptionStandard
-                  let serviceIdStandard=21               // CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE, id de servicio
-                  fetch('https://redb.qsystems.co/QS3100/QServlet?operation='+operation+
+      methods:{
+        editarStandar(){
+           let operation="UpdateStandard"
+            let tna = 6
+            let nameStandard =this.estandar.nameStandard
+            let descriptionStandard = this.estandar.descriptionStandard
+            let serviceIdStandard = 21
+            let idStandard = this.$route.params.id
+            let key = "11e2e476-717b-4898-ac02-693abdecdc9b"
+
+            fetch('https://redb.qsystems.co/QS3100/QServlet?operation='+operation+
                   '&tna='+tna+
                   '&key='+key+
                   '&nameStandard='+nameStandard+
                   '&descriptionStandard='+descriptionStandard+
+                  '&IdStandard='+idStandard+
                   '&serviceIdStandard='+serviceIdStandard)
-                  .then(respuesta=>respuesta.json())
-                  .then((datosRespuesta=>{
-                      console.log(datosRespuesta);
-                    //   window.location.href='Listarestandar'   // CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE
-                      
-              }))
-          }
-      }
-  }
-</script>
+            .then(respuesta=>respuesta.json())
+            .then((datosRespuesta=>{
+              console.log(datosRespuesta)
 
+          }))
+
+        }
+            
+      }
+}  
+</script>
 
 <style lang="scss" scoped>
     div{

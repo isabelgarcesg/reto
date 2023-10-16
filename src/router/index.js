@@ -12,6 +12,8 @@ import operationsView from '../components/operationsView.vue'
 import CrearEntidad from '../components/CrearEntidad.vue'
 import CrearServicio from '../components/CrearServicio.vue'
 import CrearEstandar from '../components/CrearEstandar.vue'
+import EditarEstandar from '../components/EditarEstandar'
+import EditarServicio from '../components/EditarServicio'
 
 const routes = [
 {
@@ -38,6 +40,16 @@ component: PruebaUsuario
     path: '/EditarEntidad/:id',
     name: 'EditarEntidad',
     component: EditarEntidad
+  },
+  {
+    path: '/EditarEstandar',
+    name: 'EditarEstandar',
+    component: EditarEstandar
+  },
+  {
+    path: '/EditarServicio',
+    name: 'EditarServicio',
+    component: EditarServicio
   },
   {
     path: '/ListarEntidad',
