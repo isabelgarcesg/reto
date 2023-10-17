@@ -2,33 +2,57 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import CrearUsuario from '../components/CrearUsuario.vue'
-import ListarView from '../components/ListarView.vue'
-import EditarView from '../components/EditarView.vue'
+import ListarEntidad from '../components/ListarEntidad.vue'
+import ListarUsuario from '../components/ListarUsuario.vue'
+import ListarUsTenan from '../components/ListarUsTenan.vue'
+import PruebaUsuario from '../components/PruebaUsuario.vue'
+import EditarEntidad from '../components/EditarEntidad.vue'
+import EditarUsuario from '../components/EditarUsuario.vue'
 import operationsView from '../components/operationsView.vue'
 import CrearEntidad from '../components/CrearEntidad.vue'
 
 const routes = [
-  {
+{
     path: '/',
     name: 'home',
-    component: HomeView
-  },
+  component: HomeView
+},
+{
+  path: '/PruebaUsuario',
+  name: 'PruebaUsuario',
+component: PruebaUsuario
+},
   {
-    path: '/crear',
+    path: '/crear/:id',
     name: 'crear',
     component: CrearUsuario
   },
   {
-    path: '/listar',
-    name: 'lista',
-    component: ListarView
+    path: '/EditarUsuario/:id/:entity',
+    name: 'EditarUsuario',
+    component: EditarUsuario
   },
   {
-    path: '/editar/:id',
-    name: 'editar',
-    component: EditarView
+    path: '/EditarEntidad/:id',
+    name: 'EditarEntidad',
+    component: EditarEntidad
   },
   {
+    path: '/ListarEntidad',
+    name: 'ListarEntidad',
+    component: ListarEntidad
+  },
+  {
+    path: '/ListarUsuario/:id',
+    name: 'ListarUsuario',
+    component: ListarUsuario
+  },
+  {
+    path: '/ListarUsTenan',
+    name: 'ListarUsTenan',
+    component: ListarUsTenan
+  },
+{
     path: '/operations',
     name: 'operations',
     component: operationsView
