@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     //http://localhost/api/
-
+//Hola
     consultarEntidad() {
       // let operation="queryUserByTenancy"
       // let tna=6
