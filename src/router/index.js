@@ -2,6 +2,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import CrearUsuario from '../components/CrearUsuario.vue'
+import CrearEntidad from '../components/CrearEntidad.vue'
+import CrearEstandar from '../components/CrearEstandar.vue'
+import CrearServicio from '../components/CrearServicio.vue'
 import ListarEntidad from '../components/ListarEntidad.vue'
 import ListarUsuario from '../components/ListarUsuario.vue'
 import ListarUsTenan from '../components/ListarUsTenan.vue'
@@ -9,7 +12,7 @@ import PruebaUsuario from '../components/PruebaUsuario.vue'
 import EditarEntidad from '../components/EditarEntidad.vue'
 import EditarUsuario from '../components/EditarUsuario.vue'
 import operationsView from '../components/operationsView.vue'
-import CrearEntidad from '../components/CrearEntidad.vue'
+
 
 const routes = [
 {
@@ -61,6 +64,16 @@ component: PruebaUsuario
     path: '/CrearEntidad',
     name: 'CrearEntidad',
     component: CrearEntidad
+  },
+  {
+    path: '/CrearServicio',
+    name: 'CrearServicio',
+    component: CrearServicio
+  },
+  {
+    path: '/CrearEstandar',
+    name: 'CrearEstandar',
+    component: CrearEstandar
   },
   {
     path: '/about',
