@@ -76,7 +76,7 @@
                   let key="11e2e476-717b-4898-ac02-693abdecdc9b"
                   let nameStandard=this.estandar.nameStandard
                   let descriptionStandard=this.estandar.descriptionStandard
-                  let serviceIdStandard=13               // CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE, id de servicio
+                  let serviceIdStandard=20               // CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE, id de servicio
                   fetch('https://redb.qsystems.co/QS3100/QServlet?operation='+operation+
                   '&tna='+tna+
                   '&key='+key+

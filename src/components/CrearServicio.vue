@@ -76,7 +76,7 @@
                   let key="11e2e476-717b-4898-ac02-693abdecdc9b"
                   let nameService=this.servicio.nameService
                   let descriptionService=this.servicio.descriptionService
-                  let entityIdService=82               // CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE
+                  let entityIdService=101            // CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE
                   fetch('https://redb.qsystems.co/QS3100/QServlet?operation='+operation+
                   '&tna='+tna+
                   '&key='+key+
