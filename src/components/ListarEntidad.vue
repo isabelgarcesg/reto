@@ -43,8 +43,8 @@
                           class="dropdown-item">Borrar Entidad</button></li>
                       <li><router-link :to="{ name: 'ListarUsuario', params: { id: entidad.id } }"
                           class="dropdown-item">Ver usuarios</router-link></li>
-                      <!-- <li><router-link :to="{ name: 'ListarServicio', params: { id: entidad.id }} "
-                        class="dropdown-item">Servicios</router-link></li> -->
+                      <li><router-link :to="{ name: 'ListarServicios', params: { id: entidad.id }} "
+                        class="dropdown-item">Servicios</router-link></li>
                     </ul>
                     <!-- <router-link :to="{ name: 'EditarEntidad', params: { id: entidad.id } }"
                       class="btn btn-outline-info">Editar</router-link>

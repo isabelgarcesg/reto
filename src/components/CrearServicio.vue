@@ -47,7 +47,7 @@
             <div>
               <button type="submit" class="btn btn-primary">Enviar</button>
               <!-- CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE -->
-              <!-- <router-link :to="{ name: 'Listarservicio'}" class="btn btn-danger" style="margin-left: 30px;">Cancelar</router-link> Cambiar por un router link que solo se devuelva -->              
+              <!-- <router-link :to="{ name:'ListarServicios/'}" class="btn btn-danger" style="margin-left: 30px;">Cancelar</router-link> Cambiar por un router link que solo se devuelva               -->
             </div>
           </form>
         </div>
@@ -76,7 +76,7 @@
                   let key="11e2e476-717b-4898-ac02-693abdecdc9b"
                   let nameService=this.servicio.nameService
                   let descriptionService=this.servicio.descriptionService
-                  let entityIdService=101            // CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE
+                  let entityIdService= this.$route.params.entityId           // CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE
                   fetch('https://redb.qsystems.co/QS3100/QServlet?operation='+operation+
                   '&tna='+tna+
                   '&key='+key+
