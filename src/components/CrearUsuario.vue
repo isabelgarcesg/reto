@@ -77,6 +77,16 @@
                 </div>
               </div>
 
+              <div class="col-md-6 elemento">
+                <div class="form-group">
+                  <label for="nickname">Usuario</label>
+                  <input type="text" class="form-control" name="nickname" v-model="usuario.nickname" id="nickname"
+                    aria-describedby="helpId" placeholder="User" required />
+                  <small id="helpId" class="form-text text-muted"></small>
+                </div>
+              </div>
+
+
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="password">Contraseña</label>
@@ -124,6 +134,8 @@ export default {
       let operation = "SaveUser";
       let tna = 6;
       let nameUser = this.usuario.name;
+      let nickname = this.usuario.nickname;
+      console.log(this.usuario.nickname)
       let phoneUser = this.usuario.phone;
       let passwordUser = this.usuario.password;
       let documentUser = this.usuario.doc;
@@ -146,6 +158,8 @@ export default {
         "&nameUser=" +
         nameUser +
         "&phoneUser=" +
+        nickname +
+        "&nickname=" +
         phoneUser +
         "&passwordUser=" +
         passwordUser +
@@ -156,7 +170,7 @@ export default {
         "&userType=" +
         UserType +
         "&userEntityId=" +
-       newPara +
+        newPara +
         "&key=" +
         key
       )
@@ -166,13 +180,14 @@ export default {
           window.location.href = '../ListarUsuario/'+this.$route.params.id//Redirecciona a la URL de listar
         });
     },
+
     volver() {
-      
-          window.location.href = "../ListarUsuario/" +this.$route.params.id //hay que poner lo mismo del id acá
 
-        }
+      window.location.href = "../ListarUsuario/" + this.$route.params.id //hay que poner lo mismo del id acá
 
-    
+    }
+
+
   },
 };
 </script>

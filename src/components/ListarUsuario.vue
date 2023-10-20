@@ -40,7 +40,7 @@
                   <router-link :to="{ name: 'EditarUsuario', params: { id: usuario.id, entity: $route.params.id } }"
                     class="btn btn-outline-info">Editar</router-link>
                   <!-- Button trigger modal BOTON BORRAR CON CONFIRMACIÓN -->
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                  <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop"  style="margin-left: 10px;">
                     Borrar
                   </button>
 
@@ -58,7 +58,7 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                          <button type="button" v-on:click="borrarusuario(usuario.id)">Entendido</button>
+                          <button type="button" class="btn btn-primary" v-on:click="borrarusuario(usuario.id)">Entendido</button>
                         </div>
                       </div>
                     </div>
