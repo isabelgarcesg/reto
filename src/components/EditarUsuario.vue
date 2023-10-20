@@ -193,13 +193,13 @@ export default {
             '&key='+ key
             )
                 .then(respuesta => respuesta.json())
-                .then((datosRespuesta)=> {
+                .then((datosRespuesta=> {
                     console.log(datosRespuesta)
-                    //console.log('../ListarEntidad')
-                    //window.location.href='../ListarEntidad'
+                    
+                  window.location.href="/ListarUsuario/"+this.$route.params.entity
                     // HOLA 
 
-                })
+                }))
             //window.location.href='../Listarusuario'
         }
     }
