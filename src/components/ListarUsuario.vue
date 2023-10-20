@@ -2,7 +2,8 @@
   <div>
     <nav class="navbar navbar-expand navbar-light bg-light">
       <div class="nav navbar-nav">
-        <router-link :to="{ name: 'crear', params: { id: $route.params.id }  }" class="btn btn-info" style="margin-left: 30px;">Nuevo</router-link>
+        <router-link :to="{ name: 'crear', params: { id: $route.params.id } }" class="btn btn-info"
+          style="margin-left: 30px;">Nuevo</router-link>
         <!-- <router-link :to="{ name: 'ListarUsTenan' }" class="btn btn-info" style="margin-left: 30px;">Tenancy</router-link> -->
       </div>
     </nav>
@@ -10,7 +11,7 @@
     <div class="container">
       <div class="card">
         <div class="card-header">
-        Lista de usuarios
+          Lista de usuarios
         </div>
         <div class="card-body">
           <table class="table">
@@ -36,10 +37,34 @@
                 <td>{{ usuario.entityName }}</td>
                 <td>
 
-                  <router-link :to="{ name: 'EditarUsuario', params: { id: usuario.id,  entity:$route.params.id } }"
+                  <router-link :to="{ name: 'EditarUsuario', params: { id: usuario.id, entity: $route.params.id } }"
                     class="btn btn-outline-info">Editar</router-link>
-                  <button type="button" v-on:click="borrarusuario(usuario.id)" class="btn btn-outline-danger"
-                    style="margin-left: 10px;">Borrar</button>
+                  <!-- Button trigger modal BOTON BORRAR CON CONFIRMACIÓN -->
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Borrar
+                  </button>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="staticBackdropLabel">Borrar usuario</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          Esta acción eliminará el usuario permanentemente
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                          <button type="button" v-on:click="borrarusuario(usuario.id)">Entendido</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <button type="button" v-on:click="borrarusuario(usuario.id)" class="btn btn-outline-danger"
+                    style="margin-left: 10px;">Borrar</button> -->
 
                 </td>
               </tr>
@@ -64,9 +89,9 @@ export default {
   },
   methods: {
     consultarusuario() {
-      let userEntityId= this.$route.params.id
+      let userEntityId = this.$route.params.id
 
-      fetch("https://redb.qsystems.co/QS3100/QServlet?operation=queryUserByEntity&tna=6&userEntityId=" + userEntityId +"&key=11e2e476-717b-4898-ac02-693abdecdc9b")
+      fetch("https://redb.qsystems.co/QS3100/QServlet?operation=queryUserByEntity&tna=6&userEntityId=" + userEntityId + "&key=11e2e476-717b-4898-ac02-693abdecdc9b")
         .then((respuesta) => respuesta.json())
         // .then((datosRespuesta) => {
         //   console.log(datosRespuesta)
@@ -81,16 +106,16 @@ export default {
             this.usuarios = datosRespuesta["arrayUser"]
             console.log(this.usuarios, "El array USER NO está vacío ");
             for (var i = 0; i < this.usuarios.length; i++) {
-              if (this.usuarios[i].userType==1){
+              if (this.usuarios[i].userType == 1) {
                 this.usuarios[i].userType = "Administrador"
               }
-              if (this.usuarios[i].userType==2){
+              if (this.usuarios[i].userType == 2) {
                 this.usuarios[i].userType = "Auditor"
               }
-              if (this.usuarios[i].userType==3){
+              if (this.usuarios[i].userType == 3) {
                 this.usuarios[i].userType = "Normal"
               }
-              
+
             }
           }
         })
@@ -107,7 +132,7 @@ export default {
         .then(respuesta => respuesta.json())
         .then((datosRespuesta) => {
           console.log(datosRespuesta)
-          window.location.href = "../ListarUsuario/" +this.$route.params.id //hay que poner lo mismo del id acá
+          window.location.href = "../ListarUsuario/" + this.$route.params.id //hay que poner lo mismo del id acá
 
         })
         .catch(console.log)
