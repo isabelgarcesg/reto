@@ -26,15 +26,30 @@
               <tbody>
                 <tr v-for="entidad in Entidades" :key="entidad.id">
                   <td scope="row">
-                    <router-link :to="{ name: 'ListarUsuario', params: { id: entidad.id }}"  class="custom-link">{{ entidad.name }}</router-link>
+                    <router-link :to="{ name: 'ListarUsuario', params: { id: entidad.id } }" class="custom-link">{{
+                      entidad.name }}</router-link>
                   </td>
                   <td>{{ entidad.phone }}</td>
                   <td>{{ entidad.adress }}</td>
-                  <td>
-                    <router-link :to="{ name: 'EditarEntidad', params: { id: entidad.id } }"
+                  <td class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                      data-bs-toggle="dropdown" aria-expanded="false">
+                      Opciones
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><router-link :to="{ name: 'EditarEntidad', params: { id: entidad.id } }"
+                          class="dropdown-item">Editar Entidad</router-link></li>
+                      <li><button type="button" v-on:click="borrarentidad(entidad.id)"
+                          class="dropdown-item">Borrar Entidad</button></li>
+                      <li><router-link :to="{ name: 'ListarUsuario', params: { id: entidad.id } }"
+                          class="dropdown-item">Ver usuarios</router-link></li>
+                      <!-- <li><router-link :to="{ name: 'ListarServicio', params: { id: entidad.id }} "
+                        class="dropdown-item">Servicios</router-link></li> -->
+                    </ul>
+                    <!-- <router-link :to="{ name: 'EditarEntidad', params: { id: entidad.id } }"
                       class="btn btn-outline-info">Editar</router-link>
                     <button type="button" v-on:click="borrarentidad(entidad.id)" class="btn btn-outline-danger"
-                      style="margin-left: 10px;">Borrar</button>
+                      style="margin-left: 10px;">Borrar</button> -->
                   </td>
                 </tr>
               </tbody>
@@ -113,13 +128,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.custom-link{
-  text-decoration: underline;/* Añade un subrayado */
-  color:black; /* Cambia el color del subrayado a negro */
+.custom-link {
+  text-decoration: underline;
+  /* Añade un subrayado */
+  color: black;
+  /* Cambia el color del subrayado a negro */
 }
+
 .custom-link:hover {
 
-  color:var(--primary); //Al pasar por encima se ve azul
+  color: var(--primary); //Al pasar por encima se ve azul
 
-  }
+}
 </style>
