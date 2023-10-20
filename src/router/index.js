@@ -10,6 +10,8 @@ import EditarEntidad from '../components/EditarEntidad.vue'
 import EditarUsuario from '../components/EditarUsuario.vue'
 import operationsView from '../components/operationsView.vue'
 import CrearEntidad from '../components/CrearEntidad.vue'
+import ListarServicios from '../components/ListarServicios.vue'
+import ListarEstandares from '../components/ListarEstandares.vue'
 
 const routes = [
 {
@@ -46,6 +48,16 @@ component: PruebaUsuario
     path: '/ListarUsuario/:id',
     name: 'ListarUsuario',
     component: ListarUsuario
+  },
+  {
+    path: '/ListarServicios/:id',
+    name: 'ListarServicios',
+    component: ListarServicios
+  },
+  {
+  path: '/ListarEstandares/:id',
+    name: 'ListarEstandares',
+    component: ListarEstandares
   },
   {
     path: '/ListarUsTenan',

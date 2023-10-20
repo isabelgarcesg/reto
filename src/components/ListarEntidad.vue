@@ -33,6 +33,8 @@
                   <td>
                     <router-link :to="{ name: 'EditarEntidad', params: { id: entidad.id } }"
                       class="btn btn-outline-info">Editar</router-link>
+                    <router-link :to="{ name: 'ListarServicios', params: { id: entidad.id } }"
+                      class="btn btn-outline-info">Servicios</router-link>
                     <button type="button" v-on:click="borrarentidad(entidad.id)" class="btn btn-outline-danger"
                       style="margin-left: 10px;">Borrar</button>
                   </td>
