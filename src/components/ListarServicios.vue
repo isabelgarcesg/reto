@@ -29,7 +29,7 @@
                     </td>
                     <td>{{ servicio.description }}</td>
                     <td>
-                      <router-link :to="{ name: 'ListarServicios', params: { id: servicio.id } }"                
+                      <router-link :to="{ name: 'EditarServicio', params: { idServ: servicio.id, entity:$route.params.id } }"                
                         class="btn btn-outline-info">Editar</router-link>
                         <router-link :to="{ name: 'ListarEstandares', params: { id: servicio.id } }"
                         class="btn btn-outline-info">Estándares</router-link>
@@ -61,7 +61,7 @@
       //http://localhost/api/
  
       consultarServicio() {
-        let userEntityId= this.$route.params.id
+        let userEntityId= this.$route.params.id //id entidad
         fetch(
           "https://redb.qsystems.co/QS3100/QServlet?operation=queryServiceByEntity&entityIdService="+ userEntityId + "&tna=6&key=11e2e476-717b-4898-ac02-693abdecdc9b"
         )

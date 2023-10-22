@@ -29,7 +29,7 @@
                   </td>
                   <td>{{ estandar.description }}</td>
                   <td>
-                    <router-link :to="{ name: 'ListarServicios', params: { id: estandar.id } }"                
+                    <router-link :to="{ name: 'EditarEstandar', params: { idEst: estandar.id, idServ:$route.params.id} }"                
                       class="btn btn-outline-info">Editar</router-link>
                     <button type="button" v-on:click="borrarEstandar(estandar.id)" class="btn btn-outline-danger"
                       style="margin-left: 10px;">Borrar</button>

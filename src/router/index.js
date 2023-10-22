@@ -11,6 +11,8 @@ import ListarUsTenan from '../components/ListarUsTenan.vue'
 import PruebaUsuario from '../components/PruebaUsuario.vue'
 import EditarEntidad from '../components/EditarEntidad.vue'
 import EditarUsuario from '../components/EditarUsuario.vue'
+import EditarEstandar from '../components/EditarEstandar.vue'
+import EditarServicio from '../components/EditarServicio.vue'
 import operationsView from '../components/operationsView.vue'
 import ListarServicios from '../components/ListarServicios.vue'
 import ListarEstandares from '../components/ListarEstandares.vue'
@@ -41,6 +43,16 @@ component: PruebaUsuario
     path: '/EditarEntidad/:id',
     name: 'EditarEntidad',
     component: EditarEntidad
+  },
+  {
+    path: '/EditarEstandar/:idServ/:idEst',
+    name: 'EditarEstandar',
+    component: EditarEstandar
+  },
+  {
+    path: '/EditarServicio/:entity/:idServ',
+    name: 'EditarServicio',
+    component: EditarServicio
   },
   {
     path: '/ListarEntidad',

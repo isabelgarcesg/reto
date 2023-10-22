@@ -158,9 +158,9 @@ export default {
         "&nameUser=" +
         nameUser +
         "&phoneUser=" +
-        nickname +
+       phoneUser +
         "&nickname=" +
-        phoneUser +
+        nickname +
         "&passwordUser=" +
         passwordUser +
         "&documentUser=" +
