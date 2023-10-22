@@ -1,17 +1,15 @@
 <template>
-    <div class="container">
-      <div class="card bg-white">
-        <div class="card-header mt-3 mb-3">
-          <b>Edición de usuario</b>
-        </div>
+  <div class="container">
+    <div class="card bg-white">
+      <div class="card-header mt-3 mb-3">
+        <b>Creación de usuario</b>
       </div>
-      <div class="card">
-        <div class="card-body">
-          <div class="mt-4 d-flex justify-content-center align-items-center">
-                <form v-on:submit.prevent="edicionUsuarios">
-
-
-                    <div class="row">
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <div class="mt-4 d-flex justify-content-center align-items-center">
+          <form v-on:submit.prevent="edicionUsuarios">
+            <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="name">Nombre completo</label>
@@ -20,6 +18,8 @@
                   <small id="helpId" class="form-text text-muted"></small>
                 </div>
               </div>
+
+
 
 
               <div class="col-md-6">
@@ -31,7 +31,9 @@
                 </div>
               </div>
 
+
               <div> <br> </div>
+
 
               <div class="col-md-6">
                 <div class="form-group">
@@ -41,6 +43,9 @@
                   <small id="helpId" class="form-text text-muted"></small>
                 </div>
               </div>
+
+
+
 
 
 
@@ -57,29 +62,24 @@
                 </div>
               </div>
 
-              <!-- <div> <br> </div>
 
-              <div class="col-md-6">
+
+
+              <!-- <div> <br> </div> -->
+              <!-- <div class="col-md-6">
                 <div class="form-group">
-                  <label for="position">Cargo</label>
-                  <input type="text" class="form-control" name="position" v-model="usuario.position" id="position"
-                    aria-describedby="helpId" placeholder="Cargo" required />
+                  <label for="entityID">Entidad prestadora de servicios</label>
+                  <input type="int" class="form-control" name="entityID" v-model="usuario.entityID" id="entityID"
+                    aria-describedby="helpId" placeholder="Seleccione la entidad a la que pertenece" />
                   <small id="helpId" class="form-text text-muted"></small>
                 </div>
-              </div>
+              </div> -->
 
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="password">Contraseña</label>
-                  <input type="password" class="form-control" name="password" v-model="usuario.password" id="password"
-                    aria-describedby="helpId" required />
-                  <small id="helpId" class="form-text text-muted"></small>
-                </div>
-              </div>
-            </div>
 
-            <div><br /></div> -->
-            <div class="flex">
+
+
+              <!--CARGO = POSITION-->
+              <div class="flex">
                 <div class="col-md-6 elemento">
                   <div class="form-group">
                     <label for="position">Cargo</label>
@@ -89,6 +89,7 @@
                   </div>
                 </div>
 
+
                 <div class="col-md-6 elemento">
                   <div class="form-group">
                     <label for="nickname">Usuario</label>
@@ -97,7 +98,8 @@
                     <small id="helpId" class="form-text text-muted"></small>
                   </div>
                 </div>
-              
+             
+
 
                 <div class="col-md-6 elemento">
                   <div class="form-group">
@@ -110,15 +112,25 @@
               </div>
             </div>
 
+
+
+
+
+
             <div><br /></div>
 
-                    <!-- BOTONES -->
 
-                        <button type="submit" class="btn btn-primary">Editar</button>
-                        <button type="reset" class="btn btn-danger" style="margin-left: 10px;">Cancelar</button> <!--Cambiar por un router link-->
-                    </form>
+            <!-- BOTONES -->
+
+
+            <button type="submit" class="btn btn-primary">Enviar</button>
+            <button type="button" v-on:click="volver" class="btn btn-danger" style="margin-left: 10px">
+              Cancelar
+            </button>
+          </form>
         </div>
       </div>
+
 
       <!-- <div class="card-footer text-muted">
         Copyright: LifeTech Solutions 2023
@@ -136,41 +148,45 @@ export default {
         }
     },
     created: function () {
-        //    //this.obtenerInformacionID();
-        this.edicionUsuarios();
+        //this.edicionusuarios();
+        this.leerUsuarios();
     },
     methods: {
+      leerUsuarios() {
+      let operation="queryUserById"
+          let tna=6
+          let userId=this.$route.params.id
+          let key="11e2e476-717b-4898-ac02-693abdecdc9b"
+          fetch('https://redb.qsystems.co/QS3100/QServlet?operation='+
+          operation+
+          '&tna='+
+          tna+
+          '&userId='+
+          userId+
+          '&key='
+          +key)
+          .then(respuesta=>respuesta.json())
+          .then((datosRespuesta)=>{
+            console.log(datosRespuesta['arrayUser'][0])
+            this.usuario = datosRespuesta['arrayUser'][0];
+          })
+          .catch(console.log)
 
-        // obtenerInformacionID() {
-        //     fetch('https://redb.qsystems.co/QS3100/QServlet?operation=queryUserByEntity&tna=6&userEntityId=82&key=11e2e476-717b-4898-ac02-693abdecdc9b' + this.$route.params.id)
-        //         .then(respuesta => respuesta.json()) //es como un return y también hago una función arrow para volver la respuesta un json
-        //         .then((datosRespuesta) => {
-        //             console.log(datosRespuesta)
-        //             this.paciente = datosRespuesta[0];
 
-        //         })
-        //         .catch(console.log) //es como try except
-
-        // },
+    },
+   
         edicionUsuarios() {
-            let operation = "UpdateUser"
+          let operation = "UpdateUser"
             let tna = 6
-            // let userId=this.usuario.id
-            // let nameUser=this.usuario.name
-            // let phoneUser=this.usuario.phone
-            // let passwordUser=this.usuario.password
-            // let documentUser=this.usuario.doc
-            // let positionUser=this.usuario.position
-            let UserType = 3; // Declarar UserType fuera de los bloques if
-            if (this.usuario.userType === "Administrador") {
-                UserType = 1;
-            } else if (this.usuario.userType === "Auditor") {
-                UserType = 2;
-            }
-            //let userEntityId=82
             let key = "11e2e476-717b-4898-ac02-693abdecdc9b"
+            let UserType = 3;
+            if (this.usuario.userType === "Administrador") {
+              UserType = 1;
+            } else if (this.usuario.userType === "Auditor") {
+              UserType = 2;
+            }
             let datosEnviar = {
-                userId: this.$route.params.id, 
+                userId: this.$route.params.id,
                 nameUser: this.usuario.name,
                 phoneUser: this.usuario.phone,
                 passwordUser: this.usuario.password,
@@ -179,12 +195,14 @@ export default {
                 userEntityId: this.$route.params.entity,
                 nickname: this.usuario.nickname,
             }
+
+
             console.log(this.$route.params.id)
             console.log(this.usuario.name)
             console.log(JSON.stringify(datosEnviar));
-            fetch('https://redb.qsystems.co/QS3100/QServlet?operation=' + 
-            operation + 
-            '&tna=' + tna+ 
+            fetch('https://redb.qsystems.co/QS3100/QServlet?operation=' +
+            operation +
+            '&tna=' + tna+
             '&userId='+ datosEnviar.userId +
             '&nameUser='+datosEnviar.nameUser+
             '&nickname='+ datosEnviar.nickname+
@@ -192,42 +210,45 @@ export default {
             '&passwordUser='+datosEnviar.passwordUser+
             '&documentUser='+datosEnviar.documentUser+
             '&positionUser='+datosEnviar.positionUser+
-            '&userType='+UserType+
+            '&userType='+UserType+//datosEnviar.UserType+
             '&userEntityId='+datosEnviar.userEntityId+
             '&key='+ key
             )
                 .then(respuesta => respuesta.json())
-                .then((datosRespuesta)=> {
+                .then((datosRespuesta=> {
                     console.log(datosRespuesta)
-                    //console.log('../ListarEntidad')
-                    //window.location.href='../ListarEntidad'
-                    // HOLA 
-                })
+                   
+                  window.location.href="/ListarUsuario/"+this.$route.params.entity
+                    // HOLA
 
-        },
+
+                }))
+            //window.location.href='../Listarusuario'
+        }
     }
-
-
 }
 </script>
+
 
 <style lang="scss" scoped>
 input{
     border-radius:10px;
 }
 
+
 select{
     border-radius:10px;
 }
+
 
 .flex {
   display: flex;
   flex-direction: row; /* Establece la dirección de flexión a filas */
 }
 .elemento {
-  flex: 1; 
-  flex-basis: 0; 
-  padding: 10px; 
-  margin: 5px; 
+  flex: 1;
+  flex-basis: 0;
+  padding: 10px;
+  margin: 5px;
 }
 </style>

@@ -1,11 +1,11 @@
-<template>   
+<template>  
     <div class="container">
       <div class="card" style="width: 40rem;">
         <div class="card-header">
           <b>Creación de servicio</b>
         </div>
         <div class="card-body">
-          <form v-on:submit.prevent="createService">
+          <form v-on:submit.prevent="editarServicio">
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
@@ -47,7 +47,7 @@
             <div>
               <button type="submit" class="btn btn-primary">Enviar</button>
               <!-- CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE -->
-              <!-- <router-link :to="{ name:'ListarServicios/'}" class="btn btn-danger" style="margin-left: 30px;">Cancelar</router-link> Cambiar por un router link que solo se devuelva               -->
+              <!-- <router-link :to="{ name: 'Listarservicio'}" class="btn btn-danger" style="margin-left: 30px;">Cancelar</router-link> Cambiar por un router link que solo se devuelva -->              
             </div>
           </form>
         </div>
@@ -61,37 +61,40 @@
 
 <script>
 
-  export default {
-      data(){
-          return{
-              servicio:{}
-          }
-      },
-      methods: {   
-        createService(){
-            // CON ESTE LINK PUEDEN VER TODOS LOS SERVICIOS POR TENANCY
-            //https://redb.qsystems.co/QS3100/QServlet?operation=queryServiceByTenancy&tna=6&key=11e2e476-717b-4898-ac02-693abdecdc9b
-                  let operation="SaveService"
-                  let tna=6
-                  let key="11e2e476-717b-4898-ac02-693abdecdc9b"
-                  let nameService=this.servicio.nameService
-                  let descriptionService=this.servicio.descriptionService
-                  let entityIdService= this.$route.params.entityId           // CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE
-                  fetch('https://redb.qsystems.co/QS3100/QServlet?operation='+operation+
+
+export default {
+    data(){
+        return{
+            servicio:{}
+        }
+    },
+    methods:{
+        editarServicio(){
+            let operation="UpdateService"
+            let tna=6
+            let key="11e2e476-717b-4898-ac02-693abdecdc9b"
+            let nameService=this.servicio.nameService
+            let descriptionService=this.servicio.descriptionService
+            let entityIdService=this.$route.params.entity  
+            let idService = this.$route.params.idServ
+            fetch('https://redb.qsystems.co/QS3100/QServlet?operation='+operation+
                   '&tna='+tna+
                   '&key='+key+
                   '&nameService='+nameService+
                   '&descriptionService='+descriptionService+
-                  '&entityIdService='+entityIdService)
-                  .then(respuesta=>respuesta.json())
-                  .then((datosRespuesta=>{
-                      console.log(datosRespuesta);
-                    //   window.location.href='Listarservicio'   // CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE
-                      
-              }))
-          }
-      }
-  }
+                  '&entityIdService='+entityIdService+
+                  '&idService='+idService)
+            .then(respuesta=>respuesta.json())
+            .then((datosRespuesta=>{
+                console.log(datosRespuesta);
+            }))          
+        }
+    }
+
+
+}
+
+
 </script>
 
 

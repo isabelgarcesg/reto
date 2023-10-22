@@ -9,15 +9,18 @@
         Please select a valid state.
     </div>
 </div> -->
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-    Entidades
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Entidades
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
-<li v-for="entidad in Entidades" :key="entidad.id"><router-link :to="{ name: 'ListarUsuario', params: { id: entidad.id }}" class="dropdown-item">{{entidad.name}}</router-link></li>
-  </ul>
-</div>
+            <li v-for="entidad in Entidades" :key="entidad.id"><router-link
+                    :to="{ name: 'ListarUsuario', params: { id: entidad.id } }"
+                    class="dropdown-item">{{ entidad.name }}</router-link></li>
+        </ul>
+    </div>
 </template>
 
 <script>
@@ -71,9 +74,8 @@ export default {
 </script >
 
 <style lang="scss" scoped>
-    .dropdown{
-        display: flex;
-        align-items: center;
+.dropdown {
+    display: flex;
+    align-items: center;
 
-}
-</style>
+}</style>

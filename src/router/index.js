@@ -2,16 +2,21 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import CrearUsuario from '../components/CrearUsuario.vue'
+import CrearEntidad from '../components/CrearEntidad.vue'
+import CrearEstandar from '../components/CrearEstandar.vue'
+import CrearServicio from '../components/CrearServicio.vue'
 import ListarEntidad from '../components/ListarEntidad.vue'
 import ListarUsuario from '../components/ListarUsuario.vue'
 import ListarUsTenan from '../components/ListarUsTenan.vue'
 import PruebaUsuario from '../components/PruebaUsuario.vue'
 import EditarEntidad from '../components/EditarEntidad.vue'
 import EditarUsuario from '../components/EditarUsuario.vue'
+import EditarEstandar from '../components/EditarEstandar.vue'
+import EditarServicio from '../components/EditarServicio.vue'
 import operationsView from '../components/operationsView.vue'
-import CrearEntidad from '../components/CrearEntidad.vue'
-import CrearServicio from '../components/CrearServicio.vue'
-import CrearEstandar from '../components/CrearEstandar.vue'
+import ListarServicios from '../components/ListarServicios.vue'
+import ListarEstandares from '../components/ListarEstandares.vue'
+
 
 const routes = [
 {
@@ -40,6 +45,16 @@ component: PruebaUsuario
     component: EditarEntidad
   },
   {
+    path: '/EditarEstandar/:idServ/:idEst',
+    name: 'EditarEstandar',
+    component: EditarEstandar
+  },
+  {
+    path: '/EditarServicio/:entity/:idServ',
+    name: 'EditarServicio',
+    component: EditarServicio
+  },
+  {
     path: '/ListarEntidad',
     name: 'ListarEntidad',
     component: ListarEntidad
@@ -54,6 +69,17 @@ component: PruebaUsuario
     name: 'ListarUsTenan',
     component: ListarUsTenan
   },
+
+  {
+    path: '/ListarServicios/:id',
+    name: 'ListarServicios',
+    component: ListarServicios
+  },
+  {
+  path: '/ListarEstandares/:id',
+    name: 'ListarEstandares',
+    component: ListarEstandares
+  },
 {
     path: '/operations',
     name: 'operations',
@@ -65,12 +91,12 @@ component: PruebaUsuario
     component: CrearEntidad
   },
   {
-    path: '/CrearServicio',
+    path: '/CrearServicio/:entityId',
     name: 'CrearServicio',
     component: CrearServicio
   },
   {
-    path: '/CrearEstandar',
+    path: '/CrearEstandar/:ServiceId',
     name: 'CrearEstandar',
     component: CrearEstandar
   },
