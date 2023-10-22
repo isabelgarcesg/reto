@@ -5,6 +5,7 @@ import CrearUsuario from '../components/CrearUsuario.vue'
 import CrearEntidad from '../components/CrearEntidad.vue'
 import CrearEstandar from '../components/CrearEstandar.vue'
 import CrearServicio from '../components/CrearServicio.vue'
+import CrearCriterio from '../components/CrearCriterio.vue'
 import ListarEntidad from '../components/ListarEntidad.vue'
 import ListarUsuario from '../components/ListarUsuario.vue'
 import ListarUsTenan from '../components/ListarUsTenan.vue'
@@ -13,6 +14,7 @@ import EditarEntidad from '../components/EditarEntidad.vue'
 import EditarUsuario from '../components/EditarUsuario.vue'
 import EditarEstandar from '../components/EditarEstandar.vue'
 import EditarServicio from '../components/EditarServicio.vue'
+import EditarCriterio from '../components/EditarCriterio.vue'
 import operationsView from '../components/operationsView.vue'
 import ListarServicios from '../components/ListarServicios.vue'
 import ListarEstandares from '../components/ListarEstandares.vue'
@@ -53,6 +55,11 @@ component: PruebaUsuario
     path: '/EditarServicio/:entity/:idServ',
     name: 'EditarServicio',
     component: EditarServicio
+  },
+  {
+    path: '/EditarCriterio',
+    name: 'EditarCriterio',
+    component: EditarCriterio
   },
   {
     path: '/ListarEntidad',
@@ -99,6 +106,11 @@ component: PruebaUsuario
     path: '/CrearEstandar/:ServiceId',
     name: 'CrearEstandar',
     component: CrearEstandar
+  },
+  {
+    path: '/CrearCriterio',
+    name: 'CrearCriterio',
+    component: CrearCriterio
   },
   {
     path: '/about',

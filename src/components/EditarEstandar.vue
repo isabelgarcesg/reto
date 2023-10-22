@@ -4,7 +4,7 @@
     <div class="container">
         <div class="card" style="width: 40rem;">
             <div class="card-header">
-                <b>Creación de estándar</b>
+                <b>Edición de estándar</b>
             </div>
             <div class="card-body">
                 <form v-on:submit.prevent="editarStandar">
