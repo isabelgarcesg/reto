@@ -18,6 +18,7 @@ import EditarCriterio from '../components/EditarCriterio.vue'
 import operationsView from '../components/operationsView.vue'
 import ListarServicios from '../components/ListarServicios.vue'
 import ListarEstandares from '../components/ListarEstandares.vue'
+import LoginView from '../components/LoginView.vue'
 
 
 const routes = [
@@ -25,6 +26,11 @@ const routes = [
     path: '/',
     name: 'home',
   component: HomeView
+},
+{
+  path: '/login',
+  name: 'LoginView',
+component: LoginView
 },
 {
   path: '/PruebaUsuario',
