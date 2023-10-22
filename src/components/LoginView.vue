@@ -2,7 +2,7 @@
     <section class="vh-100">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-6 text-black">
+                <div class="col-sm-6 text-dark-alt">
 
                     <div class="px-5 ms-xl-4">
                         <i class="fas fa-crow fa-2x me-3 pt-5 mt-xl-4" style="color: #709085;"></i>
@@ -28,7 +28,7 @@
                             </div>
 
                             <div class="pt-1 mb-4">
-                                <button class="btn btn-info btn-lg btn-block" type="button">Iniciar sesión</button>
+                                <button class="btn boton btn-lg btn-block" type="button">Iniciar sesión</button>
                             </div>
 
                             <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#!">¿Olvidó su contraseña?</a></p>
@@ -57,11 +57,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.logo {
-    img {
+.text-dark-alt {
+  color: var(--dark-alt);
+}
 
-        width: 100px;
+.logo img {
+  width: 100px;
+}
 
-    }
+.boton {
+  background-color: #5cb7e1; 
+  color: white; /* Cambia el color del texto según sea necesario */
+  border-radius: 10px;
+
 }
 </style>
