@@ -78,7 +78,8 @@ export default {
                 let key="11e2e476-717b-4898-ac02-693abdecdc9b"
                 let nameStandard=this.estandar.nameStandard
                 let descriptionStandard=this.estandar.descriptionStandard
-                let serviceIdStandard=this.$route.params.ServiceId           
+                // this.$route.params.ServiceId     
+                let serviceIdStandard= 61
                 fetch('https://redb.qsystems.co/QS3100/QServlet?operation='+operation+
                 '&tna='+tna+
                 '&key='+key+

@@ -96,7 +96,8 @@ component: PruebaUsuario
     component: CrearServicio
   },
   {
-    path: '/CrearEstandar/:ServiceId',
+    // :ServiceId
+    path: '/CrearEstandar',
     name: 'CrearEstandar',
     component: CrearEstandar
   },
