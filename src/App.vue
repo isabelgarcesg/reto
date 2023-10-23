@@ -1,28 +1,23 @@
 <template>
-<!-- <div class="container">
-  <nav class="navbar navbar-expand navbar-light bg-light">
-      <div class="nav navbar-nav">
-          
-          <router-link to="/crear" class="navbar-brand">Crear usuario</router-link> 
-          <router-link to="/listar" class="navbar-brand">Listar</router-link>     
-          <router-link to="/operations" class="navbar-brand">Operations</router-link>     
-          <router-link to="/CrearEntidad" class="navbar-brand">Crear entidad</router-link>   
-      </div>
-  </nav>
-</div>
-<br>
-  <router-view/> -->
   <div class="app">
-    <SideBar />
-
-    <router-view/>
+    <SideBar v-if="currentRouteHasSidebar" />
+    <router-view />
   </div>
 </template>
 
 <script setup>
+import { ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
 import SideBar from './components/SideBar.vue';
-import './style.css'
+
+const route = useRoute();
+const currentRouteHasSidebar = ref(false);
+
+watch(() => route.meta, () => {
+  currentRouteHasSidebar.value = route.meta && route.meta.hasSidebar;
+});
 </script>
+
 
 <style lang="scss">
 :root{
