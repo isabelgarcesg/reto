@@ -23,8 +23,8 @@
 
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="doc">Documento de identidad</label>
-                  <input type="text" class="form-control" name="doc" v-model="usuario.doc" id="doc"
+                  <label for="document">Documento de identidad</label>
+                  <input type="text" class="form-control" name="document" v-model="usuario.document" id="document"
                     aria-describedby="helpId" placeholder="ID" required />
                   <small id="helpId" class="form-text text-muted"></small>
                 </div>
@@ -156,10 +156,11 @@ export default {
         nameUser: this.usuario.name,
         phoneUser: this.usuario.phone,
         passwordUser: this.usuario.password,
-        documentUser: this.usuario.doc,
+        documentUser: this.usuario.document,
         positionUser: this.usuario.position,
         userEntityId: this.$route.params.entity,
         nickname: this.usuario.nickname,
+        UserType: this.usuario.UserType,
       }
 
 
