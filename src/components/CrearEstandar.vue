@@ -32,8 +32,9 @@
             <div><br></div>
             <div>
               <button type="submit" class="btn btn-primary">Enviar</button>
-              <!-- CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE -->
-              <!-- <router-link :to="{ name: 'Listarestandar'}" class="btn btn-danger" style="margin-left: 30px;">Cancelar</router-link> Cambiar por un router link que solo se devuelva -->
+              <button type="button" v-on:click="volver" class="btn btn-danger" style="margin-left: 10px">
+                Cancelar
+              </button>
             </div>
           </form>
         </div>
@@ -66,7 +67,7 @@ export default {
       let key = "11e2e476-717b-4898-ac02-693abdecdc9b"
       let nameStandard = this.estandar.nameStandard
       let descriptionStandard = this.estandar.descriptionStandard
-      let serviceIdStandard = this.$route.params.ServiceId              // CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE, id de servicio
+      let serviceIdStandard = this.$route.params.ServiceId              
       fetch('https://redb.qsystems.co/QS3100/QServlet?operation=' + operation +
         '&tna=' + tna +
         '&key=' + key +
@@ -76,10 +77,17 @@ export default {
         .then(respuesta => respuesta.json())
         .then((datosRespuesta => {
           console.log(datosRespuesta);
-            // window.location.href='../ListarEstandares/'+ this.$route.params.ServiceId   // CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE
+          window.location.href = '../ListarEstandares/' + this.$route.params.ServiceId   
 
         }))
+    },
+
+    volver() {
+
+      window.location.href =  '../ListarEstandares/' + this.$route.params.ServiceId   
+
     }
+
   }
 }
 </script>
@@ -90,14 +98,14 @@ export default {
 <style lang="scss" scoped>
 div {
 
-.card {
-  background-color: #fdfdfd;
-  display: flex;
-  margin-right: 10rem;
-  margin-left: 15rem;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-}
+  .card {
+    background-color: #fdfdfd;
+    display: flex;
+    margin-right: 10rem;
+    margin-left: 15rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
 }
 
 input {

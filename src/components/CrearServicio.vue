@@ -32,7 +32,7 @@
             <div><br></div>
             <div>
               <button type="submit" class="btn btn-primary">Enviar</button>
-              <!-- CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE -->
+              
               <button type="button" v-on:click="volver" class="btn btn-danger" style="margin-left: 10px">
                 Cancelar
               </button>
@@ -73,7 +73,7 @@ export default {
         .then(respuesta => respuesta.json())
         .then((datosRespuesta => {
           console.log(datosRespuesta);
-          //   window.location.href='Listarservicio'   // CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE
+            window.location.href='../Listarservicios/'+this.$route.params.entityId   // CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE
 
         }))
     },
