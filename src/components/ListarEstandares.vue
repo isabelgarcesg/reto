@@ -9,7 +9,7 @@
       <!-- Agregar margen superior al card para separarlo de la barra de navegación -->
       <div class="container mt-3">
         <div class="d-flex justify-content-center">
-          <div class="card">
+          <div class="card"> 
             <div class="card-header">
               Estándares existentes
             </div>
