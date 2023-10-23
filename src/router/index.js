@@ -136,6 +136,7 @@ meta: { hasSidebar: true }
     component: CrearCriterio,
     meta: { hasSidebar: true }
   },
+
   {
     path: '/about',
     name: 'about',
