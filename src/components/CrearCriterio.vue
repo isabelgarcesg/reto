@@ -86,7 +86,7 @@ export default {
       let descriptionCriteria = this.criterio.descriptionCriteria
       let answerCriteria = this.criterio.answerCriteria
       let observationCriteria = this.criterio.observationCriteria
-      let standardIdCriteria = 14           // CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE, id de servicio
+      let standardIdCriteria = 36           // CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE, id de servicio
       let serviceIdCriteria = 21
       fetch('https://redb.qsystems.co/QS3100/QServlet?operation=' + operation +
         '&tna=' + tna +

@@ -18,6 +18,7 @@ import EditarCriterio from '../components/EditarCriterio.vue'
 import operationsView from '../components/operationsView.vue'
 import ListarServicios from '../components/ListarServicios.vue'
 import ListarEstandares from '../components/ListarEstandares.vue'
+import ListarCriterios from '../components/ListarCriterios.vue'
 import LoginView from '../components/LoginView.vue'
 
 
@@ -97,6 +98,12 @@ component: LoginView
     path: '/ListarEstandares/:id',
     name: 'ListarEstandares',
     component: ListarEstandares,
+    meta: { hasSidebar: true }
+  },
+  {
+    path: '/ListarCriterios/:id',
+    name: 'ListarCriterios',
+    component: ListarCriterios,
     meta: { hasSidebar: true }
   },
   {
