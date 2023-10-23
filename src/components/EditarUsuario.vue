@@ -23,8 +23,8 @@
 
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="doc">Documento de identidad</label>
-                  <input type="text" class="form-control" name="doc" v-model="usuario.doc" id="doc"
+                  <label for="document">Documento de identidad</label>
+                  <input type="text" class="form-control" name="document" v-model="usuario.document" id="document"
                     aria-describedby="helpId" placeholder="ID" required />
                   <small id="helpId" class="form-text text-muted"></small>
                 </div>
@@ -123,6 +123,7 @@ export default {
       let tna = 6
       let userId = this.$route.params.id
       let key = "11e2e476-717b-4898-ac02-693abdecdc9b"
+
       fetch('https://redb.qsystems.co/QS3100/QServlet?operation=' +
         operation +
         '&tna=' +
@@ -133,6 +134,15 @@ export default {
         + key)
         .then(respuesta => respuesta.json())
         .then((datosRespuesta) => {
+          if (datosRespuesta['arrayUser'][0].userType === 2){
+            datosRespuesta['arrayUser'][0].userType = "Auditor"
+          }
+          else if (datosRespuesta['arrayUser'][0].userType === 1){
+            datosRespuesta['arrayUser'][0].userType = "Administrador"
+          }
+          else if (datosRespuesta['arrayUser'][0].userType === 3){
+            datosRespuesta['arrayUser'][0].userType = "Normal"
+          }
           console.log(datosRespuesta['arrayUser'][0])
           this.usuario = datosRespuesta['arrayUser'][0];
         })
@@ -155,7 +165,7 @@ export default {
         nameUser: this.usuario.name,
         phoneUser: this.usuario.phone,
         passwordUser: this.usuario.password,
-        documentUser: this.usuario.doc,
+        documentUser: this.usuario.document,
         positionUser: this.usuario.position,
         userEntityId: this.$route.params.entity,
         nickname: this.usuario.nickname,

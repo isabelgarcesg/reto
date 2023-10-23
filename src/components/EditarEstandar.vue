@@ -37,9 +37,7 @@
                         <div><br></div>
                         <div>
                             <button type="submit" class="btn btn-primary">Enviar</button>
-                            <!-- <button type="button" v-on:click="volver" class="btn btn-danger" style="margin-left: 10px">
-                                Cancelar
-                            </button> -->
+                            <router-link :to="{ name: 'ListarEstandares', params:{id:$route.params.idServ}}" class="btn btn-danger" style="margin-left: 30px;">Cancelar</router-link>          
                         </div>
                     </form>
                 </div>
@@ -78,7 +76,7 @@ export default {
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta => {
                     console.log(datosRespuesta)
-                    // window.location.href = '../ListarEstandares/' + this.$route.params.idServ
+                    window.location.href = '../../ListarEstandares/' + this.$route.params.idServ
 
                 }))
 
