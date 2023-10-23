@@ -2,10 +2,11 @@
     
       <div class="container">
         <div class="card" style="width: 40rem;">
-          <div class="card-header">
-            <b>Creación de entidad</b>
-          </div>
           <div class="card-body">
+      
+            <h4 class="card-title mb-4 text-center"><strong>Crear Entidad</strong></h4>
+            <div class="mt-4 d-flex justify-content-center align-items-center">
+
             <form v-on:submit.prevent="createEntity">
               <div class="row">
                 <div class="col-md-12">
@@ -70,6 +71,7 @@
               </div>
             </form>
           </div>
+          </div>
           <!-- <div class="card-footer text-muted">
             Copyright: LifeTech Solutions 2023
           </div> -->
@@ -113,15 +115,18 @@
 </script>
 
 
-<!-- <style lang="scss" scoped>
+<style lang="scss" scoped>
 
-//import '@/public/style.css';
+div {
 
-div{
-    
-    .card{
-        background-color: var(--light-blue);
-    }
+.card {
+  background-color: #fdfdfd;
+  display: flex;
+  margin-right: 10rem;
+  margin-left: 15rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
 }
 
 input{
@@ -132,7 +137,7 @@ select{
     border-radius:10px;
 }
 
-</style> -->
+</style>
 
 
 

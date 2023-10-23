@@ -2,17 +2,15 @@
   <div>
     <nav class="navbar navbar-expand navbar-light bg-light">
       <div class="nav navbar-nav">
-        <router-link :to="{ name: 'crear', params: { id: $route.params.id } }" class="btn btn-info"
-          style="margin-left: 30px;">Nuevo</router-link>
+        <router-link :to="{ name: 'crear', params: { id: $route.params.id } }" 
+          style="margin-left: 600px;"><span class="material-icons text-muted" style="font-size: 24px;">person_add</span></router-link>
         <!-- <router-link :to="{ name: 'ListarUsTenan' }" class="btn btn-info" style="margin-left: 30px;">Tenancy</router-link> -->
       </div>
     </nav>
 
     <div class="container">
       <div class="card">
-        <div class="card-header">
-          Lista de usuarios
-        </div>
+        <h4 class="card-title mb-4 text-center"><strong>Lista de usuarios</strong></h4>
         <div class="card-body">
           <table class="table">
             <thead>
@@ -37,11 +35,16 @@
                 <td>{{ usuario.entityName }}</td>
                 <td>
 
+
+<!-- BOTON PARA EDITAR -->
                   <router-link :to="{ name: 'EditarUsuario', params: { id: usuario.id, entity: $route.params.id } }"
-                    class="btn btn-outline-info">Editar</router-link>
+                    style="border: none; background: none;"><span class="material-icons text-muted" style="font-size: 24px;">edit</span></router-link>
+                    
                   <!-- Button trigger modal BOTON BORRAR CON CONFIRMACIÓN -->
-                  <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop"  style="margin-left: 10px;">
-                    Borrar
+                <!-- BOTON PARA BORRAR -->
+                  <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                    style="margin-left: 10px; border: none; background: none;">
+                    <span class="material-icons text-muted" style="font-size: 24px;">delete</span>
                   </button>
 
                   <!-- Modal -->
@@ -58,7 +61,8 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                          <button type="button" class="btn btn-primary" v-on:click="borrarusuario(usuario.id)">Entendido</button>
+                          <button type="button" class="btn btn-primary"
+                            v-on:click="borrarusuario(usuario.id)">Entendido</button>
                         </div>
                       </div>
                     </div>

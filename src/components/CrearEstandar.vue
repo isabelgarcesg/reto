@@ -1,10 +1,11 @@
 <template>   
   <div class="container">
     <div class="card" style="width: 40rem;">
-      <div class="card-header">
-        <b>Creación de estándar</b>
-      </div>
+
       <div class="card-body">
+        <h4 class="card-title mb-4 text-center"><strong>Crear Estándar</strong></h4>
+        <div class="mt-4 d-flex justify-content-center align-items-center">
+
         <form v-on:submit.prevent="createStandard">
           <div class="row">
             <div class="col-md-12">
@@ -47,9 +48,10 @@
           <div>
             <button type="submit" class="btn btn-primary">Enviar</button>
             <!-- CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE -->
-            <!-- <router-link :to="{ name: 'Listarestandar'}" class="btn btn-danger" style="margin-left: 30px;">Cancelar</router-link> Cambiar por un router link que solo se devuelva -->              
+            <router-link :to="{ name: 'Listarestandares'}" class="btn btn-danger" style="margin-left: 30px;">Cancelar</router-link>               
           </div>
         </form>
+      </div> 
       </div>
       <!-- <div class="card-footer text-muted">
         Copyright: LifeTech Solutions 2023
@@ -76,7 +78,7 @@ export default {
                 let key="11e2e476-717b-4898-ac02-693abdecdc9b"
                 let nameStandard=this.estandar.nameStandard
                 let descriptionStandard=this.estandar.descriptionStandard
-                let serviceIdStandard=this.$route.params.ServiceId              // CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE, id de servicio
+                let serviceIdStandard=this.$route.params.ServiceId           
                 fetch('https://redb.qsystems.co/QS3100/QServlet?operation='+operation+
                 '&tna='+tna+
                 '&key='+key+
@@ -96,12 +98,24 @@ export default {
 
 
 <style lang="scss" scoped>
-  div{
-      .card{
-          background-color: var(--light-blue);
-      }
-  }
-  .radio{
-      border-radius:10px;
-  }
+
+div {
+
+.card {
+  background-color: #fdfdfd;
+  display: flex;
+  margin-right: 10rem;
+  margin-left: 15rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+}
+
+input {
+  border-radius: 10px;
+}
+
+select {
+  border-radius: 10px;
+}
 </style>
