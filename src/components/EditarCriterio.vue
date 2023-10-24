@@ -56,7 +56,7 @@
           <div>
             <button type="submit" class="btn btn-primary">Enviar</button>
             <!-- CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE -->
-            <!-- <router-link :to="{ name: 'Listarcriterio'}" class="btn btn-danger" style="margin-left: 30px;">Cancelar</router-link> Cambiar por un router link que solo se devuelva -->
+            <router-link :to="{ name: 'ListarCriterios'}" class="btn btn-danger" style="margin-left: 30px;">Cancelar</router-link> Cambiar por un router link que solo se devuelva
           </div>
         </form>
       </div>
@@ -86,9 +86,9 @@ export default {
       let descriptionCriteria = this.criterio.descriptionCriteria
       let answerCriteria = this.criterio.answerCriteria
       let observationCriteria = this.criterio.observationCriteria
-      let idCriteria = 82
-      let standardIdCriteria = 14           // CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE, id de servicio
-      let serviceIdCriteria = 21
+      let idCriteria = this.$route.params.idCrit
+      let standardIdCriteria = this.$route.params.StandardId          // CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE, id de servicio
+      let serviceIdCriteria = this.$route.params.servicio
 
       fetch('https://redb.qsystems.co/QS3100/QServlet?operation=' + operation +
         '&tna=' + tna +
@@ -103,7 +103,7 @@ export default {
         .then(respuesta => respuesta.json())
         .then((datosRespuesta => {
           console.log(datosRespuesta);
-          //   window.location.href='Listarcriterio'   // CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE
+          window.location.href = "/ListarCriterios/" + this.$route.params.StandardId  +'/' +this.$route.params.servicio
 
         }))
     }

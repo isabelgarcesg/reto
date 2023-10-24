@@ -122,22 +122,23 @@ window.location.href = "/ListarCriterios/" + this.$route.params.StandardId +'/'+
 
 <style lang="scss" scoped>
 div {
-  .card {
-    background-color: var(--light-blue);
-  }
+
+.card {
+  background-color: #fdfdfd;
+  display: flex;
+  margin-right: 10rem;
+  margin-left: 15rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
 }
 
-.radio {
-  border-radius: 10px;
+input {
+border-radius: 10px;
 }
 
-.custom-label {
-  margin-right: 20px;
-  /* Ajusta el valor según tu preferencia para el espacio */
+select {
+border-radius: 10px;
 }
-
-.custom-radio {
-  margin-left: 20px;
-  /* Ajusta el valor según tu preferencia para el espacio */
-}</style>
+</style>
 

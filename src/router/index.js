@@ -71,7 +71,7 @@ meta: { hasSidebar: true }
     meta: { hasSidebar: true }
   },
   {
-    path: '/EditarCriterio',
+    path: '/EditarCriterio/:idCrit/:servicio/:StandardId',
     name: 'EditarCriterio',
     component: EditarCriterio,
     meta: { hasSidebar: true }

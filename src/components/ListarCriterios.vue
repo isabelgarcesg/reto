@@ -52,7 +52,7 @@
 
 
                                         <li><router-link
-                                                :to="{ name: 'EditarCriterio', params: { idEst: criterio.id, idServ: $route.params.id } }"
+                                                :to="{ name: 'EditarCriterio', params: { idCrit: criterio.id, servicio: $route.params.servicio, StandardId: $route.params.id } }"
                                                 class="dropdown-item">Editar</router-link></li>
 
 
