@@ -3,7 +3,7 @@
     <div class="card" style="width: 40rem;">
 
       <div class="card-body">
-        <h4 class="card-title mb-4 text-center"><strong>Crear Servicio</strong></h4>
+        <h4 class="card-title mb-4 text-center"><strong>Crear Criterios</strong></h4>
         <div class="mt-4 d-flex justify-content-center align-items-center">
 
           <form v-on:submit.prevent="createCriteria">

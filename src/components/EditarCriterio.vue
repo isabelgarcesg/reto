@@ -1,10 +1,11 @@
 <template>
   <div class="container">
     <div class="card" style="width: 40rem;">
-      <div class="card-header">
-        <b>Edición de criterio</b>
-      </div>
+
       <div class="card-body">
+        <h4 class="card-title mb-4 text-center"><strong>Editar Criterio</strong></h4>
+        <div class="mt-4 d-flex justify-content-center align-items-center">
+
         <form v-on:submit.prevent="editarCriterio">
           <div class="row">
             <div class="col-md-12">
@@ -56,9 +57,10 @@
           <div>
             <button type="submit" class="btn btn-primary">Enviar</button>
             <!-- CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE -->
-            <router-link :to="{ name: 'ListarCriterios'}" class="btn btn-danger" style="margin-left: 30px;">Cancelar</router-link> Cambiar por un router link que solo se devuelva
+            <router-link :to="{ name: 'ListarCriterios', params: { id: $route.params.StandardId, servicio: $route.params.servicio}}" class="btn btn-danger" style="margin-left: 30px;">Cancelar</router-link>
           </div>
         </form>
+      </div>
       </div>
       <!-- <div class="card-footer text-muted">
         Copyright: LifeTech Solutions 2023
@@ -114,23 +116,23 @@ export default {
 
 <style lang="scss" scoped>
 div {
-  .card {
-    background-color: var(--light-blue);
-  }
+
+.card {
+  background-color: #fdfdfd;
+  display: flex;
+  margin-right: 10rem;
+  margin-left: 15rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
 }
 
-.radio {
-  border-radius: 10px;
+input {
+border-radius: 10px;
 }
 
-.custom-label {
-  margin-right: 20px;
-  /* Ajusta el valor según tu preferencia para el espacio */
-}
-
-.custom-radio {
-  margin-left: 20px;
-  /* Ajusta el valor según tu preferencia para el espacio */
+select {
+border-radius: 10px;
 }
 </style>
 
