@@ -108,7 +108,7 @@ meta: { hasSidebar: true }
     meta: { hasSidebar: true }
   },
   {
-    path: '/ListarCriterios/:id',
+    path: '/ListarCriterios/:id/:servicio', //recibe id estandar y id servicio
     name: 'ListarCriterios',
     component: ListarCriterios,
     meta: { hasSidebar: true }
@@ -139,7 +139,7 @@ meta: { hasSidebar: true }
     meta: { hasSidebar: true }
   },
   {
-    path: '/CrearCriterio',
+    path: '/CrearCriterio/:StandardId/:servicio',
     name: 'CrearCriterio',
     component: CrearCriterio,
     meta: { hasSidebar: true }

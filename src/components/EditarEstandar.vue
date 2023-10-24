@@ -2,10 +2,8 @@
 <!--HOLA ISA-->
 <template>
     <div class="container">
-        <div class="card" style="width: 40rem;">
-            <div class="card-header">
-                <b>Edición de estándar</b>
-            </div>
+        <div class="card">
+
             <div class="card-body">
                 <h4 class="card-title mb-4 text-center"><strong>Editar estándar</strong></h4>
                 <div class="mt-4 d-flex justify-content-center align-items-center">
