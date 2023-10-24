@@ -2,13 +2,9 @@
     <div>
         <nav class="navbar navbar-expand navbar-light bg-light">
             <div class="nav navbar-nav">
-                <!--  ServiceId: $route.params.id -->
-                <!-- <router-link :to="{ name: 'CrearEstandar', params: {ServiceId:$route.params.id } }" style="margin-left: 600px;"><span class="material-icons text-muted"
-              style="font-size: 24px;">add_box</span></router-link> -->
-
 
                 <router-link :to="{ name: 'CrearCriterio', params: { StandardId: $route.params.id, servicio: $route.params.servicio } }"
-                    style="margin-left: 600px;"><span class="material-icons text-muted"
+                style="margin-left: 1000px;"><span class="material-icons text-muted"
                         style="font-size: 24px;">add_box</span></router-link>
             </div>
         </nav>
@@ -165,10 +161,12 @@ export default {
 </script>
  
 <style lang="scss" scoped>
+
+
 .custom-link {
     text-decoration: underline;
     /* Añade un subrayado */
-    color: black;
+    background-color: black;
     /* Cambia el color del subrayado a negro */
 }
 

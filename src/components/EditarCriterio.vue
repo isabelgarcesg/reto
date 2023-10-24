@@ -23,7 +23,7 @@
             </div>
 
             <div class="col-md-12">
-              <label for="name" class="custom-label">Estado</label>
+              <label for="name" class="custom-label" style="margin-right: 10px;">Estado</label>
               <div class="form-check form-check-inline custom-radio">
                 <input class="form-check-input" type="radio" name="answerCriteria" v-model="criterio.answerCriteria" id="answerCriteria" value="C">
                 <label class="form-check-label" for="inlineRadio1">C</label>
