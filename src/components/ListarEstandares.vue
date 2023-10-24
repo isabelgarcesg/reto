@@ -45,7 +45,8 @@
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
                     <!-- ACA VAN A IR LOS CRITERIOS -->
-                    <li>criterios</li>
+                    <li><router-link :to="{ name: 'ListarCriterios', params: { id: estandar.id } }"
+                          class="dropdown-item">Ver criterios</router-link></li>
 
                     <li><router-link
                         :to="{ name: 'EditarEstandar', params: { idEst: estandar.id, idServ: $route.params.id } }"
