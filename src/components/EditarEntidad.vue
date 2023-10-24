@@ -15,7 +15,8 @@
               <div class="form-group">
                 <label for="name">Nombre de la entidad</label>
                 <input type="text" class="form-control" name="name" v-model="entidad.name" id="name"
-                  aria-describedby="helpId" placeholder="Nombre">
+                  aria-describedby="helpId" placeholder="Nombre" required />
+                  <small id="helpId" class="form-text text-muted"></small>
               </div>
             </div>
             <div> <br> </div>
@@ -23,14 +24,16 @@
             <div class="form-group">
               <label for="phone">Teléfono</label>
               <input type="text" class="form-control" name="phone" v-model="entidad.phone" id="phone"
-                aria-describedby="helpId" placeholder="Teléfono">
+                aria-describedby="helpId" placeholder="Teléfono" required />
+                  <small id="helpId" class="form-text text-muted"></small>
               </div>
             </div>
             <div class="col-md-6">
             <div class="form-group">
               <label for="adress">Dirección</label>
               <input type="text" class="form-control" name="adress" v-model="entidad.adress" id="adress"
-                aria-describedby="helpId" placeholder="Dirección">
+                aria-describedby="helpId" placeholder="Dirección" required />
+                  <small id="helpId" class="form-text text-muted"></small>
               </div>
             </div>
           </div>
