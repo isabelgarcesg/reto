@@ -13,8 +13,8 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="name">Nombre del estándar</label>
-                                    <input type="text" class="form-control radio" name="nameStandard"
-                                        v-model="estandar.nameStandard" id="nameStandard" aria-describedby="helpId"
+                                    <input type="text" class="form-control radio" name="name"
+                                        v-model="estandar.name" id="name" aria-describedby="helpId"
                                         placeholder="Estándar" required>
                                     <small id="helpId" class="form-text text-muted"></small>
                                 </div>
@@ -24,9 +24,9 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="descriptionStandard">Descripción del estándar</label>
-                                    <textarea type="text" class="form-control radio" name="descriptionStandard"
-                                        v-model="estandar.descriptionStandard" id="descriptionStandard"
+                                    <label for="description">Descripción del estándar</label>
+                                    <textarea type="text" class="form-control radio" name="description"
+                                        v-model="estandar.description" id="description"
                                         aria-describedby="helpId" placeholder="Descripción" required></textarea>
                                     <small id="helpId" class="form-text text-muted"></small>
                                 </div>
@@ -53,12 +53,36 @@ export default {
             estandar: {}
         }
     },
+
+    created: function (){
+        this.leerEstandar();
+    },
     methods: {
+        leerEstandar(){
+            let operation = "queryStandardById"
+            let tna = 6
+            let idStandard = this.$route.params.idEst
+            let key = "11e2e476-717b-4898-ac02-693abdecdc9b"
+            fetch('https://redb.qsystems.co/QS3100/QServlet?operation=' +
+                operation +
+                '&tna=' +
+                tna +
+                '&idStandard=' +
+                idStandard +
+                '&key='
+                + key)
+                .then(respuesta => respuesta.json())
+                .then((datosRespuesta) => {
+                    console.log(datosRespuesta['arrayStandard'][0])
+                    this.estandar = datosRespuesta['arrayStandard'][0];
+                })
+                .catch(console.log)
+        },
         editarStandar() {
             let operation = "UpdateStandard"
             let tna = 6
-            let nameStandard = this.estandar.nameStandard
-            let descriptionStandard = this.estandar.descriptionStandard
+            let nameStandard = this.estandar.name
+            let descriptionStandard = this.estandar.description
             let serviceIdStandard = this.$route.params.idServ
             let idStandard = this.$route.params.idEst
             let key = "11e2e476-717b-4898-ac02-693abdecdc9b"
