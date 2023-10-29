@@ -18,17 +18,20 @@
                             <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Iniciar sesión</h3>
 
                             <div class="form-outline mb-4">
-                                <input type="text" id="form2Example18" class="form-control form-control-lg"
-                                    ref="nickname" required/>
+                                <input type="text" id="form2Example18" class="form-control form-control-lg" ref="nickname"
+                                    required />
                                 <label class="form-label" for="form2Example18">Usuario</label>
                             </div>
 
                             <div class="form-outline mb-4">
                                 <input type="password" id="form2Example28" class="form-control form-control-lg"
-                                    ref="password" required/>
+                                    ref="password" required />
                                 <label class="form-label" for="form2Example28">Contraseña</label>
                             </div>
-
+                            <!-- Agregar un div para mostrar el mensaje de error -->
+                            <div v-if="error" class="alert alert-danger">
+                                {{ error }}
+                            </div>
                             <div class="pt-1 mb-4">
                                 <button class="btn boton btn-lg btn-block" type="submit">Iniciar sesión</button>
                             </div>
@@ -51,13 +54,20 @@
 </template>
 
 <script>
+// import { mapActions } from 'vuex';
 export default {
     name: 'LoginView',
+    data() {
+        return {
+            error: null // Agregar la propiedad "error" en data
+        };
+    },
     methods: {
+        // ...mapActions(['loginUser']), // Importa loginUser si es necesario
         login() {
             // Datos de inicio de sesión
             let operation = "queryLogin";
-            let tna = 6;            
+            let tna = 6;
             const nickname = this.$refs.nickname.value
             const passwordUser = this.$refs.password.value
             let key = "11e2e476-717b-4898-ac02-693abdecdc9b"
@@ -73,20 +83,26 @@ export default {
                 "&nickname=" +
                 nickname +
                 "&passwordUser=" +
-                passwordUser 
+                passwordUser
             )
                 .then((respuesta) => respuesta.json())
 
                 .then((datosRespuesta) => {
                     console.log(datosRespuesta);
-                    this.Servicios = []; 
-                    if (datosRespuesta["message"]=="Usuario logueado exitosamente") {
+                    if (datosRespuesta["message"] === "Usuario logueado exitosamente") {
                         console.log("Login válido");
-                        this.usuario=datosRespuesta["userVO"]
-                        console.log(this.usuario)
+                        console.log(datosRespuesta["userVO"]); // Asegúrate de que esto contenga la información del usuario
+                        // En la vista de inicio de sesión
+                        // this.$store.dispatch('loginUser', datosRespuesta["userVO"]).then(() => {
+                        //     // Navegar a la vista deseada
+                        //     this.$router.push('/ensayo');
+                        // });
+
+                        this.usuario = datosRespuesta["userVO"];
                     } else {
                         console.log("Login NO válido");
                         console.log(datosRespuesta["error"]);
+                        this.error = datosRespuesta["error"]; // Establece el mensaje de error
                     }
                 })
                 .catch(console.log);
