@@ -1,25 +1,25 @@
 <template>
-    <main class="home-page">
-      <h1>LifeTech Solutions</h1>
-      <p>This is the home page</p>
-      <div class="container">
-        <h2>Servicios</h2>
-        <div v-for="servicio in Servicios" :key="servicio.id">
-          <h2>{{ servicio.name }}</h2>
-          <div>
-            <div v-for="estandar in getEstandaresByService(servicio.id)" :key="estandar.id">
-              <div class="progress" role="progressbar" :aria-label="estandar.name">
-                <div class="progress-bar" :class="getProgressBarClass(calcularPorcentajeCriteriosC(estandar.id))">
-                  {{ calcularPorcentajeCriteriosC(estandar.id) }}%
-                </div>
-                <div class="progress-bar-label">{{ estandar.name }}</div>
+  <main class="home-page">
+    <h1>LifeTech Solutions</h1>
+    <p>This is the home page</p>
+    <div class="container">
+      <h2>Servicios</h2>
+      <div v-for="servicio in Servicios" :key="servicio.id">
+        <h2>{{ servicio.name }}</h2>
+        <div>
+          <div v-for="estandar in servicio.standards" :key="estandar.id">
+            <div class="progress" role="progressbar"  :aria-label="estandar.name" >
+              <div class="progress-bar" :class="getProgressBarClass(calcularPorcentajeCriteriosC(estandar))">
+                {{ calcularPorcentajeCriteriosC(estandar) }}%
               </div>
+              <div class="progress-bar-label">{{ estandar.name }}</div>
             </div>
           </div>
         </div>
       </div>
-    </main>
-  </template>
+    </div>
+  </main>
+</template>
 
 <script>
 
@@ -34,7 +34,7 @@ export default {
     };
   },
   created(){
-        this.consultarCriterio();
+        //this.consultarCriterio();
         this.consultarServicio();
         //this.consultarEstandar();
     },
@@ -89,37 +89,51 @@ export default {
                   servicio.standards,
                   "El array arrayStandard no está vacío o no existe."
                 );
+                // After fetching standards, fetch criteria for each standard
+                this.fetchCriteriaForStandards(servicio.standards);
               }
             })
             .catch(console.log);
         });
       },
-        consultarCriterio() {
-            let userStandardId = 36
-            fetch(
-                "https://redb.qsystems.co/QS3100/QServlet?operation=queryCriteriaByStandard&tna=6&standardIdCriteria=" + userStandardId + "&key=11e2e476-717b-4898-ac02-693abdecdc9b"
-            )
-                .then(respuesta => respuesta.json())
-                .then((datosRespuesta) => {
-                    this.Criterios = []; //Inicializa el arreglo para entidades
-                    if (datosRespuesta.arrayCriteria && datosRespuesta.arrayCriteria.length === 0) {
-                        console.log("El array arrayCriteria está vacío.");
-                    } else {
-                        this.Criterios = datosRespuesta["arrayCriteria"];
-                        console.log(this.Criterios, "El array arrayCriteria no está vacío o no existe.");
-                        this.calcularPorcentajeCriteriosC();
-                    }
-                })
-                .catch(console.log);
-        },
-        getEstandaresByService(serviceId) {
-      return this.Estandares.filter((estandar) => estandar.serviceID === serviceId);
+      fetchCriteriaForStandards(standards) {
+      // Iterate through the standards and fetch criteria for each standard
+      standards.forEach((estandar) => {
+        fetch(
+          "https://redb.qsystems.co/QS3100/QServlet?operation=queryCriteriaByStandard&tna=6&standardIdCriteria=" +
+            estandar.id +
+            "&key=11e2e476-717b-4898-ac02-693abdecdc9b"
+        )
+          .then((respuesta) => respuesta.json())
+          .then((datosRespuesta) => {
+            if (
+              datosRespuesta.arrayCriteria &&
+              datosRespuesta.arrayCriteria.length === 0
+            ) {
+              console.log("El array arrayCriteria está vacío.");
+            } else {
+              // Store the criteria for this standard
+              estandar.criteria = datosRespuesta["arrayCriteria"];
+              console.log(
+                estandar.criteria,
+                "El array arrayCriteria no está vacío o no existe."
+              );
+            }
+          })
+          .catch(console.log);
+      });
     },
+    //     getEstandaresByService(serviceId) {
+    //   return this.Estandares.filter((estandar) => estandar.serviceID === serviceId);
+    // },
 
-    calcularPorcentajeCriteriosC(standardId) {
-      const criterios = this.Criterios.filter((criterio) => criterio.standardID === standardId);
-      const criteriosC = criterios.filter((criterio) => criterio.answer === 'C');
-      return (criteriosC.length / criterios.length) * 100;
+    calcularPorcentajeCriteriosC(estandar) {
+      if (!estandar.criteria || estandar.criteria.length === 0) {
+        return 0; // No hay criterios
+      }
+      
+      const criteriosC = estandar.criteria.filter((criterio) => criterio.answer === 'C');
+      return (criteriosC.length / estandar.criteria.length) * 100;
     },
 
     getProgressBarClass(porcentaje) {
