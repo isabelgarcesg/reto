@@ -2,10 +2,8 @@
 <!--HOLA ISA-->
 <template>
     <div class="container">
-        <div class="card" style="width: 40rem;">
-            <div class="card-header">
-                <b>Edición de estándar</b>
-            </div>
+        <div class="card">
+
             <div class="card-body">
                 <h4 class="card-title mb-4 text-center"><strong>Editar estándar</strong></h4>
                 <div class="mt-4 d-flex justify-content-center align-items-center">
@@ -37,9 +35,7 @@
                         <div><br></div>
                         <div>
                             <button type="submit" class="btn btn-primary">Enviar</button>
-                            <!-- <button type="button" v-on:click="volver" class="btn btn-danger" style="margin-left: 10px">
-                                Cancelar
-                            </button> -->
+                            <router-link :to="{ name: 'ListarEstandares', params:{id:$route.params.idServ}}" class="btn btn-danger" style="margin-left: 30px;">Cancelar</router-link>          
                         </div>
                     </form>
                 </div>
@@ -78,7 +74,7 @@ export default {
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta => {
                     console.log(datosRespuesta)
-                    // window.location.href = '../ListarEstandares/' + this.$route.params.idServ
+                    window.location.href = '../../ListarEstandares/' + this.$route.params.idServ
 
                 }))
 

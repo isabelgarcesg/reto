@@ -71,7 +71,7 @@ component: LoginView
     meta: { hasSidebar: true }
   },
   {
-    path: '/EditarCriterio',
+    path: '/EditarCriterio/:idCrit/:servicio/:StandardId',
     name: 'EditarCriterio',
     component: EditarCriterio,
     meta: { hasSidebar: true }
@@ -137,6 +137,13 @@ component: LoginView
     component: ListarEstandares,
     meta: { hasSidebar: true }
   },
+  {
+    path: '/ListarCriterios/:id/:servicio', //recibe id estandar y id servicio
+    name: 'ListarCriterios',
+    component: ListarCriterios,
+    meta: { hasSidebar: true }
+  },
+
 {
     path: '/operations',
     name: 'operations',
@@ -162,7 +169,7 @@ component: LoginView
     meta: { hasSidebar: true }
   },
   {
-    path: '/CrearCriterio',
+    path: '/CrearCriterio/:StandardId/:servicio',
     name: 'CrearCriterio',
     component: CrearCriterio,
     meta: { hasSidebar: true }
@@ -174,7 +181,7 @@ component: LoginView
     meta: { hasSidebar: true },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    // which is lazy-loaded when the route is visited. HOLAA
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   }
 ]

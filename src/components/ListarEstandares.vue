@@ -45,7 +45,7 @@
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
                     <!-- ACA VAN A IR LOS CRITERIOS -->
-                    <li><router-link :to="{ name: 'ListarCriterios', params: { id: estandar.id } }"
+                    <li><router-link :to="{ name: 'ListarCriterios', params: { id: estandar.id, servicio: $route.params.id } }"
                           class="dropdown-item">Ver criterios</router-link></li>
 
                     <li><router-link
@@ -76,11 +76,11 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+          <h5 class="modal-title" id="staticBackdropLabel">Borrar Estándar</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          Esta acción eliminará la entidad permanentemente
+          Esta acción eliminará el estándar permanentemente
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

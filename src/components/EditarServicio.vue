@@ -48,14 +48,11 @@
             <div>
               <button type="submit" class="btn btn-primary">Enviar</button>
               <!-- CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE -->
-              <!-- <router-link :to="{ name: 'Listarservicio'}" class="btn btn-danger" style="margin-left: 30px;">Cancelar</router-link> Cambiar por un router link que solo se devuelva -->              
+              <router-link :to="{ name: 'ListarServicios', params:{id:$route.params.entity}}" class="btn btn-danger" style="margin-left: 30px;">Cancelar</router-link>          
             </div>
           </form>
         </div>
         </div>
-        <!-- <div class="card-footer text-muted">
-          Copyright: LifeTech Solutions 2023
-        </div> -->
       </div>
     </div>
 </template>
@@ -89,7 +86,7 @@ export default {
             .then(respuesta=>respuesta.json())
             .then((datosRespuesta=>{
                 console.log(datosRespuesta);
-
+                window.location.href = "../../ListarServicios/" + this.$route.params.entity  
             }))          
         }
     }

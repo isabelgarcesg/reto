@@ -6,18 +6,22 @@
                 <!-- <router-link :to="{ name: 'CrearEstandar', params: {ServiceId:$route.params.id } }" style="margin-left: 600px;"><span class="material-icons text-muted"
               style="font-size: 24px;">add_box</span></router-link> -->
 
-                <router-link :to="{ name: 'CrearCriterio', params: { StandardId: $route.params.id } }"
+
+                <router-link :to="{ name: 'CrearCriterio', params: { StandardId: $route.params.id, servicio: $route.params.servicio } }"
                     style="margin-left: 600px;"><span class="material-icons text-muted"
                         style="font-size: 24px;">add_box</span></router-link>
             </div>
         </nav>
 
+
         <!-- Agregar margen superior al card para separarlo de la barra de navegación -->
         <div class="container">
+
 
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title mb-4 text-center"><strong>Lista de criterios</strong></h4>
+
 
                     <table class="table">
                         <thead>
@@ -33,31 +37,24 @@
                                 <td scope="row">
                                     {{ criterio.description }}
                                 </td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" >{{ criterio.answer }}</button>
-                                        <button type="button" class=" dropdown-toggle dropdown-toggle-split"
-                                            data-bs-toggle="dropdown" aria-expanded="false">
-                                            <span class="visually-hidden">Toggle Dropdown</span>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">C</a></li>
-                                            <li><a class="dropdown-item" href="#">NC</a></li>
-                                            <li><a class="dropdown-item" href="#">NA</a></li>
-                                        </ul>
-                                    </div>
-                                </td>
+                                <td>{{ criterio.answer }}</td>
                                 <td>{{ criterio.observation }}</td>
                                 <td class="dropdown">
+                                    <!-- <router-link :to="{ name: 'EditarEstandar', params: { idEst: estandar.id, idServ:$route.params.id} }"                
+                      class="btn btn-outline-info">Editar</router-link>
+                      <button type="button" v-on:click="borrarEstandar(estandar.id)" class="btn btn-outline-danger"
+                      style="margin-left: 10px;">Borrar</button> -->
                                     <span class="material-icons" data-bs-toggle="dropdown">
                                         expand_more
                                     </span>
                                     <!-- </button> -->
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
+
                                         <li><router-link
-                                                :to="{ name: 'EditarCriterio', params: { idEst: criterio.id, idServ: $route.params.id } }"
+                                                :to="{ name: 'EditarCriterio', params: { idCrit: criterio.id, servicio: $route.params.servicio, StandardId: $route.params.id } }"
                                                 class="dropdown-item">Editar</router-link></li>
+
 
                                         <li><button type="button" class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#staticBackdrop"
@@ -68,13 +65,18 @@
 
 
 
+
+
+
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
+
             </div>
+
 
         </div>
     </div>
@@ -84,7 +86,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Borrar Criterio</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -99,7 +101,7 @@
         </div>
     </div>
 </template>
-  
+ 
 <script>
 export default {
     data() {
@@ -112,10 +114,11 @@ export default {
     },
     methods: {
 
+
         consultarCriterio() {
             let userStandardId = this.$route.params.id
             fetch(
-                "https://redb.qsystems.co/QS3100/QServlet?operation=queryCriteriaByStandard&tna=6&standardIdCriteria=" + userStandardId + "&key=11e2e476-717b-4898-ac02-693abdecdc9b"
+                "https://redb.qsystems.co/QS3100/QServlet?operation=queryCriteriaByStandard&tna=6&standardIdCriteria="+ userStandardId + "&key=11e2e476-717b-4898-ac02-693abdecdc9b"
             )
                 .then((respuesta) => respuesta.json())
                 // .then((datosRespuesta)=>{
@@ -134,6 +137,7 @@ export default {
                     } else {
                         this.Criterios = datosRespuesta["arrayCriteria"]
 
+
                         // El array "arrayStandard" no está vacío o no existe
                         console.log(this.Criterios, "El array arrayCriteria no está vacío o no existe.");
                     }
@@ -148,15 +152,18 @@ export default {
                     console.log(datosRespuesta)
                     window.location.href = "../ListarCriterios/" + this.$route.params.id
 
+
                 })
                 .catch(console.log)
         },
 
 
+
+
     },
 };
 </script>
-  
+ 
 <style lang="scss" scoped>
 .custom-link {
     text-decoration: underline;
@@ -165,11 +172,15 @@ export default {
     /* Cambia el color del subrayado a negro */
 }
 
+
 .custom-link:hover {
+
 
     color: var(--primary); //Al pasar por encima se ve azul
 
+
 }
+
 
 .dropdown {
     display: flex;
@@ -177,7 +188,9 @@ export default {
     align-items: center;
 }
 
+
 .dropdown:hover .material-icons {
     /* Cambia el color de fondo en hover */
     cursor: pointer;
-}</style>
+}
+</style>
