@@ -33,13 +33,22 @@
                                 <td scope="row">
                                     {{ criterio.description }}
                                 </td>
-                                <td>{{ criterio.answer }}</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" >{{ criterio.answer }}</button>
+                                        <button type="button" class=" dropdown-toggle dropdown-toggle-split"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            <span class="visually-hidden">Toggle Dropdown</span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#">C</a></li>
+                                            <li><a class="dropdown-item" href="#">NC</a></li>
+                                            <li><a class="dropdown-item" href="#">NA</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
                                 <td>{{ criterio.observation }}</td>
                                 <td class="dropdown">
-                                    <!-- <router-link :to="{ name: 'EditarEstandar', params: { idEst: estandar.id, idServ:$route.params.id} }"                
-                      class="btn btn-outline-info">Editar</router-link>
-                      <button type="button" v-on:click="borrarEstandar(estandar.id)" class="btn btn-outline-danger"
-                      style="margin-left: 10px;">Borrar</button> -->
                                     <span class="material-icons" data-bs-toggle="dropdown">
                                         expand_more
                                     </span>
@@ -106,7 +115,7 @@ export default {
         consultarCriterio() {
             let userStandardId = this.$route.params.id
             fetch(
-                "https://redb.qsystems.co/QS3100/QServlet?operation=queryCriteriaByStandard&tna=6&standardIdCriteria="+ userStandardId + "&key=11e2e476-717b-4898-ac02-693abdecdc9b"
+                "https://redb.qsystems.co/QS3100/QServlet?operation=queryCriteriaByStandard&tna=6&standardIdCriteria=" + userStandardId + "&key=11e2e476-717b-4898-ac02-693abdecdc9b"
             )
                 .then((respuesta) => respuesta.json())
                 // .then((datosRespuesta)=>{
@@ -171,5 +180,4 @@ export default {
 .dropdown:hover .material-icons {
     /* Cambia el color de fondo en hover */
     cursor: pointer;
-}
-</style>
+}</style>
