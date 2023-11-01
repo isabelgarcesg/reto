@@ -59,7 +59,11 @@ export default {
     name: 'LoginView',
     data() {
         return {
-            error: null // Agregar la propiedad "error" en data
+            error: null, // Agregar la propiedad "error" en data
+            // form:{
+            //     nickname:"",
+            //     password:"",
+            // }
         };
     },
     methods: {
@@ -106,6 +110,7 @@ export default {
                     }
                 })
                 .catch(console.log);
+                this.$store.commit('login',this.$refs.nickname.value)
         }
 
     },

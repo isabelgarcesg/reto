@@ -1,11 +1,25 @@
 <template>
   <div class="app">
     <SideBar v-if="currentRouteHasSidebar" />
+    <router-link v-if="!$store.state.user" to="/login">Login</router-link>
+    <!-- <a v-if="$store.state.user" @click="/login">Logout</a> -->
     <router-view />
   </div>
 </template>
 
 <script setup>
+
+// Definición del método logout
+// function logout() {
+//   this.$store.commit('logout');
+// }
+
+// Gancho de ciclo de vida "mounted"
+import { onMounted } from 'vue';
+onMounted(() => {
+  this.$store.commit('initializeStore');
+});
+
 import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import SideBar from './components/SideBar.vue';
