@@ -7,7 +7,8 @@
               style="font-size: 24px;">add_box</span></router-link> -->
 
 
-                <router-link :to="{ name: 'CrearCriterio', params: { StandardId: $route.params.id, servicio: $route.params.servicio } }"
+                <router-link
+                    :to="{ name: 'CrearCriterio', params: { StandardId: $route.params.id, servicio: $route.params.servicio } }"
                     style="margin-left: 600px;"><span class="material-icons text-muted"
                         style="font-size: 24px;">add_box</span></router-link>
             </div>
@@ -21,57 +22,62 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title mb-4 text-center"><strong>Lista de criterios</strong></h4>
+                    <form v-on:submit.prevent="editarCriterio">
 
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Descripción</th>
+                                    <th>Estado</th>
+                                    <th>Observación</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="criterio in Criterios" :key="criterio.id">
+                                    <td scope="row">
+                                        {{ criterio.description }}
+                                    </td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button">{{ criterio.answer }}</button>
+                                            <button type="button" class="dropdown-toggle dropdown-toggle-split"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                <span class="visually-hidden">Toggle Dropdown</span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="#">C</a></li>
+                                                <li><a class="dropdown-item" href="#">NC</a></li>
+                                                <li><a class="dropdown-item" href="#">NA</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <!-- <td>{{ criterio.observation }}</td> -->
 
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Descripción</th>
-                                <th>Estado</th>
-                                <th>Observación</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="criterio in Criterios" :key="criterio.id">
-                                <td scope="row">
-                                    {{ criterio.description }}
-                                </td>
-                                <td>{{ criterio.answer }}</td>
-                                <td>{{ criterio.observation }}</td>
-                                <td class="dropdown">
-                                    <!-- <router-link :to="{ name: 'EditarEstandar', params: { idEst: estandar.id, idServ:$route.params.id} }"                
-                      class="btn btn-outline-info">Editar</router-link>
-                      <button type="button" v-on:click="borrarEstandar(estandar.id)" class="btn btn-outline-danger"
-                      style="margin-left: 10px;">Borrar</button> -->
-                                    <span class="material-icons" data-bs-toggle="dropdown">
-                                        expand_more
-                                    </span>
-                                    <!-- </button> -->
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <!-- <textarea type="text" class="form-control" name="observationCriteria"
+                                        v-model="criterio.observationCriteria" id="observationCriteria"
+                                        aria-describedby="helpId" placeholder="Observaciones" required></textarea> -->
+                                    <div class="form-floating">
+                                        <textarea class="form-control" placeholder="Leave a comment here"
+                                            name="observationCriteria" v-model="criterio.observationCriteria"
+                                            id="observationCriteria"></textarea>
+                                        <label for="floatingTextarea">{{ criterio.observation }}</label>
+                                    </div>
+                                    <td>
+                                        <button type="submit"><span class="material-icons text-muted"
+                                                style="font-size: 24px;">edit</span></button>
 
-
-                                        <li><router-link
-                                                :to="{ name: 'EditarCriterio', params: { idCrit: criterio.id, servicio: $route.params.servicio, StandardId: $route.params.id } }"
-                                                class="dropdown-item">Editar</router-link></li>
-
-
-                                        <li><button type="button" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#staticBackdrop"
-                                                v-on:click="criterioSeleccionado = criterio">
-                                                Borrar
-                                            </button></li>
-                                    </ul>
-
-
-
-
-
-
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                        <!-- Button trigger modal BOTON BORRAR CON CONFIRMACIÓN -->
+                                        <!-- BOTON PARA BORRAR -->
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                                            style="margin-left: 10px; border: none; background: none;">
+                                            <span class="material-icons text-muted" style="font-size: 24px;">delete</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
                 </div>
 
 
@@ -118,7 +124,7 @@ export default {
         consultarCriterio() {
             let userStandardId = this.$route.params.id
             fetch(
-                "https://redb.qsystems.co/QS3100/QServlet?operation=queryCriteriaByStandard&tna=6&standardIdCriteria="+ userStandardId + "&key=11e2e476-717b-4898-ac02-693abdecdc9b"
+                "https://redb.qsystems.co/QS3100/QServlet?operation=queryCriteriaByStandard&tna=6&standardIdCriteria=" + userStandardId + "&key=11e2e476-717b-4898-ac02-693abdecdc9b"
             )
                 .then((respuesta) => respuesta.json())
                 // .then((datosRespuesta)=>{
@@ -143,6 +149,37 @@ export default {
                     }
                 })
                 .catch(console.log);
+        },
+        editarCriterio(id) {
+            console.log(id)
+            // CON ESTE LINK PUEDEN VER TODOS LOS criterios POR TENANCY
+            //https://redb.qsystems.co/QS3100/QServlet?operation=queryCriteriadByTenancy&tna=6&key=11e2e476-717b-4898-ac02-693abdecdc9b
+            let operation = "UpdateCriteria"
+            let tna = 6
+            let key = "11e2e476-717b-4898-ac02-693abdecdc9b"
+            let descriptionCriteria = this.criterio.descriptionCriteria
+            let answerCriteria = this.criterio.answerCriteria
+            let observationCriteria = this.criterio.observationCriteria
+            let idCriteria = this.$route.params.idCrit
+            let standardIdCriteria = this.$route.params.StandardId          // CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE, id de servicio
+            let serviceIdCriteria = this.$route.params.servicio
+
+            fetch('https://redb.qsystems.co/QS3100/QServlet?operation=' + operation +
+                '&tna=' + tna +
+                '&key=' + key +
+                '&descriptionCriteria=' + descriptionCriteria +
+                '&answerCriteria=' + answerCriteria +
+                '&observationCriteria=' + observationCriteria +
+                '&standardIdCriteria=' + standardIdCriteria +
+                '&serviceIdCriteria=' + serviceIdCriteria +
+                '&idCriteria=' + idCriteria
+            )
+                .then(respuesta => respuesta.json())
+                .then((datosRespuesta => {
+                    console.log(datosRespuesta);
+                    window.location.href = "/ListarCriterios/" + this.$route.params.StandardId + '/' + this.$route.params.servicio
+
+                }))
         },
         borrarCriterio(id) {
             console.log(id)
