@@ -99,6 +99,8 @@ export default {
                         // });
 
                         this.usuario = datosRespuesta["userVO"];
+                        localStorage.setItem("user", JSON.stringify(this.usuario));
+
                     } else {
                         console.log("Login NO válido");
                         console.log(datosRespuesta["error"]);
