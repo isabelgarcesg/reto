@@ -63,7 +63,6 @@ export default {
         };
     },
     methods: {
-        // ...mapActions(['loginUser']), // Importa loginUser si es necesario
         login() {
             // Datos de inicio de sesión
             let operation = "queryLogin";
@@ -92,14 +91,9 @@ export default {
                     if (datosRespuesta["message"] === "Usuario logueado exitosamente") {
                         console.log("Login válido");
                         console.log(datosRespuesta["userVO"]); // Asegúrate de que esto contenga la información del usuario
-                        // En la vista de inicio de sesión
-                        // this.$store.dispatch('loginUser', datosRespuesta["userVO"]).then(() => {
-                        //     // Navegar a la vista deseada
-                        //     this.$router.push('/ensayo');
-                        // });
-
                         this.usuario = datosRespuesta["userVO"];
                         localStorage.setItem("user", JSON.stringify(this.usuario));
+                        window.location.href = "../"
 
                     } else {
                         console.log("Login NO válido");
