@@ -3,8 +3,9 @@
         <nav class="navbar navbar-expand navbar-light bg-light">
             <div class="nav navbar-nav">
 
-                <router-link :to="{ name: 'CrearCriterio', params: { StandardId: $route.params.id, servicio: $route.params.servicio } }"
-                style="margin-left: 1000px;"><span class="material-icons text-muted"
+                <router-link
+                    :to="{ name: 'CrearCriterio', params: { StandardId: $route.params.id, servicio: $route.params.servicio } }"
+                    style="margin-left: 1000px;"><span class="material-icons text-muted"
                         style="font-size: 24px;">add_box</span></router-link>
             </div>
         </nav>
@@ -29,17 +30,32 @@
                             </tr>
                         </thead>
                         <tbody>
+
                             <tr v-for="criterio in Criterios" :key="criterio.id">
+
                                 <td scope="row">
-                                    {{ criterio.description }}
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="description"
+                                            v-model="criterio.description" name="description">
+                                        <label for="floatingInput"></label>
+                                    </div>
                                 </td>
-                                <td>{{ criterio.answer }}</td>
-                                <td>{{ criterio.observation }}</td>
+                                <td><select class="form-select form-group" aria-label="Default select example" id="answer"
+                                        v-model="criterio.answer" name="answer">
+                                        <option selected disabled value=""></option>
+                                        <option value="C">C</option>
+                                        <option value="NC">NC</option>
+                                        <option value="NA">NA</option>
+                                    </select></td>
+                                <td>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="observation"
+                                            v-model="criterio.observation" name="observation">
+                                        <label for="floatingInput"></label>
+                                    </div>
+                                </td>
                                 <td class="dropdown">
-                                    <!-- <router-link :to="{ name: 'EditarEstandar', params: { idEst: estandar.id, idServ:$route.params.id} }"                
-                      class="btn btn-outline-info">Editar</router-link>
-                      <button type="button" v-on:click="borrarEstandar(estandar.id)" class="btn btn-outline-danger"
-                      style="margin-left: 10px;">Borrar</button> -->
+
                                     <span class="material-icons" data-bs-toggle="dropdown">
                                         expand_more
                                     </span>
@@ -47,9 +63,8 @@
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
 
-                                        <li><router-link
-                                                :to="{ name: 'EditarCriterio', params: { idCrit: criterio.id, servicio: $route.params.servicio, StandardId: $route.params.id } }"
-                                                class="dropdown-item">Editar</router-link></li>
+                                        <li><button type="submit" class="dropdown-item"
+                                                @click="editarCriterio(criterio.id)">Editar</button></li>
 
 
                                         <li><button type="button" class="dropdown-item" data-bs-toggle="modal"
@@ -60,12 +75,10 @@
                                     </ul>
 
 
-
-
-
-
                                 </td>
+
                             </tr>
+
                         </tbody>
                     </table>
                 </div>
@@ -114,7 +127,7 @@ export default {
         consultarCriterio() {
             let userStandardId = this.$route.params.id
             fetch(
-                "https://redb.qsystems.co/QS3100/QServlet?operation=queryCriteriaByStandard&tna=6&standardIdCriteria="+ userStandardId + "&key=11e2e476-717b-4898-ac02-693abdecdc9b"
+                "https://redb.qsystems.co/QS3100/QServlet?operation=queryCriteriaByStandard&tna=6&standardIdCriteria=" + userStandardId + "&key=11e2e476-717b-4898-ac02-693abdecdc9b"
             )
                 .then((respuesta) => respuesta.json())
                 // .then((datosRespuesta)=>{
@@ -140,6 +153,37 @@ export default {
                 })
                 .catch(console.log);
         },
+        editarCriterio(id) {
+            const criterio = this.Criterios.find((c) => c.id === id);
+            if (criterio) {
+                let operation = "UpdateCriteria";
+                let tna = 6;
+                let key = "11e2e476-717b-4898-ac02-693abdecdc9b";
+                let descriptionCriteria = criterio.description;
+                let answerCriteria = criterio.answer;
+                let observationCriteria = criterio.observation;
+                let idCriteria = id;
+                let standardIdCriteria = this.$route.params.id;
+                let serviceIdCriteria = this.$route.params.servicio;
+                console.log(id, criterio.observation, 'Hola')
+                fetch(
+                    'https://redb.qsystems.co/QS3100/QServlet?operation=' + operation +
+                    '&tna=' + tna +
+                    '&key=' + key +
+                    '&descriptionCriteria=' + descriptionCriteria +
+                    '&answerCriteria=' + answerCriteria +
+                    '&observationCriteria=' + observationCriteria +
+                    '&standardIdCriteria=' + standardIdCriteria +
+                    '&serviceIdCriteria=' + serviceIdCriteria +
+                    '&idCriteria=' + idCriteria
+                )
+                    .then((respuesta) => respuesta.json())
+                    .then((datosRespuesta) => {
+                        console.log(datosRespuesta);
+                        window.location.href = "/ListarCriterios/" + this.$route.params.id + '/' + this.$route.params.servicio;
+                    });
+            }
+        },
         borrarCriterio(id) {
             console.log(id)
             fetch("https://redb.qsystems.co/QS3100/QServlet?operation=DeleteCriteria&tna=6&idCriteria=" + id + "&key=11e2e476-717b-4898-ac02-693abdecdc9b")
@@ -161,8 +205,6 @@ export default {
 </script>
  
 <style lang="scss" scoped>
-
-
 .custom-link {
     text-decoration: underline;
     /* Añade un subrayado */
