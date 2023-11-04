@@ -57,7 +57,7 @@
           <div>
             <button type="submit" class="btn btn-primary">Enviar</button>
             <!-- CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE -->
-            <router-link :to="{ name: 'ListarCriterios', params: { id: $route.params.StandardId, servicio: $route.params.servicio}}" class="btn btn-danger" style="margin-left: 30px;">Cancelar</router-link>
+            <router-link :to="{ name: 'ListarCriteriosAdmin', params: { id: $route.params.StandardId, servicio: $route.params.servicio}}" class="btn btn-danger" style="margin-left: 30px;">Cancelar</router-link>
           </div>
         </form>
       </div>
@@ -105,7 +105,7 @@ export default {
         .then(respuesta => respuesta.json())
         .then((datosRespuesta => {
           console.log(datosRespuesta);
-          window.location.href = "/ListarCriterios/" + this.$route.params.StandardId  +'/' +this.$route.params.servicio
+          window.location.href = "/ListarCriteriosAdmin/" + this.$route.params.StandardId  +'/' +this.$route.params.servicio
 
         }))
     }

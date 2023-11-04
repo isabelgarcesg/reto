@@ -105,13 +105,13 @@ export default {
         .then(respuesta => respuesta.json())
         .then((datosRespuesta => {
           console.log(datosRespuesta);
-          window.location.href = "/ListarCriterios/" + this.$route.params.StandardId +'/'+ this.$route.params.servicio
+          window.location.href = "/ListarCriteriosAdmin/" + this.$route.params.StandardId +'/'+ this.$route.params.servicio
 
         }))
     },
     volver() {
 
-window.location.href = "/ListarCriterios/" + this.$route.params.StandardId +'/'+ this.$route.params.servicio //hay que poner lo mismo del id acá
+window.location.href = "/ListarCriteriosAdmin/" + this.$route.params.StandardId +'/'+ this.$route.params.servicio //hay que poner lo mismo del id acá
 
 }
 

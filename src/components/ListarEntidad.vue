@@ -38,6 +38,7 @@
 
                       <li><router-link :to="{ name: 'ListarUsuario', params: { id: entidad.id } }"
                           class="dropdown-item">Ver usuarios</router-link></li>
+                          
                       <li><router-link :to="{ name: 'ListarServicios', params: { id: entidad.id } }"
                           class="dropdown-item"> Ver servicios</router-link></li>
 

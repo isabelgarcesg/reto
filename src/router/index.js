@@ -19,6 +19,7 @@ import operationsView from '../components/operationsView.vue'
 import ListarServicios from '../components/ListarServicios.vue'
 import ListarEstandares from '../components/ListarEstandares.vue'
 import ListarCriterios from '../components/ListarCriterios.vue'
+import ListarCriteriosAdmin from '../components/ListarCriteriosAdmin.vue'
 import LoginView from '../components/LoginView.vue'
 
 
@@ -111,6 +112,12 @@ meta: { hasSidebar: true, requiresAuth: true }
     path: '/ListarCriterios/:id/:servicio', //recibe id estandar y id servicio
     name: 'ListarCriterios',
     component: ListarCriterios,
+    meta: { hasSidebar: true }
+  },
+  {
+    path: '/ListarCriteriosAdmin/:id/:servicio', //recibe id estandar y id servicio
+    name: 'ListarCriteriosAdmin',
+    component: ListarCriteriosAdmin,
     meta: { hasSidebar: true }
   },
 

@@ -20,15 +20,30 @@
                 <span class="material-icons">document</span>
                 <span class="text">About</span>
             </router-link> -->
-            <router-link class="botton" to="/ListarEntidad">
+
+                <!-- SOLO SUPER ADMINISTRADOR -->
+            <router-link  v-if="user.userType !== 2 && user.userType !== 3 && user.userType !== 1" class="botton" to="/ListarEntidad">
                 <span class="material-icons">apartment</span>
                 <span class="text">Entidad</span>
             </router-link>
 
-            <!-- <router-link class="botton" to="/PruebaUsuario">
+                    <!-- Normal y auditor NO pueden ver, ADMIN SI-->
+            <router-link v-if="user.userType !== 2 && user.userType !== 3"
+                :to="{ name: 'ListarUsuario', params: { id: user.entityID } }" class="botton">
                 <span class="material-icons">person</span>
                 <span class="text">Usuarios</span>
-            </router-link> -->
+            </router-link>
+
+<!-- PUEDEN VER TODOS -->
+            <router-link 
+            :to="{ name: 'ListarServicios', params: { id: user.entityID } }" class="botton">
+                <span class="material-icons">medical_information</span>
+                <span class="text">Servicios</span>
+            </router-link>
+
+            <!-- <router-link :to="{ name: 'ListarServicios', params: { id: entidad.id } }"
+                          class="dropdown-item"> Ver servicios</router-link> -->
+
             <router-link class="botton " @click="logout" to="/login">
                 <span class="material-icons">logout</span>
                 <span class="text">Cerrar sesión</span>
@@ -59,12 +74,14 @@ const logout = () => {
     localStorage.removeItem("user");
     router.push({ name: 'LoginView' });
 };
+
+const user = JSON.parse(localStorage.getItem("user"));
+console.log(user.userType, 'SIDEBAR');
+
 </script>
 
 
 <style lang="scss" scoped>
-
-
 aside {
     display: flex;
     flex-direction: column;
@@ -202,4 +219,5 @@ aside {
         position: fixed;
         z-index: 99;
     }
-}</style>
+}
+</style>

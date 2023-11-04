@@ -1,6 +1,7 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand navbar-light bg-light">
+    <nav class="navbar navbar-expand navbar-light bg-light" v-if="(user.userType !== 2) && (user.userType !== 3)"
+      aria-disabled="">
       <div class="nav navbar-nav">
         <!--  ServiceId: $route.params.id -->
         <!-- <router-link :to="{ name: 'CrearEstandar', params: {ServiceId:$route.params.id } }" style="margin-left: 600px;"><span class="material-icons text-muted"
@@ -24,7 +25,11 @@
               <tr>
                 <th>Nombre</th>
                 <th>Descripción</th>
-                <th>Acciones</th>
+                <!-- ADMIN NO PUEDE VER -->
+                <th v-if="user.userType === 2 || user.userType === 3">Ver Criterios</th>
+
+                <!-- ADMIN  PUEDE VER -->
+                <th v-if="(user.userType !== 2) && (user.userType !== 3)">Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -33,20 +38,16 @@
                   {{ estandar.name }}
                 </td>
                 <td>{{ estandar.description }}</td>
-                <td class="dropdown">
-                  <!-- <router-link :to="{ name: 'EditarEstandar', params: { idEst: estandar.id, idServ:$route.params.id} }"                
-                    class="btn btn-outline-info">Editar</router-link>
-                    <button type="button" v-on:click="borrarEstandar(estandar.id)" class="btn btn-outline-danger"
-                    style="margin-left: 10px;">Borrar</button> -->
+                <!--SOLO VE ADMIN-->
+                <td v-if="(user.userType !== 2) && (user.userType !== 3)" aria-disabled="" class="dropdown">
                   <span class="material-icons" data-bs-toggle="dropdown">
                     expand_more
                   </span>
                   <!-- </button> -->
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-
-                    <!-- ACA VAN A IR LOS CRITERIOS -->
-                    <li><router-link :to="{ name: 'ListarCriterios', params: { id: estandar.id, servicio: $route.params.id } }"
-                          class="dropdown-item">Ver criterios</router-link></li>
+                    <li><router-link
+                        :to="{ name: 'ListarCriteriosAdmin', params: { id: estandar.id, servicio: $route.params.id } }"
+                        class="dropdown-item">Ver criterios</router-link></li>
 
                     <li><router-link
                         :to="{ name: 'EditarEstandar', params: { idEst: estandar.id, idServ: $route.params.id } }"
@@ -57,10 +58,12 @@
                         Borrar
                       </button></li>
                   </ul>
-
-
-
                 </td>
+                <!-- ADMIN NO PUEDE VER -->
+                <td v-if="user.userType === 2 || user.userType === 3" class="dropdown"><router-link 
+                    :to="{ name: 'ListarCriterios', params: { id: estandar.id, servicio: $route.params.id } }"
+                  ><span class="material-icons text-muted">rule</span></router-link></td>
+
               </tr>
             </tbody>
           </table>
@@ -101,6 +104,13 @@ export default {
   },
   created: function () {
     this.consultarEstandar();
+  },
+  computed: {
+    user() {
+      const user = JSON.parse(localStorage.getItem("user"));
+      console.log(typeof (user.userType));
+      return user
+    }
   },
   methods: {
     //http://localhost/api/
