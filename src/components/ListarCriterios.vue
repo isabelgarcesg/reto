@@ -26,7 +26,8 @@
                                 <th>Descripción</th>
                                 <th>Estado</th>
                                 <th>Observación</th>
-                                <th>Acciones</th>
+                                <th>Evidencia</th>
+                                <th>Guardar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -35,18 +36,21 @@
 
                                 <td scope="row">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="description"
-                                            v-model="criterio.description" name="description">
-                                        <label for="floatingInput"></label>
+                                        <textarea type="text" class="form-control border-0 bg-white" id="description"
+                                            v-model="criterio.description" name="description" disabled rows="5"
+                                            style="text-align: justify;">
+                                        <label for="floatingInput"></label></textarea>
                                     </div>
                                 </td>
-                                <td><select class="form-select form-group" aria-label="Default select example" id="answer"
-                                        v-model="criterio.answer" name="answer">
+                                <td><select class="form-select form-group border-0 no-hover"
+                                        aria-label="Default select example" id="answer" v-model="criterio.answer"
+                                        name="answer">
                                         <option selected disabled value=""></option>
                                         <option value="C">C</option>
                                         <option value="NC">NC</option>
                                         <option value="NA">NA</option>
                                     </select></td>
+
                                 <td>
                                     <div class="form-group">
                                         <input type="text" class="form-control" id="observation"
@@ -54,28 +58,72 @@
                                         <label for="floatingInput"></label>
                                     </div>
                                 </td>
-                                <td class="dropdown">
+                                <td class="text-center">
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span
+                                            class="material-icons" style="color:rgb(64, 63, 63)">upload_file</span></button>
+                                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <form v-on:submit.prevent="crearEvidencia(criterio.id)">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="staticBackdropLabel">Subir evidencia
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
 
-                                    <span class="material-icons" data-bs-toggle="dropdown">
-                                        expand_more
-                                    </span>
-                                    <!-- </button> -->
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                        Nombre de la evidencia
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" name="nombreEvidencia"
+                                                                v-model="evidencia.nombreEvidencia" id="nombreEvidencia"
+                                                                required>
+                                                        </div>
+                                                        <div>
+                                                            <br>
+                                                        </div>
+                                                        Enlace
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" name="urlEvidencia"
+                                                                v-model="evidencia.urlEvidencia" id="urlEvidencia" required>
+                                                        </div>
+                                                        <div>
+                                                            <br>
+                                                        </div>
+                                                        Descripción de la evidencia
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control"
+                                                                name="descripcionEvidencia"
+                                                                v-model="evidencia.descripcionEvidencia"
+                                                                id="descripcionEvidencia" required>
+                                                        </div>
 
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Cargar</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
 
-                                        <li><button type="submit" class="dropdown-item"
-                                                @click="editarCriterio(criterio.id)">Editar</button></li>
+                                <!-- </button> -->
 
+                                <td class="text-center">
+                                    <button type="submit" @click="editarCriterio(criterio.id)"><span class="material-icons">
+                                            done
+                                        </span></button>
 
-                                        <li><button type="button" class="dropdown-item" data-bs-toggle="modal"
+                                </td>
+                                <!-- <li><button type="button" class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#staticBackdrop"
                                                 v-on:click="criterioSeleccionado = criterio">
                                                 Borrar
-                                            </button></li>
-                                    </ul>
-
-
-                                </td>
+                                            </button></li> -->
 
                             </tr>
 
@@ -90,7 +138,7 @@
         </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -108,7 +156,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </template>
  
 <script>
@@ -116,6 +164,7 @@ export default {
     data() {
         return {
             Criterios: [], //Crea un arreglo servicios que se va a ir llenando con lo que se retornó de la consulta del link en DatosRespuesta
+            evidencia:{},
         };
     },
     created: function () {
@@ -184,18 +233,44 @@ export default {
                     });
             }
         },
-        borrarCriterio(id) {
-            console.log(id)
-            fetch("https://redb.qsystems.co/QS3100/QServlet?operation=DeleteCriteria&tna=6&idCriteria=" + id + "&key=11e2e476-717b-4898-ac02-693abdecdc9b")
+        crearEvidencia(id) {
+            // CON ESTE LINK PUEDEN VER TODOS Las evidencias en el PRIMER criterio
+            //https://redb.qsystems.co/QS3100/QServlet?operation=queryFileByCriteria&tna=6&fieldCriteria=95&key=11e2e476-717b-4898-ac02-693abdecdc9b
+            let operation = "SaveFile"
+            let tna = 6
+            let key = "11e2e476-717b-4898-ac02-693abdecdc9b"
+            let nombreEvidencia = this.evidencia.nombreEvidencia
+            let urlEvidencia = this.evidencia.urlEvidencia
+            let descripcionEvidencia = this.evidencia.descripcionEvidencia
+            let idCriterio = id
+            fetch('https://redb.qsystems.co/QS3100/QServlet?operation=' + operation +
+                '&tna=' + tna +
+                '&nameFile=' + nombreEvidencia +
+                '&urlFile=' + urlEvidencia +
+                '&descriptionFile=' + descripcionEvidencia +
+                '&fieldCriteria=' + idCriterio +
+                '&fieldStandard=' + '' +
+                '&key=' + key
+            )
                 .then(respuesta => respuesta.json())
-                .then((datosRespuesta) => {
-                    console.log(datosRespuesta)
-                    window.location.href = "../ListarCriterios/" + this.$route.params.id
+                .then((datosRespuesta => {
+                    console.log(datosRespuesta);
+                    window.location.href = "/ListarCriterios/" + this.$route.params.id + '/' + this.$route.params.servicio;
 
-
-                })
-                .catch(console.log)
+                }))
         },
+        // borrarCriterio(id) {
+        //     console.log(id)
+        //     fetch("https://redb.qsystems.co/QS3100/QServlet?operation=DeleteCriteria&tna=6&idCriteria=" + id + "&key=11e2e476-717b-4898-ac02-693abdecdc9b")
+        //         .then(respuesta => respuesta.json())
+        //         .then((datosRespuesta) => {
+        //             console.log(datosRespuesta)
+        //             window.location.href = "../ListarCriterios/" + this.$route.params.id + '/' + this.$route.params.servicio;
+
+
+        //         })
+        //         .catch(console.log)
+        // },
 
 
 
