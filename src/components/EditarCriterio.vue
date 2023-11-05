@@ -78,7 +78,31 @@ export default {
       criterio: {}
     }
   },
+  created: function (){
+        this.leerCriterio();
+    },
   methods: {
+    leerCriterio(){
+      let operation = "queryCriteriadById"
+      let tna = 6
+      let idCriteria = this.$route.params.idCrit
+      let key = "11e2e476-717b-4898-ac02-693abdecdc9b"
+      fetch('https://redb.qsystems.co/QS3100/QServlet?operation=' +
+          operation +
+          '&tna=' +
+          tna +
+          '&idCriteria=' +
+          idCriteria +
+          '&key='
+          + key) 
+          .then(respuesta => respuesta.json())
+          .then((datosRespuesta) => {
+              console.log(datosRespuesta) 
+              this.criterio = datosRespuesta;
+          })
+          .catch(console.log)      
+    },
+    
     editarCriterio() {
       // CON ESTE LINK PUEDEN VER TODOS LOS criterios POR TENANCY
       //https://redb.qsystems.co/QS3100/QServlet?operation=queryCriteriadByTenancy&tna=6&key=11e2e476-717b-4898-ac02-693abdecdc9b
