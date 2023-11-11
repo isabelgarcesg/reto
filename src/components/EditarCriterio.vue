@@ -83,7 +83,7 @@ export default {
     },
   methods: {
     leerCriterio(){
-      let operation = "queryCriteriadById"
+      let operation = "queryCriteriaById"
       let tna = 6
       let idCriteria = this.$route.params.idCrit
       let key = "11e2e476-717b-4898-ac02-693abdecdc9b"
