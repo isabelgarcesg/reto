@@ -41,6 +41,10 @@
                                             v-model="criterio.description" name="description" disabled rows="5"
                                             style="text-align: justify;">
                                         <label for="floatingInput"></label></textarea>
+                                        <textarea type="text" class="form-control border-0 bg-white" id="description"
+                                            v-model="criterio.description" name="description" disabled rows="5"
+                                            style="text-align: justify;">
+                                        <label for="floatingInput"></label></textarea>
                                     </div>
                                 </td>
                                 <!-- AUDITOR NO PUEDE EDITAR -->
@@ -135,6 +139,8 @@
 
                                 </td>
                                 <!-- <li><button type="button" class="dropdown-item" data-bs-toggle="modal"
+                                </td>
+                                <!-- <li><button type="button" class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#staticBackdrop"
                                                 v-on:click="criterioSeleccionado = criterio">
                                                 Borrar
@@ -160,6 +166,7 @@
     </div>
     <!-- Modal -->
     <!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -178,8 +185,9 @@
             </div>
         </div>
     </div> -->
+    </div> -->
 </template>
- 
+
 <script>
 export default {
     data() {
@@ -266,6 +274,25 @@ export default {
                     });
             }
         },
+        crearEvidencia(id) {
+            // CON ESTE LINK PUEDEN VER TODOS Las evidencias en el PRIMER criterio
+            //https://redb.qsystems.co/QS3100/QServlet?operation=queryFileByCriteria&tna=6&fieldCriteria=95&key=11e2e476-717b-4898-ac02-693abdecdc9b
+            let operation = "SaveFile"
+            let tna = 6
+            let key = "11e2e476-717b-4898-ac02-693abdecdc9b"
+            let nombreEvidencia = this.evidencia.nombreEvidencia
+            let urlEvidencia = this.evidencia.urlEvidencia
+            let descripcionEvidencia = this.evidencia.descripcionEvidencia
+            let idCriterio = id
+            fetch('https://redb.qsystems.co/QS3100/QServlet?operation=' + operation +
+                '&tna=' + tna +
+                '&nameFile=' + nombreEvidencia +
+                '&urlFile=' + urlEvidencia +
+                '&descriptionFile=' + descripcionEvidencia +
+                '&fieldCriteria=' + idCriterio +
+                '&fieldStandard=' + '' +
+                '&key=' + key
+            )
         crearEvidencia(id) {
             // CON ESTE LINK PUEDEN VER TODOS Las evidencias en el PRIMER criterio
             //https://redb.qsystems.co/QS3100/QServlet?operation=queryFileByCriteria&tna=6&fieldCriteria=95&key=11e2e476-717b-4898-ac02-693abdecdc9b
