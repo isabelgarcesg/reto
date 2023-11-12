@@ -57,7 +57,7 @@
           <div>
             <button type="submit" class="btn btn-primary">Enviar</button>
             <!-- CAMBIAR CUANDO ESTE DENTRO DE DESPLEGABLEEE -->
-            <router-link :to="{ name: 'ListarCriterios', params: { id: $route.params.StandardId, servicio: $route.params.servicio}}" class="btn btn-danger" style="margin-left: 30px;">Cancelar</router-link>
+            <router-link :to="{ name: 'ListarCriteriosAdmin', params: { id: $route.params.StandardId, servicio: $route.params.servicio}}" class="btn btn-danger" style="margin-left: 30px;">Cancelar</router-link>
           </div>
         </form>
       </div>
@@ -78,7 +78,31 @@ export default {
       criterio: {}
     }
   },
+  created: function (){
+        this.leerCriterio();
+    },
   methods: {
+    leerCriterio(){
+      let operation = "queryCriteriaById"
+      let tna = 6
+      let idCriteria = this.$route.params.idCrit
+      let key = "11e2e476-717b-4898-ac02-693abdecdc9b"
+      fetch('https://redb.qsystems.co/QS3100/QServlet?operation=' +
+          operation +
+          '&tna=' +
+          tna +
+          '&idCriteria=' +
+          idCriteria +
+          '&key='
+          + key) 
+          .then(respuesta => respuesta.json())
+          .then((datosRespuesta) => {
+              console.log(datosRespuesta) 
+              this.criterio = datosRespuesta;
+          })
+          .catch(console.log)      
+    },
+    
     editarCriterio() {
       // CON ESTE LINK PUEDEN VER TODOS LOS criterios POR TENANCY
       //https://redb.qsystems.co/QS3100/QServlet?operation=queryCriteriadByTenancy&tna=6&key=11e2e476-717b-4898-ac02-693abdecdc9b
@@ -105,7 +129,7 @@ export default {
         .then(respuesta => respuesta.json())
         .then((datosRespuesta => {
           console.log(datosRespuesta);
-          window.location.href = "/ListarCriterios/" + this.$route.params.StandardId  +'/' +this.$route.params.servicio
+          window.location.href = "/ListarCriteriosAdmin/" + this.$route.params.StandardId  +'/' +this.$route.params.servicio
 
         }))
     }

@@ -64,7 +64,7 @@ export default {
     }
   },
   created: function () {
-    //this.edicionEntidades();
+  
     this.leerEntidades();
   },
 

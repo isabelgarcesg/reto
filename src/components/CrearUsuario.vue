@@ -43,6 +43,7 @@
                   <option value="Administrador">Administrador</option>
                   <option value="Auditor">Auditor</option>
                   <option value="Normal">Normal</option>
+                  <option value="Superadmin">Superadmin</option>
                 </select>
                 <div class="invalid-feedback">
                   Please select a valid state.
@@ -125,6 +126,9 @@ export default {
         UserType = 1;
       } else if (this.usuario.userType === "Auditor") {
         UserType = 2;
+      }
+      else if (this.usuario.userType === "Superadmin") {
+        UserType = 4;
       }
       // let userEntityId = this.usuario.entityID;
       let key = "11e2e476-717b-4898-ac02-693abdecdc9b";

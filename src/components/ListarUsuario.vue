@@ -7,7 +7,12 @@
         <!-- <router-link :to="{ name: 'ListarUsTenan' }" class="btn btn-info" style="margin-left: 30px;">Tenancy</router-link> -->
       </div>
     </nav>
-
+    <!-- <div v-if="user">
+            <h2>Perfil de Usuario</h2>
+            <p>{{ user.entityID }}</p>
+            <p>{{ user.nickname }}</p>
+           
+        </div> -->
     <div class="container">
       <div class="card">
         <h4 class="card-title mb-4 text-center"><strong>Lista de usuarios</strong></h4>
@@ -43,7 +48,7 @@
                   <!-- Button trigger modal BOTON BORRAR CON CONFIRMACIÓN -->
                 <!-- BOTON PARA BORRAR -->
                   <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                    style="margin-left: 10px; border: none; background: none;">
+                    style="margin-left: 10px; border: none; background: none;"  v-on:click="UsuarioSeleccionado = usuario">
                     <span class="material-icons text-muted" style="font-size: 24px;">delete</span>
                   </button>
 
@@ -62,7 +67,7 @@
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                           <button type="button" class="btn btn-primary"
-                            v-on:click="borrarusuario(usuario.id)">Entendido</button>
+                            v-on:click="borrarusuario(UsuarioSeleccionado.id)">Entendido</button>
                         </div>
                       </div>
                     </div>
@@ -91,6 +96,13 @@ export default {
   created: function () {
     this.consultarusuario();
   },
+  computed: {
+        user() {
+            const user = JSON.parse(localStorage.getItem("user"));
+            console.log(user.entityID, 'ENTIDAD USUARIO')
+            return user;
+        }
+    },
   methods: {
     consultarusuario() {
       let userEntityId = this.$route.params.id

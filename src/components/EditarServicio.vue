@@ -14,9 +14,9 @@
                   <input
                     type="text"
                     class="form-control radio"
-                    name="nameService"
-                    v-model="servicio.nameService"
-                    id="nameService"
+                    name="name"
+                    v-model="servicio.name"
+                    id="name"
                     aria-describedby="helpId"
                     placeholder="Servicio"
                     required
@@ -29,13 +29,13 @@
               </div>
               <div class="col-md-12">
                 <div class="form-group">
-                  <label for="descriptionService">Descripción del servicio</label>
+                  <label for="description">Descripción del servicio</label>
                   <textarea
                     type="text"
                     class="form-control radio"
-                    name="descriptionService"
-                    v-model="servicio.descriptionService"
-                    id="descriptionService"
+                    name="description"
+                    v-model="servicio.description"
+                    id="description"
                     aria-describedby="helpId"
                     placeholder="Descripción"
                     required
@@ -67,13 +67,36 @@ export default {
             servicio:{}
         }
     },
+    created: function (){
+        this.leerServicio();
+    },
     methods:{
+        leerServicio() {
+          let operation = "queryServiceById"
+          let tna = 6
+          let idService = this.$route.params.idServ
+          let key = "11e2e476-717b-4898-ac02-693abdecdc9b"
+          fetch('https://redb.qsystems.co/QS3100/QServlet?operation=' +
+              operation +
+              '&tna=' +
+              tna +
+              '&idService=' +
+              idService +
+              '&key='
+              + key) 
+              .then(respuesta => respuesta.json())
+              .then((datosRespuesta) => {
+                  console.log(datosRespuesta['arrayService'][0])
+                  this.servicio = datosRespuesta['arrayService'][0];
+              })
+              .catch(console.log)
+        },
         editarServicio(){
             let operation="UpdateService"
             let tna=6
             let key="11e2e476-717b-4898-ac02-693abdecdc9b"
-            let nameService=this.servicio.nameService
-            let descriptionService=this.servicio.descriptionService
+            let nameService=this.servicio.name
+            let descriptionService=this.servicio.description
             let entityIdService=this.$route.params.entity  
             let idService = this.$route.params.idServ
             fetch('https://redb.qsystems.co/QS3100/QServlet?operation='+operation+
