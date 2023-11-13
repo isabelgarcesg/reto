@@ -162,7 +162,6 @@ export default {
         userId: this.$route.params.id,
         nameUser: this.usuario.name,
         phoneUser: this.usuario.phone,
-        passwordUser: this.usuario.password,
         documentUser: this.usuario.document,
         positionUser: this.usuario.position,
         userEntityId: this.$route.params.entity,
@@ -180,7 +179,6 @@ export default {
         '&nameUser=' + datosEnviar.nameUser +
         '&nickname=' + datosEnviar.nickname +
         '&phoneUser=' + datosEnviar.phoneUser +
-        '&passwordUser=' + datosEnviar.passwordUser +
         '&documentUser=' + datosEnviar.documentUser +
         '&positionUser=' + datosEnviar.positionUser +
         '&userType=' + UserType +//datosEnviar.UserType+
