@@ -80,10 +80,8 @@
 
               <div class="col-md-6 ">
                 <div class="form-group">
-                  <label for="password">Contraseña</label>
-                  <input type="password" class="form-control" name="password" v-model="usuario.password" id="password"
-                    aria-describedby="helpId" placeholder="********" required />
-                  <small id="helpId" class="form-text text-muted"></small>
+                  <router-link :to="{ name: 'EditarContraseña', params: {id:$route.params.id} }" class="btn btn-danger"
+                  style="margin-left: 30px;">Cambiar Contraseña</router-link>                
                 </div>
               </div>
 

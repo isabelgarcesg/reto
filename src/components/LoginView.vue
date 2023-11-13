@@ -36,7 +36,7 @@
                                 <button class="btn boton btn-lg btn-block" type="submit">Iniciar sesión</button>
                             </div>
 
-                            <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#!">¿Olvidó su contraseña?</a></p>
+                            <!-- <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#!">¿Olvidó su contraseña?</a></p> -->
                             <!-- <p>Don't have an account? <a href="#!" class="link-info">Register here</a></p> -->
 
                         </form>
