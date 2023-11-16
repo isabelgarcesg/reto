@@ -76,15 +76,6 @@
                 </div>
               </div>
 
-
-
-              <div class="col-md-6 ">
-                <div class="form-group">
-                  <router-link :to="{ name: 'EditarContraseña', params: {id:$route.params.id} }" class="btn btn-danger"
-                  style="margin-left: 30px;">Cambiar Contraseña</router-link>                
-                </div>
-              </div>
-
             </div>
 
             <div><br /></div>
@@ -96,6 +87,8 @@
             <button type="submit" class="btn btn-primary">Enviar</button>
             <router-link :to="{ name: 'ListarUsuario', params: {id:$route.params.entity} }" class="btn btn-danger"
             style="margin-left: 30px;">Cancelar</router-link>
+            <router-link :to="{ name: 'EditarContraseña', params: {id:$route.params.id} }" class="btn btn-link"
+            style="margin-left: 30px;">Cambiar Contraseña</router-link>
           </form>
         </div>
       </div>
