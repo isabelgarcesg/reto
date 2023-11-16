@@ -126,7 +126,8 @@
                                     
                                     <!-- <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span
                                             class="material-icons" style="color:rgb(64, 63, 63)">visibility</span></button> -->
-                                    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><span
+                                        
+                                    <button type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="consultarEvidencia(criterio.id)"><span
                                             class="material-icons" style="color:rgb(64, 63, 63)">visibility</span>
                                     </button>
 
@@ -135,7 +136,7 @@
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
-                                                <form v-on:submit.prevent="consultarEvidencia(criterio.id)">
+                                                <form>
                                                     <div class="modal-header">
                                                         <h1 class="modal-title fs-5" id="exampleModalLabel">Ver evidencias
                                                         </h1>
@@ -153,10 +154,10 @@
 
                                                             </thead>
                                                             <tbody>
-                                                                <tr v-for="evidenciaItem in evidencia" :key="evidenciaItem.id">
-                                                                    <td>{{ evidenciaItem.name }}</td>
-                                                                    <td>{{ evidenciaItem.link }}</td>
-                                                                    <td>{{ evidenciaItem.description }}</td>
+                                                                <tr v-for="evidencia in evidencia" :key="evidencia.id">
+                                                                    <td>{{ evidencia.name }}</td>
+                                                                    <td>{{ evidencia.link }}</td>
+                                                                    <td>{{ evidencia.description }}</td>
                                                                 </tr>
 
                                                             </tbody>
@@ -397,26 +398,24 @@ export default {
                 )
                     .then((respuesta) => respuesta.json())
                     // .then((datosRespuesta)=>{
-                    //     console.log(datosRespuesta)
+                    //     console.log(datosRespuesta["arrayFiles"][0])
                     // })
                     .then((datosRespuesta) => {
-                        // console.log(datosRespuesta);
+                        console.log(datosRespuesta);
                         // console.log(datosRespuesta["arrayStandard"],'Hola')})
                         this.evidencia = []; //Inicializa el arreglo para entidades
                         if (
-                            datosRespuesta.arrayCriteria &&
-                            datosRespuesta.arrayCriteria.length === 0
+                            datosRespuesta.arrayFiles &&
+                            datosRespuesta.arrayFiles.length === 0
                         ) {
                             // El array "arrayStandard" está vacío
                             console.log("El array arrayFile está vacío.");
                         } else {
-                            this.evidencia = datosRespuesta["arrayFile"]
-
-
-
-
+                            console.log(datosRespuesta["arrayFiles"])
+                            this.evidencia = datosRespuesta["arrayFiles"]
+                            
                             // El array "arrayStandard" no está vacío o no existe
-                            console.log(this.evidencia, "El array arrayFile no está vacío o no existe.");
+                            console.log(this.evidencia, "El array arrayFiles no está vacío o no existe.");
                         }
                     })
                     .catch(console.log);
