@@ -7,8 +7,8 @@
     </nav>
 
     <!-- Agregar margen superior al card para separarlo de la barra de navegación -->
-    <div class="container mt-3">
-      <div class="d-flex justify-content-center">
+    <div class="container">
+
         <div class="card">
           <div class="card-header">
             Entidades existentes
@@ -64,7 +64,7 @@
           </div>
 
         </div>
-      </div>
+
     </div>
   </div>
   <!-- Modal -->
@@ -166,5 +166,17 @@ export default {
 
   color: var(--primary); //Al pasar por encima se ve azul
 
+}
+
+div {
+
+.card {
+    background-color: #fdfdfd;
+    display: flex;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
 }
 </style>

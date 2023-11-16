@@ -1,5 +1,5 @@
 <template>
-  <div>
+    <div>
     <nav class="navbar navbar-expand navbar-light bg-light">
       <div class="nav navbar-nav">
         <router-link :to="{ name: 'crear', params: { id: $route.params.id } }" 
@@ -7,12 +7,7 @@
         <!-- <router-link :to="{ name: 'ListarUsTenan' }" class="btn btn-info" style="margin-left: 30px;">Tenancy</router-link> -->
       </div>
     </nav>
-    <!-- <div v-if="user">
-            <h2>Perfil de Usuario</h2>
-            <p>{{ user.entityID }}</p>
-            <p>{{ user.nickname }}</p>
-           
-        </div> -->
+
     <div class="container">
       <div class="card">
         <h4 class="card-title mb-4 text-center"><strong>Lista de usuarios</strong></h4>
@@ -84,6 +79,7 @@
       </div>
     </div>
   </div>
+
 </template>
   
 <script>
@@ -156,3 +152,18 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+
+div {
+
+.card {
+  background-color: #fdfdfd;
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top:auto;
+  margin-bottom:auto;
+}
+}
+</style>

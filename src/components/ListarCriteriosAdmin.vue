@@ -4,8 +4,9 @@
             <div class="nav navbar-nav">
 
 
-                <router-link :to="{ name: 'CrearCriterio', params: { StandardId: $route.params.id, servicio: $route.params.servicio } }"
-                style="margin-left: 1000px;"><span class="material-icons text-muted"
+                <router-link
+                    :to="{ name: 'CrearCriterio', params: { StandardId: $route.params.id, servicio: $route.params.servicio } }"
+                    style="margin-left: 1000px;"><span class="material-icons text-muted"
                         style="font-size: 24px;">add_box</span></router-link>
             </div>
         </nav>
@@ -20,7 +21,7 @@
 
 
             <div class="card">
-                <div class="card-body">
+                <div class="card-body" style="width: 40rem;">
                     <h4 class="card-title mb-4 text-center"><strong>Lista de criterios</strong></h4>
 
 
@@ -40,10 +41,9 @@
                                 <td scope="row">
                                     {{ criterio.description }}
                                 </td>
-                                <td>{{ criterio.answer }}</td>
-                                <td>{{ criterio.observation }}</td>
-                                <td class="dropdown">
-
+                                <td style="vertical-align: middle; text-align: center;">{{ criterio.answer }}</td>
+                                <td style="vertical-align: middle; text-align: center;" >{{ criterio.observation }}</td>
+                                <td style="vertical-align: middle; text-align: center;">
 
                                     <span class="material-icons" data-bs-toggle="dropdown">
                                         expand_more
@@ -51,15 +51,9 @@
                                     <!-- </button> -->
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
-
-
-
                                         <li><router-link
                                                 :to="{ name: 'EditarCriterio', params: { idCrit: criterio.id, servicio: $route.params.servicio, StandardId: $route.params.id } }"
                                                 class="dropdown-item">Editar</router-link></li>
-
-
-
 
                                         <li><button type="button" class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#staticBackdrop"
@@ -125,7 +119,7 @@ export default {
         consultarCriterio() {
             let userStandardId = this.$route.params.id
             fetch(
-                "https://redb.qsystems.co/QS3100/QServlet?operation=queryCriteriaByStandard&tna=6&standardIdCriteria="+ userStandardId + "&key=11e2e476-717b-4898-ac02-693abdecdc9b"
+                "https://redb.qsystems.co/QS3100/QServlet?operation=queryCriteriaByStandard&tna=6&standardIdCriteria=" + userStandardId + "&key=11e2e476-717b-4898-ac02-693abdecdc9b"
             )
                 .then((respuesta) => respuesta.json())
                 // .then((datosRespuesta)=>{
@@ -159,7 +153,7 @@ export default {
                 .then(respuesta => respuesta.json())
                 .then((datosRespuesta) => {
                     console.log(datosRespuesta)
-                    window.location.href = "/ListarCriteriosAdmin/" + this.$route.params.id + '/'+ this.$route.params.servicio
+                    window.location.href = "/ListarCriteriosAdmin/" + this.$route.params.id + '/' + this.$route.params.servicio
 
 
 
@@ -180,10 +174,6 @@ export default {
 </script>
  
 <style lang="scss" scoped>
-
-
-
-
 .custom-link {
     text-decoration: underline;
     /* Añade un subrayado */
@@ -209,17 +199,28 @@ export default {
 
 
 
-.dropdown {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
+// .dropdown {
+//     display: flex;
+//     justify-content: center;
+//     align-items: normal;
+// }
 
 
 
 .dropdown:hover .material-icons {
     /* Cambia el color de fondo en hover */
     cursor: pointer;
+}
+
+div {
+
+    .card {
+        background-color: #fdfdfd;
+        display: flex;
+        margin-right: 10rem;
+        margin-left: 15rem;
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+    }
 }
 </style>

@@ -1,275 +1,258 @@
 <template>
-    <div>
-        <nav class="navbar navbar-expand navbar-light bg-light" v-if="(user.userType !== 2) && (user.userType !== 3)"
-            aria-disabled="">
-            <div class="nav navbar-nav">
+    <nav class="navbar navbar-expand navbar-light bg-light" v-if="(user.userType !== 2) && (user.userType !== 3)"
+        aria-disabled="">
+        <div class="nav navbar-nav">
 
 
-                <router-link
-                    :to="{ name: 'CrearCriterio', params: { StandardId: $route.params.id, servicio: $route.params.servicio } }"
-                    style="margin-left: 1000px;"><span class="material-icons text-muted"
-                        style="font-size: 24px;">add_box</span></router-link>
-            </div>
-        </nav>
+            <router-link
+                :to="{ name: 'CrearCriterio', params: { StandardId: $route.params.id, servicio: $route.params.servicio } }"
+                style="margin-left: 1000px;"><span class="material-icons text-muted"
+                    style="font-size: 24px;">add_box</span></router-link>
+        </div>
+    </nav>
 
-        <!-- Agregar margen superior al card para separarlo de la barra de navegación -->
-        <div class="container">
+    <!-- Agregar margen superior al card para separarlo de la barra de navegación -->
+    <div class="container">
 
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title mb-4 text-center"><strong>Lista de criterios</strong></h4>
+        <div class="card" >
+            <div class="card-body">
+                <h4 class="card-title mb-4 text-center"><strong>Lista de criterios</strong></h4>
 
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Descripción</th>
-                                <th>Estado</th>
-                                <th>Observación</th>
-                                <!-- AUDITOR NI EDITA NI SUBE EVIDENCIA -->
-                                <th v-if="(user.userType !== 2)" aria-disabled="">Evidencia</th>
-                                <th v-if="(user.userType !== 2)" aria-disabled="">Guardar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Descripción</th>
+                            <th>Estado</th>
+                            <th>Observación</th>
+                            <!-- AUDITOR NI EDITA NI SUBE EVIDENCIA -->
+                            <th v-if="(user.userType !== 2)" aria-disabled="">Evidencia</th>
+                            <th v-if="(user.userType !== 2)" aria-disabled="">Guardar</th>
+                            <!-- AUDITOR VE EVIDENCIA -->
+                            <th v-if="(user.userType !== 1) && (user.userType !== 3)" aria-disabled="">Evidencia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
 
-                            <tr v-for="criterio in Criterios" :key="criterio.id">
+                        <tr v-for="criterio in Criterios" :key="criterio.id">
 
 
-                                <td scope="row">
-                                    <div class="form-group">
-                                        <textarea type="text" class="form-control border-0 bg-white" id="description"
-                                            v-model="criterio.description" name="description" disabled rows="5"
-                                            style="text-align: justify;">
+                            <td scope="row">
+                                <div class="form-group">
+                                    <textarea type="text" class="form-control border-0 bg-white" id="description"
+                                        v-model="criterio.description" name="description" disabled rows="5"
+                                        style="text-align: justify;">
                                         <label for="floatingInput"></label></textarea>
-                                    </div>
-                                </td>
-                                <!-- AUDITOR NO PUEDE EDITAR -->
-                                <td v-if="(user.userType !== 2)" aria-disabled=""><select
-                                        class="form-select form-group border-0 no-hover" aria-label="Default select example"
-                                        id="answer" v-model="criterio.answer" name="answer">
-                                        <option selected disabled value=""></option>
-                                        <option value="C">C</option>
-                                        <option value="NC">NC</option>
-                                        <option value="NA">NA</option>
-                                    </select></td>
-                                <!-- SOLO PARA QUE AUDITOR VEA-->
-                                <td v-if="(user.userType !== 1) && (user.userType !== 3)" aria-disabled="">{{
-                                    criterio.answer }}</td>
+                                </div>
+                            </td>
+                            <!-- AUDITOR NO PUEDE EDITAR -->
+                            <td v-if="(user.userType !== 2)" aria-disabled=""><select
+                                    class="form-select form-group border-0 no-hover" aria-label="Default select example"
+                                    id="answer" v-model="criterio.answer" name="answer">
+                                    <option selected disabled value=""></option>
+                                    <option value="C">C</option>
+                                    <option value="NC">NC</option>
+                                    <option value="NA">NA</option>
+                                </select></td>
+                            <!-- SOLO PARA QUE AUDITOR VEA-->
+                            <td v-if="(user.userType !== 1) && (user.userType !== 3)" aria-disabled="">{{
+                                criterio.answer }}</td>
 
-                                <!-- AUDITOR NO PUEDE EDITAR -->
-                                <td v-if="(user.userType !== 2)" aria-disabled="">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="observation"
-                                            v-model="criterio.observation" name="observation">
-                                        <label for="floatingInput"></label>
-                                    </div>
-                                </td>
+                            <!-- AUDITOR NO PUEDE EDITAR -->
+                            <td v-if="(user.userType !== 2)" aria-disabled="">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="observation" v-model="criterio.observation"
+                                        name="observation">
+                                    <label for="floatingInput"></label>
+                                </div>
+                            </td>
 
-                                <!-- SOLO PARA QUE AUDITOR VEA-->
-                                <td v-if="(user.userType !== 1) && (user.userType !== 3)" aria-disabled="">{{
-                                    criterio.observation }}</td>
-                                <!-- AUDITOR NO SUBE EVIDENCIA -->
-                                <td v-if="(user.userType !== 2)" aria-disabled="" class="text-center">
-                                    <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span
-                                            class="material-icons" style="color:rgb(64, 63, 63)">upload_file</span></button>
-                                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
-                                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                        aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <form v-on:submit.prevent="crearEvidencia(criterio.id)">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="staticBackdropLabel">Subir evidencia
-                                                        </h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
+                            <!-- SOLO PARA QUE AUDITOR VEA-->
+                            <td v-if="(user.userType !== 1) && (user.userType !== 3)" aria-disabled="">{{
+                                criterio.observation }}</td>
+                            <!-- AUDITOR NO SUBE EVIDENCIA -->
+                            <td v-if="(user.userType !== 2)" aria-disabled="" class="text-center">
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span
+                                        class="material-icons" style="color:rgb(64, 63, 63)">upload_file</span></button>
+                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <form v-on:submit.prevent="crearEvidencia(criterio.id)">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="staticBackdropLabel">Subir evidencia
+                                                    </h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+
+
+                                                    Nombre de la evidencia
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" name="nombreEvidencia"
+                                                            v-model="evidencia.nombreEvidencia" id="nombreEvidencia"
+                                                            required>
                                                     </div>
-                                                    <div class="modal-body">
-
-
-                                                        Nombre de la evidencia
-                                                        <div class="form-group">
-                                                            <input type="text" class="form-control" name="nombreEvidencia"
-                                                                v-model="evidencia.nombreEvidencia" id="nombreEvidencia"
-                                                                required>
-                                                        </div>
-                                                        <div>
-                                                            <br>
-                                                        </div>
-                                                        Enlace
-                                                        <div class="form-group">
-                                                            <input type="text" class="form-control" name="urlEvidencia"
-                                                                v-model="evidencia.urlEvidencia" id="urlEvidencia" required>
-                                                        </div>
-                                                        <div>
-                                                            <br>
-                                                        </div>
-                                                        Descripción de la evidencia
-                                                        <div class="form-group">
-                                                            <input type="text" class="form-control"
-                                                                name="descripcionEvidencia"
-                                                                v-model="evidencia.descripcionEvidencia"
-                                                                id="descripcionEvidencia" required>
-                                                        </div>
-
-
+                                                    <div>
+                                                        <br>
                                                     </div>
-                                                    <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Cargar</button>
+                                                    Enlace
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" name="urlEvidencia"
+                                                            v-model="evidencia.urlEvidencia" id="urlEvidencia" required>
                                                     </div>
-                                                </form>
-                                            </div>
+                                                    <div>
+                                                        <br>
+                                                    </div>
+                                                    Descripción de la evidencia
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" name="descripcionEvidencia"
+                                                            v-model="evidencia.descripcionEvidencia"
+                                                            id="descripcionEvidencia" required>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Cargar</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
-                                    
-                                    <!-- <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span
+                                </div>
+
+                                <!-- <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span
                                             class="material-icons" style="color:rgb(64, 63, 63)">visibility</span></button> -->
-                                        
-                                    <button type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="consultarEvidencia(criterio.id)"><span
-                                            class="material-icons" style="color:rgb(64, 63, 63)">visibility</span>
-                                    </button>
 
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <form>
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Ver evidencias
-                                                        </h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <table class="table">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Nombre</th>
-                                                                    <th>URL</th>
-                                                                    <th>Descripción</th>
-                                                                </tr>
+                                <button type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    @click="consultarEvidencia(criterio.id)"><span class="material-icons"
+                                        style="color:rgb(64, 63, 63)">visibility</span>
+                                </button>
 
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr v-for="evidencia in evidencia" :key="evidencia.id">
-                                                                    <td>{{ evidencia.name }}</td>
-                                                                    <td>{{ evidencia.link }}</td>
-                                                                    <td>{{ evidencia.description }}</td>
-                                                                </tr>
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <form>
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Ver evidencias
+                                                    </h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Nombre</th>
+                                                                <th>URL</th>
+                                                                <th>Descripción</th>
+                                                            </tr>
 
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Cerrar</button>
-                                                    </div>
-                                                </form>
-                                            </div>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr v-for="evidencia in evidencia" :key="evidencia.id">
+                                                                <td>{{ evidencia.name }}</td>
+                                                                <td>{{ evidencia.link }}</td>
+                                                                <td>{{ evidencia.description }}</td>
+                                                            </tr>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Cerrar</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
-                                    <!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
-                                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                        aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <form v-on:prevent="consultarEvidencia(criterio.id)">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="staticBackdropLabel">Ver evidencias
-                                                        </h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
+                                </div>
 
-                                                        <table class="table">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Nombre</th>
-                                                                    <th>URL</th>
-                                                                    <th>Descripción</th>
-                                                                </tr>
+                            </td>
 
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr v-for="evidencia in evidencia" :key="evidencia.id">
-                                                                    <td scope="row">{{ evidencia.name }}</td>
-                                                                    <td>{{ evidencia.name }}</td>
-                                                                    <td>{{ evidencia.link }}</td>
-                                                                    <td>{{ evidencia.description }}</td>
-                                                                </tr>
 
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Salir</button>
-                                                    </div>
-                                                </form>
-                                            </div>
+                            <!-- </button> -->
+
+                            <!-- AUDITOR NO EDITA -->
+                            <td v-if="(user.userType !== 2)" aria-disabled="" class="text-center">
+                                <button type="submit" @click="editarCriterio(criterio.id)"><span class="material-icons">
+                                        done
+                                    </span></button>
+
+
+                            </td>
+                            <!-- PARA QUE AUDITOR VEA EVIDENCIA -->
+                            <td v-if="(user.userType !== 1) && (user.userType !== 3)" aria-disabled="" >
+                                <button type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    @click="consultarEvidencia(criterio.id)"><span class="material-icons"
+                                        style="color:rgb(64, 63, 63)">visibility</span>
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <form>
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Ver evidencias
+                                                    </h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Nombre</th>
+                                                                <th>URL</th>
+                                                                <th>Descripción</th>
+                                                            </tr>
+
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr v-for="evidencia in evidencia" :key="evidencia.id">
+                                                                <td>{{ evidencia.name }}</td>
+                                                                <td>{{ evidencia.link }}</td>
+                                                                <td>{{ evidencia.description }}</td>
+                                                            </tr>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Cerrar</button>
+                                                </div>
+                                            </form>
                                         </div>
-                                    </div> -->
-                                </td>
-
-
-                                <!-- </button> -->
-
-                                <!-- AUDITOR EDITA -->
-                                <td v-if="(user.userType !== 2)" aria-disabled="" class="text-center">
-                                    <button type="submit" @click="editarCriterio(criterio.id)"><span class="material-icons">
-                                            done
-                                        </span></button>
-
-
-                                </td>
-                                <!-- <li><button type="button" class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#staticBackdrop"
-                                                v-on:click="criterioSeleccionado = criterio">
-                                                Borrar
-                                            </button></li> -->
-
-
-                            </tr>
-
-
-                        </tbody>
-                    </table>
-                </div>
+                                    </div>
+                                </div>
+                            </td>
 
 
 
+                        </tr>
 
+
+                    </tbody>
+                </table>
             </div>
 
 
 
 
         </div>
+
+
+
+
     </div>
-    <!-- Modal -->
-    <!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Borrar Criterio</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Esta acción eliminará el criterio permanentemente
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" v-on:click="borrarCriterio(criterioSeleccionado.id)"
-                        class="btn btn-primary">Borrar</button>
-                </div>
-            </div>
-        </div>
-    </div> -->
 </template>
  
 <script>
@@ -394,7 +377,7 @@ export default {
             console.log('Entré')
             if (criterio) {
                 fetch(
-                    "https://redb.qsystems.co/QS3100/QServlet?operation=queryFileByCriteria&tna=6&fileIdCriteria="+id+"&key=11e2e476-717b-4898-ac02-693abdecdc9b"
+                    "https://redb.qsystems.co/QS3100/QServlet?operation=queryFileByCriteria&tna=6&fileIdCriteria=" + id + "&key=11e2e476-717b-4898-ac02-693abdecdc9b"
                 )
                     .then((respuesta) => respuesta.json())
                     // .then((datosRespuesta)=>{
@@ -413,7 +396,7 @@ export default {
                         } else {
                             console.log(datosRespuesta["arrayFiles"])
                             this.evidencia = datosRespuesta["arrayFiles"]
-                            
+
                             // El array "arrayStandard" no está vacío o no existe
                             console.log(this.evidencia, "El array arrayFiles no está vacío o no existe.");
                         }
@@ -421,27 +404,6 @@ export default {
                     .catch(console.log);
             }
         },
-        // borrarCriterio(id) {
-        //     console.log(id)
-        //     fetch("https://redb.qsystems.co/QS3100/QServlet?operation=DeleteCriteria&tna=6&idCriteria=" + id + "&key=11e2e476-717b-4898-ac02-693abdecdc9b")
-        //         .then(respuesta => respuesta.json())
-        //         .then((datosRespuesta) => {
-        //             console.log(datosRespuesta)
-        //             window.location.href = "../ListarCriterios/" + this.$route.params.id + '/' + this.$route.params.servicio;
-
-
-
-
-        //         })
-        //         .catch(console.log)
-        // },
-
-
-
-
-
-
-
 
     },
 };
@@ -473,18 +435,33 @@ export default {
 
 
 
-.dropdown {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+// .dropdown {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
 
 
-
+td {
+            vertical-align: middle;
+            text-align: center;
+        }
 
 .dropdown:hover .material-icons {
     /* Cambia el color de fondo en hover */
     cursor: pointer;
+}
+
+div {
+
+    .card {
+        background-color: #fdfdfd;
+        display: flex;
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
 }
 </style>
 
