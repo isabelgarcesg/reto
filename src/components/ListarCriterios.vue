@@ -1,6 +1,7 @@
 <template>
     <div>
-        <nav class="navbar navbar-expand navbar-light bg-light"  v-if="(user.userType !== 2) && (user.userType !== 3)" aria-disabled="">
+        <nav class="navbar navbar-expand navbar-light bg-light" v-if="(user.userType !== 2) && (user.userType !== 3)"
+            aria-disabled="">
             <div class="nav navbar-nav">
 
 
@@ -64,10 +65,11 @@
                                         <label for="floatingInput"></label>
                                     </div>
                                 </td>
-                               
+
                                 <!-- SOLO PARA QUE AUDITOR VEA-->
-                                <td v-if="(user.userType !== 1) && (user.userType !== 3)" aria-disabled="">{{ criterio.observation }}</td>
-<!-- AUDITOR NO SUBE EVIDENCIA -->
+                                <td v-if="(user.userType !== 1) && (user.userType !== 3)" aria-disabled="">{{
+                                    criterio.observation }}</td>
+                                <!-- AUDITOR NO SUBE EVIDENCIA -->
                                 <td v-if="(user.userType !== 2)" aria-disabled="" class="text-center">
                                     <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span
                                             class="material-icons" style="color:rgb(64, 63, 63)">upload_file</span></button>
@@ -126,7 +128,7 @@
 
                                 <!-- </button> -->
 
-<!-- AUDITOR EDITA -->
+                                <!-- AUDITOR EDITA -->
                                 <td v-if="(user.userType !== 2)" aria-disabled="" class="text-center">
                                     <button type="submit" @click="editarCriterio(criterio.id)"><span class="material-icons">
                                             done
@@ -268,30 +270,33 @@ export default {
         },
         crearEvidencia(id) {
             // CON ESTE LINK PUEDEN VER TODOS Las evidencias en el PRIMER criterio
-            //https://redb.qsystems.co/QS3100/QServlet?operation=queryFileByCriteria&tna=6&fieldCriteria=95&key=11e2e476-717b-4898-ac02-693abdecdc9b
-            let operation = "SaveFile"
-            let tna = 6
-            let key = "11e2e476-717b-4898-ac02-693abdecdc9b"
-            let nombreEvidencia = this.evidencia.nombreEvidencia
-            let urlEvidencia = this.evidencia.urlEvidencia
-            let descripcionEvidencia = this.evidencia.descripcionEvidencia
-            let idCriterio = id
-            fetch('https://redb.qsystems.co/QS3100/QServlet?operation=' + operation +
-                '&tna=' + tna +
-                '&nameFile=' + nombreEvidencia +
-                '&urlFile=' + urlEvidencia +
-                '&descriptionFile=' + descripcionEvidencia +
-                '&fieldCriteria=' + idCriterio +
-                '&fieldStandard=' + '' +
-                '&key=' + key
-            )
-                .then(respuesta => respuesta.json())
-                .then((datosRespuesta => {
-                    console.log(datosRespuesta);
-                    window.location.href = "/ListarCriterios/" + this.$route.params.id + '/' + this.$route.params.servicio;
+            //https://redb.qsystems.co/QS3100/QServlet?operation=queryFileByCriteria&tna=6&fileIdCriteria=95&key=11e2e476-717b-4898-ac02-693abdecdc9b
+            const criterio = this.Criterios.find((c) => c.id === id);
+            if (criterio) {
+                let operation = "SaveFile"
+                let tna = 6
+                let key = "11e2e476-717b-4898-ac02-693abdecdc9b"
+                let nombreEvidencia = this.evidencia.nombreEvidencia
+                let urlEvidencia = this.evidencia.urlEvidencia
+                let descripcionEvidencia = this.evidencia.descripcionEvidencia
+                let idCriterio = id
+                fetch('https://redb.qsystems.co/QS3100/QServlet?operation=' + operation +
+                    '&tna=' + tna +
+                    '&nameFile=' + nombreEvidencia +
+                    '&urlFile=' + urlEvidencia +
+                    '&descriptionFile=' + descripcionEvidencia +
+                    '&fileIdCriteria=' + idCriterio +
+                    '&fileIdStandard=' + '' +
+                    '&key=' + key
+                )
+                    .then(respuesta => respuesta.json())
+                    .then((datosRespuesta => {
+                        console.log(datosRespuesta);
+                        window.location.href = "/ListarCriterios/" + this.$route.params.id + '/' + this.$route.params.servicio;
 
 
-                }))
+                    }))
+            }
         },
         // borrarCriterio(id) {
         //     console.log(id)
@@ -359,3 +364,4 @@ export default {
     cursor: pointer;
 }
 </style>
+

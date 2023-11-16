@@ -3,6 +3,7 @@
         <nav class="navbar navbar-expand navbar-light bg-light">
             <div class="nav navbar-nav">
 
+
                 <router-link :to="{ name: 'CrearCriterio', params: { StandardId: $route.params.id, servicio: $route.params.servicio } }"
                 style="margin-left: 1000px;"><span class="material-icons text-muted"
                         style="font-size: 24px;">add_box</span></router-link>
@@ -10,13 +11,19 @@
         </nav>
 
 
+
+
         <!-- Agregar margen superior al card para separarlo de la barra de navegación -->
         <div class="container">
+
+
 
 
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title mb-4 text-center"><strong>Lista de criterios</strong></h4>
+
+
 
 
                     <table class="table">
@@ -37,6 +44,7 @@
                                 <td>{{ criterio.observation }}</td>
                                 <td class="dropdown">
 
+
                                     <span class="material-icons" data-bs-toggle="dropdown">
                                         expand_more
                                     </span>
@@ -44,9 +52,13 @@
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
 
+
+
                                         <li><router-link
                                                 :to="{ name: 'EditarCriterio', params: { idCrit: criterio.id, servicio: $route.params.servicio, StandardId: $route.params.id } }"
                                                 class="dropdown-item">Editar</router-link></li>
+
+
 
 
                                         <li><button type="button" class="dropdown-item" data-bs-toggle="modal"
@@ -56,6 +68,7 @@
                                             </button></li>
                                     </ul>
 
+
                                 </td>
                             </tr>
                         </tbody>
@@ -63,7 +76,11 @@
                 </div>
 
 
+
+
             </div>
+
+
 
 
         </div>
@@ -103,6 +120,8 @@ export default {
     methods: {
 
 
+
+
         consultarCriterio() {
             let userStandardId = this.$route.params.id
             fetch(
@@ -126,6 +145,8 @@ export default {
                         this.Criterios = datosRespuesta["arrayCriteria"]
 
 
+
+
                         // El array "arrayStandard" no está vacío o no existe
                         console.log(this.Criterios, "El array arrayCriteria no está vacío o no existe.");
                     }
@@ -141,9 +162,15 @@ export default {
                     window.location.href = "/ListarCriteriosAdmin/" + this.$route.params.id + '/'+ this.$route.params.servicio
 
 
+
+
                 })
                 .catch(console.log)
         },
+
+
+
+
 
 
 
@@ -155,6 +182,8 @@ export default {
 <style lang="scss" scoped>
 
 
+
+
 .custom-link {
     text-decoration: underline;
     /* Añade un subrayado */
@@ -163,13 +192,21 @@ export default {
 }
 
 
+
+
 .custom-link:hover {
+
+
 
 
     color: var(--primary); //Al pasar por encima se ve azul
 
 
+
+
 }
+
+
 
 
 .dropdown {
@@ -177,6 +214,8 @@ export default {
     justify-content: center;
     align-items: center;
 }
+
+
 
 
 .dropdown:hover .material-icons {
