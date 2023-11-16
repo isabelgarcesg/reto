@@ -123,6 +123,96 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
+                                    <!-- <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span
+                                            class="material-icons" style="color:rgb(64, 63, 63)">visibility</span></button> -->
+                                        
+                                    <button type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="consultarEvidencia(criterio.id)"><span
+                                            class="material-icons" style="color:rgb(64, 63, 63)">visibility</span>
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <form>
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Ver evidencias
+                                                        </h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Nombre</th>
+                                                                    <th>URL</th>
+                                                                    <th>Descripción</th>
+                                                                </tr>
+
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr v-for="evidencia in evidencia" :key="evidencia.id">
+                                                                    <td>{{ evidencia.name }}</td>
+                                                                    <td>{{ evidencia.link }}</td>
+                                                                    <td>{{ evidencia.description }}</td>
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Cerrar</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <form v-on:prevent="consultarEvidencia(criterio.id)">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="staticBackdropLabel">Ver evidencias
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Nombre</th>
+                                                                    <th>URL</th>
+                                                                    <th>Descripción</th>
+                                                                </tr>
+
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr v-for="evidencia in evidencia" :key="evidencia.id">
+                                                                    <td scope="row">{{ evidencia.name }}</td>
+                                                                    <td>{{ evidencia.name }}</td>
+                                                                    <td>{{ evidencia.link }}</td>
+                                                                    <td>{{ evidencia.description }}</td>
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Salir</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div> -->
                                 </td>
 
 
@@ -183,11 +273,12 @@
 </template>
  
 <script>
+
 export default {
     data() {
         return {
             Criterios: [], //Crea un arreglo servicios que se va a ir llenando con lo que se retornó de la consulta del link en DatosRespuesta
-            evidencia: {},
+            evidencia: [],
         };
     },
     created: function () {
@@ -286,7 +377,7 @@ export default {
                     '&urlFile=' + urlEvidencia +
                     '&descriptionFile=' + descripcionEvidencia +
                     '&fileIdCriteria=' + idCriterio +
-                    '&fileIdStandard=' + '' +
+                    '&fileIdStandard=' + '1' +
                     '&key=' + key
                 )
                     .then(respuesta => respuesta.json())
@@ -296,6 +387,38 @@ export default {
 
 
                     }))
+            }
+        },
+        consultarEvidencia(id) {
+            const criterio = this.Criterios.find((c) => c.id === id);
+            console.log('Entré')
+            if (criterio) {
+                fetch(
+                    "https://redb.qsystems.co/QS3100/QServlet?operation=queryFileByCriteria&tna=6&fileIdCriteria="+id+"&key=11e2e476-717b-4898-ac02-693abdecdc9b"
+                )
+                    .then((respuesta) => respuesta.json())
+                    // .then((datosRespuesta)=>{
+                    //     console.log(datosRespuesta["arrayFiles"][0])
+                    // })
+                    .then((datosRespuesta) => {
+                        console.log(datosRespuesta);
+                        // console.log(datosRespuesta["arrayStandard"],'Hola')})
+                        this.evidencia = []; //Inicializa el arreglo para entidades
+                        if (
+                            datosRespuesta.arrayFiles &&
+                            datosRespuesta.arrayFiles.length === 0
+                        ) {
+                            // El array "arrayStandard" está vacío
+                            console.log("El array arrayFile está vacío.");
+                        } else {
+                            console.log(datosRespuesta["arrayFiles"])
+                            this.evidencia = datosRespuesta["arrayFiles"]
+                            
+                            // El array "arrayStandard" no está vacío o no existe
+                            console.log(this.evidencia, "El array arrayFiles no está vacío o no existe.");
+                        }
+                    })
+                    .catch(console.log);
             }
         },
         // borrarCriterio(id) {
