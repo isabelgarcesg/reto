@@ -8,12 +8,6 @@
             style="font-size: 24px;">add_box</span></router-link>
       </div>
     </nav>
-    <!-- <div v-if="user">
-      <h2>Perfil de Usuario</h2>
-      <p>{{ user.entityID }}</p>
-      <p>{{ user.nickname }}</p>
-
-    </div> -->
     <!-- Agregar margen superior al card para separarlo de la barra de navegación -->
     <div class="container">
 
@@ -193,5 +187,16 @@ export default {
 .dropdown:hover .material-icons {
   /* Cambia el color de fondo en hover */
   cursor: pointer;
+}
+div {
+
+.card {
+    background-color: #fdfdfd;
+    display: flex;
+    margin-right: 10rem;
+    margin-left: 15rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
 }
 </style>

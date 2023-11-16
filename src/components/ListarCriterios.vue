@@ -447,6 +447,11 @@ td {
             text-align: center;
         }
 
+        th {
+            vertical-align: middle;
+            text-align: center;
+        }
+
 .dropdown:hover .material-icons {
     /* Cambia el color de fondo en hover */
     cursor: pointer;
