@@ -123,12 +123,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <!-- <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span
                                             class="material-icons" style="color:rgb(64, 63, 63)">visibility</span></button> -->
-                                        
-                                    <button type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="consultarEvidencia(criterio.id)"><span
-                                            class="material-icons" style="color:rgb(64, 63, 63)">visibility</span>
+
+                                    <button type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                        @click="consultarEvidencia(criterio.id)"><span class="material-icons"
+                                            style="color:rgb(64, 63, 63)">visibility</span>
                                     </button>
 
                                     <!-- Modal -->
@@ -150,14 +151,23 @@
                                                                     <th>Nombre</th>
                                                                     <th>URL</th>
                                                                     <th>Descripción</th>
+                                                                    <th>Acciones</th>
                                                                 </tr>
 
                                                             </thead>
                                                             <tbody>
-                                                                <tr v-for="evidencia in evidencia" :key="evidencia.id">
-                                                                    <td>{{ evidencia.name }}</td>
-                                                                    <td>{{ evidencia.link }}</td>
-                                                                    <td>{{ evidencia.description }}</td>
+                                                                <tr v-for="evidenciaItem in evidencia"
+                                                                    :key="evidenciaItem.id">
+                                                                    <td>{{ evidenciaItem.name }}</td>
+                                                                    <td>{{ evidenciaItem.link }}</td>
+                                                                    <td>{{ evidenciaItem.description }}</td>
+                                                                    <td><button type="button"
+                                                                            style="margin-left: 10px; border: none; background: none;"
+                                                                            data-bs-dismiss="modal"
+                                                                            v-on:click="borrarEvidencia(evidenciaItem.id)">
+                                                                            <span class="material-icons text-muted"
+                                                                                style="font-size: 24px;">delete</span>
+                                                                        </button></td>
                                                                 </tr>
 
                                                             </tbody>
@@ -394,7 +404,7 @@ export default {
             console.log('Entré')
             if (criterio) {
                 fetch(
-                    "https://redb.qsystems.co/QS3100/QServlet?operation=queryFileByCriteria&tna=6&fileIdCriteria="+id+"&key=11e2e476-717b-4898-ac02-693abdecdc9b"
+                    "https://redb.qsystems.co/QS3100/QServlet?operation=queryFileByCriteria&tna=6&fileIdCriteria=" + id + "&key=11e2e476-717b-4898-ac02-693abdecdc9b"
                 )
                     .then((respuesta) => respuesta.json())
                     // .then((datosRespuesta)=>{
@@ -413,7 +423,7 @@ export default {
                         } else {
                             console.log(datosRespuesta["arrayFiles"])
                             this.evidencia = datosRespuesta["arrayFiles"]
-                            
+
                             // El array "arrayStandard" no está vacío o no existe
                             console.log(this.evidencia, "El array arrayFiles no está vacío o no existe.");
                         }
@@ -421,27 +431,19 @@ export default {
                     .catch(console.log);
             }
         },
-        // borrarCriterio(id) {
-        //     console.log(id)
-        //     fetch("https://redb.qsystems.co/QS3100/QServlet?operation=DeleteCriteria&tna=6&idCriteria=" + id + "&key=11e2e476-717b-4898-ac02-693abdecdc9b")
-        //         .then(respuesta => respuesta.json())
-        //         .then((datosRespuesta) => {
-        //             console.log(datosRespuesta)
-        //             window.location.href = "../ListarCriterios/" + this.$route.params.id + '/' + this.$route.params.servicio;
-
-
-
-
-        //         })
-        //         .catch(console.log)
-        // },
-
-
-
-
-
-
-
+        borrarEvidencia(id) {
+            console.log('borrarEvidencia se está ejecutando con el ID:', id);
+            const Evidencia = this.evidencia.find((c) => c.id === id);
+            if (Evidencia) {
+                console.log(id)
+                fetch("https://redb.qsystems.co/QS3100/QServlet?operation=DeleteFile&tna=6&idFile=" + id + "&key=11e2e476-717b-4898-ac02-693abdecdc9b")
+                    .then(respuesta => respuesta.json())
+                    .then((datosRespuesta) => {
+                        console.log(datosRespuesta)
+                    })
+                    .catch(console.log)
+            }
+        },
 
     },
 };
