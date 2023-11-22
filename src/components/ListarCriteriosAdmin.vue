@@ -25,6 +25,7 @@
                                 <th>Descripción</th>
                                 <th>Estado</th>
                                 <th>Observación</th>
+                                <th>Observación Auditor</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -35,6 +36,8 @@
                                 </td>
                                 <td>{{ criterio.answer }}</td>
                                 <td>{{ criterio.observation }}</td>
+                                <td>{{ criterio.observationAuditor }}</td>
+
                                 <td class="dropdown">
 
                                     <span class="material-icons" data-bs-toggle="dropdown">

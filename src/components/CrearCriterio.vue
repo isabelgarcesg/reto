@@ -91,6 +91,7 @@ export default {
       let descriptionCriteria = this.criterio.descriptionCriteria
       let answerCriteria = this.criterio.answerCriteria
       let observationCriteria = this.criterio.observationCriteria
+      let observationCriteriaAuditor = "--"
       let standardIdCriteria = this.$route.params.StandardId
       let serviceIdCriteria = this.$route.params.servicio
       fetch('https://redb.qsystems.co/QS3100/QServlet?operation=' + operation +
@@ -99,6 +100,7 @@ export default {
         '&descriptionCriteria=' + descriptionCriteria +
         '&answerCriteria=' + answerCriteria +
         '&observationCriteria=' + observationCriteria +
+        '&observationCriteriaAuditor=' + observationCriteriaAuditor +
         '&standardIdCriteria=' + standardIdCriteria +
         '&serviceIdCriteria=' + serviceIdCriteria
       )

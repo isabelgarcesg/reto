@@ -1,6 +1,7 @@
 <template>
     <div>
-        <nav class="navbar navbar-expand navbar-light bg-light"  v-if="(user.userType !== 2) && (user.userType !== 3)" aria-disabled="">
+        <nav class="navbar navbar-expand navbar-light bg-light" v-if="(user.userType !== 2) && (user.userType !== 3)"
+            aria-disabled="">
             <div class="nav navbar-nav">
 
 
@@ -26,7 +27,11 @@
                                 <th>Observación</th>
                                 <!-- AUDITOR NI EDITA NI SUBE EVIDENCIA -->
                                 <th v-if="(user.userType !== 2)" aria-disabled="">Evidencia</th>
-                                <th v-if="(user.userType !== 2)" aria-disabled="">Guardar</th>
+                                <!-- SOLO PARA QUE AUDITOR GUARDE SU EVIDENCIA -->
+                                <th v-if="(user.userType !== 1) && (user.userType !== 3)" aria-disabled="">Observación auditor</th>
+                                <th>Guardar</th>
+                                <!-- AUDITOR NO VE SU PROPIA EVIDENCIA -->
+                                <th v-if="(user.userType !== 2)" aria-disabled="">Observación auditor</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -64,10 +69,11 @@
                                         <label for="floatingInput"></label>
                                     </div>
                                 </td>
-                               
+
                                 <!-- SOLO PARA QUE AUDITOR VEA-->
-                                <td v-if="(user.userType !== 1) && (user.userType !== 3)" aria-disabled="">{{ criterio.observation }}</td>
-<!-- AUDITOR NO SUBE EVIDENCIA -->
+                                <td v-if="(user.userType !== 1) && (user.userType !== 3)" aria-disabled="">{{
+                                    criterio.observation }}</td>
+                                <!-- AUDITOR NO SUBE EVIDENCIA -->
                                 <td v-if="(user.userType !== 2)" aria-disabled="" class="text-center">
                                     <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span
                                             class="material-icons" style="color:rgb(64, 63, 63)">upload_file</span></button>
@@ -124,10 +130,20 @@
                                 </td>
 
 
+                                <td v-if="(user.userType == 2)" aria-disabled="">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="observationAuditor"
+                                            v-model="criterio.observationAuditor" name="observationAuditor">
+                                      
+                                    </div>
+                                </td>
+
+
+
                                 <!-- </button> -->
 
-<!-- AUDITOR EDITA -->
-                                <td v-if="(user.userType !== 2)" aria-disabled="" class="text-center">
+                                <!-- AUDITOR EDITA -->
+                                <td class="text-center">
                                     <button type="submit" @click="editarCriterio(criterio.id)"><span class="material-icons">
                                             done
                                         </span></button>
@@ -140,7 +156,10 @@
                                                 Borrar
                                             </button></li> -->
 
-
+                                            <!-- AUDITOR NO VE SU PROPIA OBSERVACIÓN -->
+                                <td v-if="(user.userType !== 2)" aria-disabled="">
+                                    {{ criterio.observationAuditor }}
+                                </td>
                             </tr>
 
 
@@ -226,11 +245,8 @@ export default {
                     } else {
                         this.Criterios = datosRespuesta["arrayCriteria"]
 
-
-
-
                         // El array "arrayStandard" no está vacío o no existe
-                        console.log(this.Criterios, "El array arrayCriteria no está vacío o no existe.");
+                        console.log(this.Criterios, "El array arrayCriteria no está vacío o no existe.", this.Criterios[1].observationAuditor);
                     }
                 })
                 .catch(console.log);
@@ -244,6 +260,7 @@ export default {
                 let descriptionCriteria = criterio.description;
                 let answerCriteria = criterio.answer;
                 let observationCriteria = criterio.observation;
+                let observationCriteriaAuditor = criterio.observationAuditor;
                 let idCriteria = id;
                 let standardIdCriteria = this.$route.params.id;
                 let serviceIdCriteria = this.$route.params.servicio;
@@ -255,6 +272,7 @@ export default {
                     '&descriptionCriteria=' + descriptionCriteria +
                     '&answerCriteria=' + answerCriteria +
                     '&observationCriteria=' + observationCriteria +
+                    '&observationCriteriaAuditor=' + observationCriteriaAuditor +
                     '&standardIdCriteria=' + standardIdCriteria +
                     '&serviceIdCriteria=' + serviceIdCriteria +
                     '&idCriteria=' + idCriteria
