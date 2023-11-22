@@ -31,6 +31,8 @@
                                 <th>Guardar</th>
                                 <!-- AUDITOR NO VE SU PROPIA EVIDENCIA -->
                                 <th v-if="(user.userType !== 2)" aria-disabled="">Observación auditor</th>
+                                <!-- SOLO PARA QUE AUDITOR VEA EVIDENCIA -->
+                                <th v-if="(user.userType !== 1) && (user.userType !== 3)" aria-disabled="">Evidencia</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -129,7 +131,7 @@
                                 <!-- <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span
                                             class="material-icons" style="color:rgb(64, 63, 63)">visibility</span></button> -->
 
-                                <button type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                <button  type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal"
                                     @click="consultarEvidencia(criterio.id)"><span class="material-icons"
                                         style="color:rgb(64, 63, 63)">visibility</span>
                                 </button>
