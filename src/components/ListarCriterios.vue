@@ -155,7 +155,7 @@
                                                                     <th>Nombre</th>
                                                                     <th>URL</th>
                                                                     <th>Descripción</th>
-                                                                    <th>Acciones</th>
+                                                                    <th v-if="(user.userType !== 2)" aria-disabled="">Acciones</th>
                                                                 </tr>
 
                                                             </thead>
@@ -163,9 +163,9 @@
                                                                 <tr v-for="evidenciaItem in evidencia"
                                                                     :key="evidenciaItem.id">
                                                                     <td>{{ evidenciaItem.name }}</td>
-                                                                    <td>{{ evidenciaItem.link }}</td>
+                                                                    <td><a href="">{{ evidenciaItem.link }}</a></td>
                                                                     <td>{{ evidenciaItem.description }}</td>
-                                                                    <td><button type="button"
+                                                                    <td v-if="(user.userType !== 2)" aria-disabled=""><button type="button"
                                                                             style="margin-left: 10px; border: none; background: none;"
                                                                             data-bs-dismiss="modal"
                                                                             v-on:click="borrarEvidencia(evidenciaItem.id)">
