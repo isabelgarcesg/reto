@@ -136,34 +136,43 @@
                                         style="color:rgb(64, 63, 63)">visibility</span>
                                 </button>
 
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <form>
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Ver evidencias
-                                                    </h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Nombre</th>
-                                                                <th>URL</th>
-                                                                <th>Descripción</th>
-                                                            </tr>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <form>
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Ver evidencias
+                                                        </h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Nombre</th>
+                                                                    <th>URL</th>
+                                                                    <th>Descripción</th>
+                                                                    <th>Acciones</th>
+                                                                </tr>
 
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr v-for="evidencia in evidencia" :key="evidencia.id">
-                                                                <td>{{ evidencia.name }}</td>
-                                                                <td>{{ evidencia.link }}</td>
-                                                                <td>{{ evidencia.description }}</td>
-                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr v-for="evidenciaItem in evidencia"
+                                                                    :key="evidenciaItem.id">
+                                                                    <td>{{ evidenciaItem.name }}</td>
+                                                                    <td>{{ evidenciaItem.link }}</td>
+                                                                    <td>{{ evidenciaItem.description }}</td>
+                                                                    <td><button type="button"
+                                                                            style="margin-left: 10px; border: none; background: none;"
+                                                                            data-bs-dismiss="modal"
+                                                                            v-on:click="borrarEvidencia(evidenciaItem.id)">
+                                                                            <span class="material-icons text-muted"
+                                                                                style="font-size: 24px;">delete</span>
+                                                                        </button></td>
+                                                                </tr>
 
                                                         </tbody>
                                                     </table>
@@ -418,6 +427,19 @@ export default {
                         }
                     })
                     .catch(console.log);
+            }
+        },
+        borrarEvidencia(id) {
+            console.log('borrarEvidencia se está ejecutando con el ID:', id);
+            const Evidencia = this.evidencia.find((c) => c.id === id);
+            if (Evidencia) {
+                console.log(id)
+                fetch("https://redb.qsystems.co/QS3100/QServlet?operation=DeleteFile&tna=6&idFile=" + id + "&key=11e2e476-717b-4898-ac02-693abdecdc9b")
+                    .then(respuesta => respuesta.json())
+                    .then((datosRespuesta) => {
+                        console.log(datosRespuesta)
+                    })
+                    .catch(console.log)
             }
         },
 
