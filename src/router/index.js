@@ -20,6 +20,7 @@ import ListarServicios from '../components/ListarServicios.vue'
 import ListarEstandares from '../components/ListarEstandares.vue'
 import ListarCriterios from '../components/ListarCriterios.vue'
 import ListarCriteriosAdmin from '../components/ListarCriteriosAdmin.vue'
+import EditarContraseña from '../components/EditarContraseña.vue'
 import LoginView from '../components/LoginView.vue'
 
 
@@ -149,6 +150,12 @@ meta: { hasSidebar: true, requiresAuth: true }
     path: '/CrearCriterio/:StandardId/:servicio',
     name: 'CrearCriterio',
     component: CrearCriterio,
+    meta: { hasSidebar: true, requiresAuth: true }
+  },
+  {
+    path: '/EditarContraseña/:id',
+    name: 'EditarContraseña',
+    component: EditarContraseña,
     meta: { hasSidebar: true, requiresAuth: true }
   },
 

@@ -42,15 +42,9 @@
           <button type="submit" class="btn btn-info">Modificar</button>
           <router-link :to="{ name: 'ListarEntidad' }" class="btn btn-danger"
             style="margin-left: 30px;">Cancelar</router-link>
-
-
-
-
-
         </form>
       </div>
     </div>
-
     </div>
   </div>
 </template>

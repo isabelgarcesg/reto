@@ -76,17 +76,6 @@
                 </div>
               </div>
 
-
-
-              <div class="col-md-6 ">
-                <div class="form-group">
-                  <label for="password">Contraseña</label>
-                  <input type="password" class="form-control" name="password" v-model="usuario.password" id="password"
-                    aria-describedby="helpId" placeholder="********" required />
-                  <small id="helpId" class="form-text text-muted"></small>
-                </div>
-              </div>
-
             </div>
 
             <div><br /></div>
@@ -98,6 +87,8 @@
             <button type="submit" class="btn btn-primary">Enviar</button>
             <router-link :to="{ name: 'ListarUsuario', params: {id:$route.params.entity} }" class="btn btn-danger"
             style="margin-left: 30px;">Cancelar</router-link>
+            <router-link :to="{ name: 'EditarContraseña', params: {id:$route.params.id} }" class="btn btn-link"
+            style="margin-left: 30px;">Cambiar Contraseña</router-link>
           </form>
         </div>
       </div>
@@ -164,7 +155,6 @@ export default {
         userId: this.$route.params.id,
         nameUser: this.usuario.name,
         phoneUser: this.usuario.phone,
-        passwordUser: this.usuario.password,
         documentUser: this.usuario.document,
         positionUser: this.usuario.position,
         userEntityId: this.$route.params.entity,
@@ -182,7 +172,6 @@ export default {
         '&nameUser=' + datosEnviar.nameUser +
         '&nickname=' + datosEnviar.nickname +
         '&phoneUser=' + datosEnviar.phoneUser +
-        '&passwordUser=' + datosEnviar.passwordUser +
         '&documentUser=' + datosEnviar.documentUser +
         '&positionUser=' + datosEnviar.positionUser +
         '&userType=' + UserType +//datosEnviar.UserType+

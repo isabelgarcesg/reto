@@ -184,4 +184,16 @@ export default {
   /* Cambia el color de fondo en hover */
   cursor: pointer;
 }
+
+div {
+
+.card {
+    background-color: #fdfdfd;
+    display: flex;
+    margin-right: 10rem;
+    margin-left: 20rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+}
 </style>
