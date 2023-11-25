@@ -10,7 +10,7 @@
     </div>
     <div class="container">
       <br>
-      <h2>Servicios</h2>
+      <h2>Cumplimiento por servicios</h2>
       <div v-for="servicio in Servicios" :key="servicio.id" class="service-card">
         <h3>{{ servicio.name }}</h3>
 
@@ -201,6 +201,31 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; /* Adjust as needed */
+}
+
+.service-card {
+  flex: 0 0 calc(30% - 20px); /* Adjust as needed */
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 10px;
+  border-radius: 8px;
+  text-align: left;
+  max-width: 400px;
+  box-sizing: border-box; /* Ensure padding and margin are included in the width calculation */
+}
+
+h2 {
+  width: 100%; /* Ensure the title spans the full width */
+  text-align: center; /* Center the title */
+  margin-bottom: 16px; /* Add some space below the title */
+  margin-top: 16px;
+}
 .entity-name {
   font-size: 28px; /* Ajusta el tamaño del nombre de la entidad */
   font-weight: bold; /* Aplica negrita al nombre de la entidad */
