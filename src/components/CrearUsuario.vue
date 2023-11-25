@@ -1,16 +1,12 @@
 <template>
   <div class="container">
-    <div class="card bg-white">
-      <div class="card-header mt-3 mb-3">
-        <b>Creación de usuario</b>
-      </div>
-    </div>
-    <div class="card">
+    <div class="card" style="width: 40rem;">
       <div class="card-body">
+        <h4 class="card-title mb-4 text-center"><strong>Crear Usuario</strong></h4>
         <div class="mt-4 d-flex justify-content-center align-items-center">
           <form v-on:submit.prevent="agregarUsuario">
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <div class="form-group">
                   <label for="name">Nombre completo</label>
                   <input type="text" class="form-control" name="name" v-model="usuario.name" id="name"
@@ -18,7 +14,7 @@
                   <small id="helpId" class="form-text text-muted"></small>
                 </div>
               </div>
-
+              <div> <br> </div>
 
               <div class="col-md-6">
                 <div class="form-group">
@@ -29,8 +25,6 @@
                 </div>
               </div>
 
-              <div> <br> </div>
-
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="phone">Celular</label>
@@ -40,7 +34,7 @@
                 </div>
               </div>
 
-
+              <div> <br> </div>
 
               <div class="col-md-6">
                 <label for="userType" class="form-label">Tipo de usuario</label>
@@ -49,23 +43,12 @@
                   <option value="Administrador">Administrador</option>
                   <option value="Auditor">Auditor</option>
                   <option value="Normal">Normal</option>
+                  <option value="Superadmin">Superadmin</option>
                 </select>
                 <div class="invalid-feedback">
                   Please select a valid state.
                 </div>
               </div>
-
-
-              <div> <br> </div>
-              <!-- <div class="col-md-6">
-                <div class="form-group">
-                  <label for="entityID">Entidad prestadora de servicios</label>
-                  <input type="int" class="form-control" name="entityID" v-model="usuario.entityID" id="entityID"
-                    aria-describedby="helpId" placeholder="Seleccione la entidad a la que pertenece" />
-                  <small id="helpId" class="form-text text-muted"></small>
-                </div>
-              </div> -->
-
 
               <!--CARGO = POSITION-->
               <div class="col-md-6">
@@ -76,6 +59,16 @@
                   <small id="helpId" class="form-text text-muted"></small>
                 </div>
               </div>
+              <div> <br> </div>
+              <div class="col-md-6 elemento">
+                <div class="form-group">
+                  <label for="nickname">Usuario</label>
+                  <input type="text" class="form-control" name="nickname" v-model="usuario.nickname" id="nickname"
+                    aria-describedby="helpId" placeholder="User" required />
+                  <small id="helpId" class="form-text text-muted"></small>
+                </div>
+              </div>
+
 
               <div class="col-md-6">
                 <div class="form-group">
@@ -98,10 +91,6 @@
           </form>
         </div>
       </div>
-
-      <!-- <div class="card-footer text-muted">
-        Copyright: LifeTech Solutions 2023
-      </div> -->
     </div>
   </div>
 </template>
@@ -124,6 +113,8 @@ export default {
       let operation = "SaveUser";
       let tna = 6;
       let nameUser = this.usuario.name;
+      let nickname = this.usuario.nickname;
+      console.log(this.usuario.nickname)
       let phoneUser = this.usuario.phone;
       let passwordUser = this.usuario.password;
       let documentUser = this.usuario.doc;
@@ -136,6 +127,9 @@ export default {
       } else if (this.usuario.userType === "Auditor") {
         UserType = 2;
       }
+      else if (this.usuario.userType === "Superadmin") {
+        UserType = 4;
+      }
       // let userEntityId = this.usuario.entityID;
       let key = "11e2e476-717b-4898-ac02-693abdecdc9b";
       fetch(
@@ -146,7 +140,9 @@ export default {
         "&nameUser=" +
         nameUser +
         "&phoneUser=" +
-        phoneUser +
+       phoneUser +
+        "&nickname=" +
+        nickname +
         "&passwordUser=" +
         passwordUser +
         "&documentUser=" +
@@ -156,7 +152,7 @@ export default {
         "&userType=" +
         UserType +
         "&userEntityId=" +
-       newPara +
+        newPara +
         "&key=" +
         key
       )
@@ -166,22 +162,30 @@ export default {
           window.location.href = '../ListarUsuario/'+this.$route.params.id//Redirecciona a la URL de listar
         });
     },
+
     volver() {
-      
-          window.location.href = "../ListarUsuario/" +this.$route.params.id //hay que poner lo mismo del id acá
 
-        }
+      window.location.href = "../ListarUsuario/" + this.$route.params.id //hay que poner lo mismo del id acá
 
-    
+    }
+
+
   },
 };
 </script>
 
 <style lang="scss" scoped>
+
 div {
-  .card {
-    background-color: var(--light-blue);
-  }
+
+.card {
+  background-color: #fdfdfd;
+  display: flex;
+  margin-right: 10rem;
+  margin-left: 15rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
 }
 
 input {

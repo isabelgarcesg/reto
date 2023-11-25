@@ -1,5 +1,5 @@
 <template>
-    <aside :class="`${is_expanded && 'is-expanded' } `">
+    <aside :class="`${is_expanded && 'is-expanded'} `">
         <div class="logo">
             <img src="../assets/logo.png" alt="Vue"> <!--CAMBIAR ESTO LUEGO A ALGO MAS-->
         </div>
@@ -20,35 +20,69 @@
                 <span class="material-icons">document</span>
                 <span class="text">About</span>
             </router-link> -->
-            <router-link class="botton" to="/ListarEntidad">
+
+                <!-- SOLO SUPER ADMINISTRADOR -->
+            <router-link  v-if="user.userType !== 2 && user.userType !== 3 && user.userType !== 1" class="botton" to="/ListarEntidad">
                 <span class="material-icons">apartment</span>
                 <span class="text">Entidad</span>
-            </router-link> 
+            </router-link>
 
-            <router-link class="botton" to="/PruebaUsuario">
+                    <!-- Normal y auditor NO pueden ver, ADMIN SI-->
+            <router-link v-if="user.userType !== 2 && user.userType !== 3"
+                :to="{ name: 'ListarUsuario', params: { id: user.entityID } }" class="botton">
                 <span class="material-icons">person</span>
                 <span class="text">Usuarios</span>
             </router-link>
 
-        
+<!-- PUEDEN VER TODOS -->
+            <router-link 
+            :to="{ name: 'ListarServicios', params: { id: user.entityID } }" class="botton">
+                <span class="material-icons">medical_information</span>
+                <span class="text">Servicios</span>
+            </router-link>
+
+            <!-- <router-link :to="{ name: 'ListarServicios', params: { id: entidad.id } }"
+                          class="dropdown-item"> Ver servicios</router-link> -->
+
+            <router-link class="botton " @click="logout" to="/login">
+                <span class="material-icons">logout</span>
+                <span class="text">Cerrar sesión</span>
+            </router-link>
+
         </div>
-    </aside> 
+        <!-- <button @click="logout" class="logout-button">
+            <span class="material-icons">logout</span>
+            <span class="text">Cerrar sesión</span>
+        </button> -->
+    </aside>
 </template>
 
 <script setup>
-import {ref} from 'vue'
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
-const is_expanded = ref(localStorage.getItem("is_expanded")==="true")
+const is_expanded = ref(localStorage.getItem("is_expanded") === "true");
+const router = useRouter();
 
-const ToggleMenu = () =>{
-    is_expanded.value =!is_expanded.value //Me va a permitir colapsar el menú
+const ToggleMenu = () => {
+    is_expanded.value = !is_expanded.value;
+    localStorage.setItem("is_expanded", is_expanded.value);
+};
 
-    localStorage.setItem("is_expanded", is_expanded.value)
-}
+const logout = () => {
+    // Borrar la información de usuario en localStorage y redirigir al inicio de sesión
+    localStorage.removeItem("user");
+    router.push({ name: 'LoginView' });
+};
+
+const user = JSON.parse(localStorage.getItem("user"));
+console.log(user.userType, 'SIDEBAR');
+
 </script>
 
+
 <style lang="scss" scoped>
-aside{
+aside {
     display: flex;
     flex-direction: column;
     //width: var(--sidebar-width);
@@ -56,23 +90,24 @@ aside{
     min-height: 100vh;
     overflow: hidden;
     padding: 1rem;
-    
+
 
     background-color: var(--dark);
-    color:var(--light);
+    color: var(--light);
 
     transition: 0.2 ease-out;
 
-    .logo{
+    .logo {
         margin-bottom: 1rem;
-        img{
+
+        img {
 
             width: 40px;
 
         }
     }
 
-    .menu-toggle-wrap{
+    .menu-toggle-wrap {
         display: flex;
         justify-content: flex-end;
         margin-bottom: 1rem;
@@ -84,14 +119,15 @@ aside{
         .menu-toggle {
             transition: 0.2 ease-out;
 
-            .material-icons{
-                font-size: 2rem; 
+            .material-icons {
+                font-size: 2rem;
                 color: var(--light) // No se pone blanco, why????
             }
-            &:hover{
-                .material-icons{
-                    color:var(--primary);
-                    transform: translateX(0.5rem);// esto era para que se moviera un poquito pero lo de material-icons no me funciona :(
+
+            &:hover {
+                .material-icons {
+                    color: var(--primary);
+                    transform: translateX(0.5rem); // esto era para que se moviera un poquito pero lo de material-icons no me funciona :(
                     transition: 0.2 ease-out;
                 }
 
@@ -100,20 +136,22 @@ aside{
 
     }
 
-h3, .botton .text {
-    opacity: 0;
-    transition: 0.3s ease-out;
-}
+    h3,
+    .botton .text {
+        opacity: 0;
+        transition: 0.3s ease-out;
+    }
 
-// h3 {
-//     color: var(--grey); nunca le puse título a esto, entonces no es necesario
-//     font-size: 0.875rem;
-//     margin-bottom: 0.5rem;
-//     text-transform: uppercase;
-// }
-    .menu{
+    // h3 {
+    //     color: var(--grey); nunca le puse título a esto, entonces no es necesario
+    //     font-size: 0.875rem;
+    //     margin-bottom: 0.5rem;
+    //     text-transform: uppercase;
+    // }
+    .menu {
         margin: 0 -1rem;
-        .botton{
+
+        .botton {
             display: flex;
             align-items: center;
             text-decoration: none;
@@ -121,55 +159,63 @@ h3, .botton .text {
             padding: 0.5rem 1rem;
             transition: 0.2s ease-out;
 
-            .material-icons{
+            .material-icons {
                 font-size: 2rem;
                 color: var(--light);
                 margin-right: 1rem;
                 transition: 0.2s ease-out;
             }
-            .text{
+
+            .text {
                 color: var(--light);
                 transition: 0.2s ease-out;
 
             }
 
-            &:hover, &.router-link-exact-active {
+            &:hover,
+            &.router-link-exact-active {
                 background-color: var(--dark-alt);
 
-                .material-icons, .text{
+                .material-icons,
+                .text {
                     color: var(--primary);
                 }
             }
-            &.router-link-exact-active{
+
+            &.router-link-exact-active {
                 border-right: 5px solid var(--primary);
             }
         }
 
     }
-    &.is-expanded{
+
+    &.is-expanded {
         width: var(--sidebar-width); // Cuando se de click en el logo se llama a expanded y este cambia el tamaño del side bar
-        .menu-toggle-wrap{
+
+        .menu-toggle-wrap {
             top: -3rem;
-            .menu-toggle{
+
+            .menu-toggle {
                 transform: rotate(-180deg); // Lo gira 180 para que parezca que va a esconder el menú again
             }
         }
 
-        h3, .botton .text {
+        h3,
+        .botton .text {
             opacity: 1;
-            
+
         }
 
-        .logo{
-            img{
+        .logo {
+            img {
                 width: 4rem;
                 transition: 0.2s ease-out;
             }
         }
-        
+
     }
 
-    @media(max-width: 768px){
+    @media(max-width: 768px) {
         position: fixed;
         z-index: 99;
     }
