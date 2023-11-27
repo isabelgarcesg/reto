@@ -153,7 +153,7 @@ meta: { hasSidebar: true, requiresAuth: true }
     meta: { hasSidebar: true, requiresAuth: true }
   },
   {
-    path: '/EditarContraseña/:id',
+    path: '/EditarContraseña/:id/:entidad',
     name: 'EditarContraseña',
     component: EditarContraseña,
     meta: { hasSidebar: true, requiresAuth: true }
