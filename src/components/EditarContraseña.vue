@@ -2,7 +2,7 @@
    <div class="container">
       <div class="card">
          <div class="card-body">
-            <h4 class="card-title mb-4 text-center"><strong>Editar Entidad</strong></h4>
+            <h4 class="card-title mb-4 text-center"><strong>Editar contraseña</strong></h4>
             <div class="mt-4 d-flex justify-content-center align-items-center">
 
                <form v-on:submit.prevent="changePassword">
@@ -92,3 +92,17 @@ export default {
    },
 };
 </script>
+
+<style lang="scss" scoped>
+.card {
+    background-color: #fdfdfd;
+    display: flex;
+    // margin-right: 10rem;
+    margin-left: 18rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    width: 50%;
+    height: 60%;
+}
+
+</style>
