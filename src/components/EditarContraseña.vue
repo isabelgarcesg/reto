@@ -102,7 +102,7 @@ export default {
     margin-top: 1rem;
     margin-bottom: 2rem;
     width: 50%;
-    height: 60%;
+   //  height: 60%;
 }
 
 </style>
