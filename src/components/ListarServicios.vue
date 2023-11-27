@@ -1,20 +1,17 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand navbar-light bg-light" v-if="(user.userType !== 2) && (user.userType !== 3)"
-      aria-disabled="">
-      <div class="nav navbar-nav">
-        <router-link :to="{ name: 'CrearServicio', params: { entityId: $route.params.id } }"
-          style="margin-left: 600px;"><span class="material-icons text-muted"
-            style="font-size: 24px;">add_box</span></router-link>
-      </div>
-    </nav>
+
     <!-- Agregar margen superior al card para separarlo de la barra de navegación -->
     <div class="container">
 
       <div class="card">
 
         <div class="card-body">
-          <h4 class="card-title mb-4 text-center"><strong>Lista de Servicios</strong></h4>
+          <h4 class="card-title mb-4 text-center" v-if="(user.userType !== 1)" aria-disabled=""><strong>Lista de Servicios</strong></h4>
+          <h4 v-if="(user.userType !== 2) && (user.userType !== 3)"
+      aria-disabled="" class="card-title mb-4 text-center"><strong>Lista de Servicios<router-link :to="{ name: 'CrearServicio', params: { entityId: $route.params.id } }"
+          style="margin-left: 50px;"><span class="material-icons text-muted"
+            style="font-size: 24px;">add_box</span></router-link></strong></h4>
 
           <table class="table">
             <thead>
