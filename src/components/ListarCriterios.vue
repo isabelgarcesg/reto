@@ -487,7 +487,6 @@ td {
     /* Cambia el color de fondo en hover */
     cursor: pointer;
 }
-
 .card {
     background-color: #fdfdfd;
     display: flex;

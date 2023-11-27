@@ -186,16 +186,6 @@ export default {
 }
 
 
-
-
-// .dropdown {
-//     display: flex;
-//     justify-content: center;
-//     align-items: normal;
-// }
-
-
-
 .dropdown:hover .material-icons {
     /* Cambia el color de fondo en hover */
     cursor: pointer;
