@@ -74,7 +74,7 @@ export default {
                   console.log(datosRespuesta["userVO"]); // Asegúrate de que esto contenga la información del usuario
                   this.usuario = datosRespuesta["userVO"];
                   localStorage.setItem("user", JSON.stringify(this.usuario));
-                  window.location.href = "/EditarUsuario/" + this.$route.params.id +"/"+ this.$route.params.entity
+                  window.location.href = "/ListarUsuario/" + this.$route.params.entidad
 
                } else {
                   console.log("La información suministrada no coincide con la del usuario");
@@ -86,7 +86,7 @@ export default {
       },
 
       cancelEdit() {
-         this.$router.go(-1); // Navegar hacia atrás en la historia del navegador
+         window.location.href = "/ListarUsuario/" + this.$route.params.entidad
       }
 
    },
