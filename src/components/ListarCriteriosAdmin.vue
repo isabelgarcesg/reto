@@ -1,28 +1,15 @@
 <template>
     <div>
-        <nav class="navbar navbar-expand navbar-light bg-light">
-            <div class="nav navbar-nav">
-
-
-                <router-link
-                    :to="{ name: 'CrearCriterio', params: { StandardId: $route.params.id, servicio: $route.params.servicio } }"
-                    style="margin-left: 1000px;"><span class="material-icons text-muted"
-                        style="font-size: 24px;">add_box</span></router-link>
-            </div>
-        </nav>
-
-
-
 
         <!-- Agregar margen superior al card para separarlo de la barra de navegación -->
         <div class="container">
 
-
-
-
             <div class="card">
                 <div class="card-body" style="width: 40rem;">
-                    <h4 class="card-title mb-4 text-center"><strong>Lista de criterios</strong></h4>
+                    <h4 class="card-title mb-4 text-center"><strong>Lista de criterios <router-link
+                    :to="{ name: 'CrearCriterio', params: { StandardId: $route.params.id, servicio: $route.params.servicio } }"
+                    style="margin-left: 50px;"><span class="material-icons text-muted"
+                        style="font-size: 24px;">add_box</span></router-link></strong></h4>
 
 
 

@@ -1,16 +1,11 @@
 <template>
     <div>
-    <nav class="navbar navbar-expand navbar-light bg-light">
-      <div class="nav navbar-nav">
-        <router-link :to="{ name: 'crear', params: { id: $route.params.id } }" 
-          style="margin-left: 600px;"><span class="material-icons text-muted" style="font-size: 24px;">person_add</span></router-link>
-        <!-- <router-link :to="{ name: 'ListarUsTenan' }" class="btn btn-info" style="margin-left: 30px;">Tenancy</router-link> -->
-      </div>
-    </nav>
 
     <div class="container">
       <div class="card">
-        <h4 class="card-title mb-4 text-center"><strong>Lista de usuarios</strong></h4>
+        <br>
+        <h4 class="card-title mb-4 text-center"><strong>Lista de usuarios<router-link :to="{ name: 'crear', params: { id: $route.params.id } }" 
+          style="margin-left:50px;"><span class="material-icons text-muted" style="font-size: 24px;">person_add</span></router-link></strong></h4>
         <div class="card-body">
           <table class="table">
             <thead>
@@ -158,12 +153,12 @@ export default {
 div {
 
 .card {
-  background-color: #fdfdfd;
-  display: flex;
-  margin-right: auto;
-  margin-left: auto;
-  margin-top:auto;
-  margin-bottom:auto;
+    background-color: #fdfdfd;
+    display: flex;
+    margin-right: 5rem;
+    margin-left: 15rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
 }
 }
 </style>
