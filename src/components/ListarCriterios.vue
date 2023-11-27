@@ -10,7 +10,7 @@
                     style="font-size: 24px;">add_box</span></router-link>
         </div>
     </nav>
-
+    <div class="page-container">
     <!-- Agregar margen superior al card para separarlo de la barra de navegación -->
     <div class="container">
 
@@ -279,6 +279,7 @@
 
 
     </div>
+</div>
 </template>
  
 <script>
@@ -459,15 +460,7 @@ export default {
 
 
 .custom-link:hover {
-
-
-
-
     color: var(--primary); //Al pasar por encima se ve azul
-
-
-
-
 }
 
 
@@ -495,16 +488,29 @@ td {
     cursor: pointer;
 }
 
-div {
-
-    .card {
-        background-color: #fdfdfd;
-        display: flex;
-        margin-right: auto;
-        margin-left: auto;
-        margin-top: auto;
-        margin-bottom: auto;
-    }
+.card {
+    background-color: #fdfdfd;
+    display: flex;
+    // margin-right: 10rem;
+    margin-left: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    width: 100%; 
+}
+.container {
+  display: flex;
+  justify-content: center;
+}
+.page-container {
+  display: flex;
+  justify-content: center;
+  width: 100%; 
+  // align- items: center;
+  // min-height: 100vh; /* Asegura que el contenedor ocupe al menos el 100% de la altura de la ventana */
+}
+.table {
+  flex-grow: 1; /* La tabla ocupará el espacio disponible en el contenedor */
+  overflow-y: auto; /* Agrega un desplazamiento vertical si la tabla es más grande que el contenedor */
 }
 </style>
 

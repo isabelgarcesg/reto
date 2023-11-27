@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page-container">
 
 
     <!-- Agregar margen superior al card para separarlo de la barra de navegación -->
@@ -154,6 +154,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.dropdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .custom-link {
   text-decoration: underline;
   /* Añade un subrayado */
@@ -167,26 +173,35 @@ export default {
 
 }
 
-.dropdown {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .dropdown:hover .material-icons {
   /* Cambia el color de fondo en hover */
   cursor: pointer;
 }
-
 div {
 
 .card {
     background-color: #fdfdfd;
     display: flex;
-    margin-right: 10rem;
-    margin-left: 20rem;
+    // margin-right: 10rem;
+    margin-left: 15rem;
     margin-top: 1rem;
     margin-bottom: 2rem;
+    width: 70%; 
 }
+}
+.container {
+  display: flex;
+  justify-content: center;
+}
+.page-container {
+  display: flex;
+  justify-content: center;
+  width: 80%; 
+  // align- items: center;
+  // min-height: 100vh; /* Asegura que el contenedor ocupe al menos el 100% de la altura de la ventana */
+}
+.table {
+  flex-grow: 1; /* La tabla ocupará el espacio disponible en el contenedor */
+  overflow-y: auto; /* Agrega un desplazamiento vertical si la tabla es más grande que el contenedor */
 }
 </style>
