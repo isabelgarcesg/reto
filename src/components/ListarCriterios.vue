@@ -77,13 +77,13 @@
                                 <!-- AUDITOR NO SUBE EVIDENCIA -->
                                 <td v-if="(user.userType !== 2)" aria-disabled="" class="text-center">
                                     <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span
-                                            class="material-icons" style="color:rgb(64, 63, 63)">upload_file</span></button>
+                                            class="material-icons" style="color:rgb(64, 63, 63)" v-on:click="criterioSeleccionado = criterio">upload_file</span></button>
                                     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
                                         data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                         aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
-                                                <form v-on:submit.prevent="crearEvidencia(criterio.id)">
+                                                <form v-on:submit.prevent="crearEvidencia(criterioSeleccionado.id)">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="staticBackdropLabel">Subir evidencia
                                                         </h5>
@@ -163,7 +163,7 @@
                                                                 <tr v-for="evidenciaItem in evidencia"
                                                                     :key="evidenciaItem.id">
                                                                     <td>{{ evidenciaItem.name }}</td>
-                                                                    <td><a href="">{{ evidenciaItem.link }}</a></td>
+                                                                    <td><a :href="evidenciaItem.link" target="_blank">Revisar</a></td>
                                                                     <td>{{ evidenciaItem.description }}</td>
                                                                     <td v-if="(user.userType !== 2)" aria-disabled=""><button type="button"
                                                                             style="margin-left: 10px; border: none; background: none;"
