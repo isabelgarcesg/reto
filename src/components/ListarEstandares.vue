@@ -1,7 +1,5 @@
 <template>
   <div>
-
-
     <!-- Agregar margen superior al card para separarlo de la barra de navegación -->
     <div class="container">
 

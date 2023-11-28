@@ -1,19 +1,15 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand navbar-light bg-light">
-      <div class="nav navbar-nav">
-        <router-link :to="{ name: 'CrearEntidad' }" class="btn btn-info" style="margin-left: 30px;">Nuevo</router-link>
-      </div>
-    </nav>
-
     <!-- Agregar margen superior al card para separarlo de la barra de navegación -->
     <div class="container">
 
         <div class="card">
-          <div class="card-header">
-            Entidades existentes
-          </div>
           <div class="card-body">
+            <h4 v-if="(user.userType !== 2) && (user.userType !== 3)"
+      aria-disabled="" class="card-title mb-4 text-center"><strong>Lista de entidades<router-link :to="{ name: 'CrearEntidad', params: { ServiceId: $route.params.id } }"
+          style="margin-left: 50px;"><span class="material-icons text-muted"
+            style="font-size: 24px;">add_box</span></router-link></strong></h4>
+
             <table class="table">
               <thead>
                 <tr>
@@ -29,10 +25,9 @@
                   <td>{{ entidad.phone }}</td>
                   <td>{{ entidad.adress }}</td>
                   <td class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                      data-bs-toggle="dropdown" aria-expanded="false">
-                      Opciones
-                    </button>
+                    <span class="material-icons" data-bs-toggle="dropdown">
+                    expand_more
+                  </span>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
 
@@ -98,6 +93,13 @@ export default {
   },
   created: function () {
     this.consultarEntidad();
+  },
+  computed: {
+    user() {
+      const user = JSON.parse(localStorage.getItem("user"));
+      console.log(typeof (user.userType));
+      return user
+    }
   },
   methods: {
     //http://localhost/api/
@@ -168,15 +170,26 @@ export default {
 
 }
 
+.dropdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropdown:hover .material-icons {
+  /* Cambia el color de fondo en hover */
+  cursor: pointer;
+}
+
 div {
 
 .card {
     background-color: #fdfdfd;
     display: flex;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: auto;
-    margin-bottom: auto;
+    margin-right: 10rem;
+    margin-left: 20rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
 }
 }
 </style>

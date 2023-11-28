@@ -241,7 +241,7 @@
                                                         <tbody>
                                                             <tr v-for="evidencia in evidencia" :key="evidencia.id">
                                                                 <td>{{ evidencia.name }}</td>
-                                                                <td>{{ evidencia.link }}</td>
+                                                                <td><a :href="evidencia.link" target="_blank">Revisar</a></td>
                                                                 <td>{{ evidencia.description }}</td>
                                                             </tr>
 
